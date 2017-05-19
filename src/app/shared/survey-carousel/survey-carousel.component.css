@@ -17,6 +17,7 @@
     font-size: 25px;
     font-weight: 400;
     flex: 1;
+    min-height: 130px;
 }
 
 .margin-lr{
@@ -55,6 +56,7 @@
 .btn-secondary{
     background-color: transparent;
     color: #fff;
+    padding: 5px 25px;
 }
 
 .pagination-btn{
@@ -63,12 +65,3 @@
 }
 
 
-.button-holder{
-    margin: auto;
-}
-
-.button-holder .fa{
-    cursor: pointer;
-    font-size: 13px;
-    margin: 0 2px;
-}
