@@ -23,16 +23,12 @@
     flex-direction: column;
 }
 
+
 .m-flex{
     display: flex;
 }
 
-.title{
-    font-size: 14px;
-    flex:1;
-    font-weight: 300;
-    color: #ccc;
-}
+
 .resp{
     padding-top: 6px;
 }
@@ -49,29 +45,20 @@
     flex: 1;
 }
 
-.survey-content{
-    font-size: 25px;
-    font-weight: 400;
-    flex: 1;
-}
 
-.pagination-btn{
-    display: flex;
-    flex: 1;
-}
-.survey-info{
-    box-sizing: border-box;
-    margin: 15px 0;
-    display: flex;
-    flex: 1;
-}
+
+
+
 
 .flex-item{
+    display: flex;
     box-sizing: border-box;
-    margin: 0 15px;
     flex: 1;
 }
 
+.margin-lr{
+    padding: 0 20px;
+}
 
 
 .flex-container{
@@ -80,12 +67,13 @@
 .v-center{
     margin: auto 0;
 }
-.survey-info .fa{
-    color: #e74c3c;
-}
+
 
 .foot{
+    display: flex;
+    flex-flow: row;
     flex: 1;
+    
 }
 
 .btn-primary{
@@ -94,21 +82,35 @@
 }
 
 
-.btn-secondary{
-    background-color: transparent;
-    color: #fff;
-}
+
 
 .btn.btn-secondary{
     padding: .5rem 1.5rem;
 }
 
-.button-holder{
+
+
+.f-right{
+    justify-content: flex-end;
+}
+.f-left{
+    justify-content: flex-start;
+}
+
+.f-center{
     margin: auto;
 }
 
-.button-holder .fa{
-    cursor: pointer;
-    font-size: 13px;
-    margin: 0 2px;
+.f-bottom{
+    align-self: flex-end;
+}
+
+.logo-temp{
+    color: #fff;
+    font-size: 24px;
+}
+
+
+p{
+    margin-bottom: 0;
 }
