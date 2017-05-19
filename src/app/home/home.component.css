@@ -1,0 +1,114 @@
+.full-container{
+    padding: 1em;
+    display: flex;
+    height: 100vh;
+    background: url('../assets/images/landing-bg.jpg')no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    flex-direction: column;
+}
+
+.main{
+    flex: 10;
+    display: flex;
+}
+
+.f-surveys{
+    display: flex;
+    color: #fff;
+    flex-basis: 60%;
+    margin:10% auto auto auto;
+    flex-direction: column;
+}
+
+.m-flex{
+    display: flex;
+}
+
+.title{
+    font-size: 14px;
+    flex:1;
+    font-weight: 300;
+    color: #ccc;
+}
+.resp{
+    padding-top: 6px;
+}
+
+.m-vertical{
+    margin: auto 0;
+}
+.nav-item{
+    flex: 1;
+}
+
+.nav{
+    display: flex;
+    flex: 1;
+}
+
+.survey-content{
+    font-size: 25px;
+    font-weight: 400;
+    flex: 1;
+}
+
+.pagination-btn{
+    display: flex;
+    flex: 1;
+}
+.survey-info{
+    box-sizing: border-box;
+    margin: 15px 0;
+    display: flex;
+    flex: 1;
+}
+
+.flex-item{
+    box-sizing: border-box;
+    margin: 0 15px;
+    flex: 1;
+}
+
+
+
+.flex-container{
+    display: flex;
+}
+.v-center{
+    margin: auto 0;
+}
+.survey-info .fa{
+    color: #e74c3c;
+}
+
+.foot{
+    flex: 1;
+}
+
+.btn-primary{
+    background-color: #e74c3c;
+    border-color: #cf4436;
+}
+
+
+.btn-secondary{
+    background-color: transparent;
+    color: #fff;
+}
+
+.btn.btn-secondary{
+    padding: .5rem 1.5rem;
+}
+
+.button-holder{
+    margin: auto;
+}
+
+.button-holder .fa{
+    cursor: pointer;
+    font-size: 13px;
+    margin: 0 2px;
+}
