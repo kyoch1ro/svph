@@ -2,17 +2,14 @@
 <div class="title">Featured Surveys</div>
 
 <div class="survey-content">
-  {{question}}
+    <div *ngFor="let item of fSurveys; let i = index" [ngClass]="{ 'active': i == 0 }"class="survey-item">
+      {{item.question}}
+    </div>
 </div>
 
-<div class="survey-info">
-  <div class="flex-item margin-lr f-center f-right">
-      <p><i class="fa fa-circle" aria-hidden="true"></i> {{respondents}} Respondents  </p>
-  </div>
-  <div class="flex-item margin-lr f-left">
-    <button class="btn btn-secondary">Vote</button>
-  </div>
-</div>
+
+
+
 
 <div class="pagination-btn">
     <survey-carousel-page [fSurveys]="fSurveys" (change)="updateData($event)"></survey-carousel-page>

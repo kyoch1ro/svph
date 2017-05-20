@@ -1,0 +1,49 @@
+{
+    "questions":[
+        {
+            "id": 1,
+            "question_type_id": 1,
+            "question_caption": "Do you agree in same sex marriage?",
+            "question_isactive": 1,
+            "question_isdeleted": 0,
+            "created_at" : "2017-05-10 00:00:00",
+            "updated_at" : "2017-05-10 00:00:00",
+            "respondents": 200,
+            "isFeatured": 1
+        },
+        {
+            "id": 2,
+            "question_type_id": 1,
+            "question_caption": "Do you trust the President?",
+            "question_isactive": 1,
+            "question_isdeleted": 0,
+            "created_at" : "2017-05-10 00:00:00",
+            "updated_at" : "2017-05-10 00:00:00",
+            "respondents": 300,
+            "isFeatured": 1
+
+        },
+        {
+            "id": 3,
+            "question_type_id": 2,
+            "question_caption": "How was your experience in our products",
+            "question_isactive": 1,
+            "question_isdeleted": 0,
+            "created_at" : "2017-05-10 00:00:00",
+            "updated_at" : "2017-05-10 00:00:00",
+            "respondents": 406,
+            "isFeatured": 1
+        },
+        {
+            "id": 4,
+            "question_type_id": 2,
+            "question_caption": "What is your reaction to the rejection of Ms. Gina Lopez?",
+            "question_isactive": 2,
+            "question_isdeleted": 0,
+            "created_at" : "2017-05-10 00:00:00",
+            "updated_at" : "2017-05-10 00:00:00",
+            "respondents": 406,
+            "isFeatured": 0
+        }
+    ]   
+}

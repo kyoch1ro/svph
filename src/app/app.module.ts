@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { routing } from './app.routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { SurveyModule } from './survey/survey.module';
 
 
 @NgModule({
@@ -23,6 +23,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpModule,
     SharedModule,
     CoreModule,
+    SurveyModule,
     routing
     
   ],

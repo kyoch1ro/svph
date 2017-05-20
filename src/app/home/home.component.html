@@ -13,8 +13,6 @@
     </div>
   </div>
 
-
-
   <div class="foot">
     <div class="flex-item f-bottom">
       <strong class="logo-temp">SurveyPH</strong>
@@ -29,16 +27,35 @@
 
 
 <ng-template #content let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title">Modal title</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
   <div class="modal-body">
-    <p>One fine body&hellip;</p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    
+    <div class="row">
+      <div class="col-md-6 ">
+        <h4>Sign in <br><small class="text-muted">Please sign in to continue.</small></h4>
+        <form>
+           <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" id="username" placeholder="Enter username">
+          </div>
+          <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" placeholder="Enter password">
+          </div>
+          <button class="btn btn-primary">Sign in</button>
+        </form>
+        <br>
+      </div>
+      <div class="col-md-6 border-left">
+        <h4>Register</h4>
+        <form>
+
+        </form>
+      </div>
+    </div>
+
+
+
+
+
   </div>
 </ng-template>

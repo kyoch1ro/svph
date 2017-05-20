@@ -60,11 +60,12 @@
 }
 
 .pagination-btn{
-    display: flex;
+display: flex;
     flex: 1;
 }
 
 .survey-info p {
+    font-size: 15px;
     margin: 0;
 }
 

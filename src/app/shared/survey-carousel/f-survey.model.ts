@@ -1,14 +1,16 @@
+import { Survey } from 'app/survey/survey.model';
+
 export class FeaturedSurvey{
     public id?: string;
     public respondent: string;
     public question: string;
     public isActive: boolean;
 
-    constructor(obj?: any){
+    constructor(obj?: Survey){
         this.id = obj && obj.id;
-        this.respondent = obj && obj.respondent;
-        this.question = obj && obj.question;
-        this.isActive = obj && obj.isActive || false;
+        this.respondent = obj && obj.respondents;
+        this.question = obj && obj.question_caption;
+        this.isActive = false;
     }
 
 }

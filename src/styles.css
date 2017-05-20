@@ -1,11 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
 
-    survey-carousel-page{
-        margin: auto;
-    }
+survey-carousel-page{
+    margin: auto;
+}
 
-    .button-holder .fa{
-        cursor: pointer;
-        font-size: 13px;
-        margin: 0 2px;
-    }
+.button-holder .fa{
+    cursor: pointer;
+    font-size: 13px;
+    margin: 0 2px;
+}
+
+.border-left{
+    border-left: 1px solid #dbdbdb;
+}
+
+
+
+small{
+    font-size: 13px;
+    font-weight: 400;   
+}
+
+h4{
+    margin-bottom: .7em;
+}
+
+.test{
+    vertical-align: middle;
+    height: 300px;
+    width: 300px;
+}
+
+
+.survey-item{
+    display: none;
+}
+
+.survey-item.active{
+    display: flex;
+}
