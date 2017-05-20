@@ -64,4 +64,7 @@
     flex: 1;
 }
 
+.survey-info p {
+    margin: 0;
+}
 

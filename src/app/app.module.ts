@@ -7,6 +7,9 @@ import { SharedModule } from 'app/shared/shared.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { routing } from './app.routing';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
 
 @NgModule({
   declarations: [
@@ -15,11 +18,13 @@ import { routing } from './app.routing';
   ],
   imports: [
     BrowserModule,
+    NgbModule.forRoot(),
     FormsModule,
     HttpModule,
     SharedModule,
     CoreModule,
     routing
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

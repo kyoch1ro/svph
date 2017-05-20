@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FeaturedSurvey } from 'app/shared/survey-carousel/f-survey.model';
-
+import { LoginComponent } from 'app/shared/login/login.component';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import { FeaturedSurvey } from 'app/shared/survey-carousel/f-survey.model';
 })
 export class HomeComponent implements OnInit {
   fSurveys : FeaturedSurvey[];
-  constructor() { }
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
     this.fSurveys = [
@@ -17,6 +18,11 @@ export class HomeComponent implements OnInit {
       new FeaturedSurvey({ id: '2', respondent: '608', question: 'when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, '}),
       new FeaturedSurvey({ id: '3', respondent: '412', question: 'but also the leap into electronic typesetting, remaining essentially unchanged'}),
     ]
+  }
+
+
+  signIn(content){
+     this.modalService.open(content);
   }
 
 }
