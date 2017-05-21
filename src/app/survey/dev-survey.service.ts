@@ -5,22 +5,24 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Survey } from './survey.model';
+import { devServerUrl } from 'app/core/global.const';
 
 @Injectable()
 export class DevSurveyService implements iSurvey {
-  private _url: string = 'http://localhost:3000/questions';
+  private _url: string = devServerUrl;
+
+
   constructor(private _http: Http) { }
 
-  getFeaturedSurveys(): Observable<Survey>{
-    return this._http.get(`${this._url}?isFeatured=1`)
+  getFeaturedSurveys(){
+
+    // return this._http.get(`${this._url}/questions?isFeatured=1`)
+    // .map((res : Response) => res.json())
+    // .map(res => new Survey(res));
+
+    return this._http.get(`${this._url}/questions?isFeatured=1`)
     .flatMap((res : Response) => res.json())
     .map(res => new Survey(res));
   }
 
-
-  // getFeaturedSurveys(): Observable<Survey>{
-  //   return this._http.get(`${this._url}?isFeatured=1`)
-  //   .map((res : Response) => res.json())
-  //   .map(res => new Survey(res));
-  // }
 }

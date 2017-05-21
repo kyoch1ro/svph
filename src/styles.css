@@ -35,7 +35,6 @@
 
 .home-featured{
     flex-basis: 60%;
-    background-color: violet;
     margin: 60px auto;
 }
 
@@ -48,22 +47,20 @@
 }
 
 .f-caption{
-    
-    flex-basis: 85%;
+    overflow: hidden;
+    flex-basis: 60%;
 }
-
-.f-active-content{
-    font-size: 33px;
+.mr-auto{
+    margin: 0 auto;
 }
 
 .f-pagination{
     flex-basis: 9%;
-    background-color: red;
 }
 
 
 .f-active-question{
-    flex: 2;
+    flex: 4;
 }
 
 .f-active-info{
@@ -71,5 +68,29 @@
 }
 
 .f-active-content{
+    font-size: 33px;
     margin: auto;
+}
+
+.btn-opaque{
+    border: 1px solid #fff;
+    background-color: transparent;
+    color: #fff;
+}
+
+
+.btn-wide{
+    padding: .25rem 1.5rem;
+}
+
+
+.f-pagination .fa{
+    cursor: pointer;
+}
+
+[disabled].pending{
+    cursor: progress;
+}
+.f-pagination .fa{
+    margin: 0 .1rem;
 }

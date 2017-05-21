@@ -5,7 +5,6 @@ import { HttpModule } from '@angular/http';
 import { CoreModule } from 'app/core/core.module';
 import { SharedModule } from 'app/shared/shared.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { routing } from './app.routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SurveyModule } from './survey/survey.module';
@@ -13,8 +12,7 @@ import { HomeModule } from './home/home.module';
 import { homeRouting } from './home/home.routing';
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from 'app/shared/shared.module';
 import { MainComponent } from './main/main.component';
 import { NavComponent } from './shared/nav/nav.component';
-import { FootComponent } from './shared/foot/foot.component'
+import { FootComponent } from './shared/foot/foot.component';
+import { FeaturedNavigationComponent } from './shared/featured-navigation/featured-navigation.component';
+import { FeaturedContentComponent } from './shared/featured-content/featured-content.component'
 
 
 @NgModule({
@@ -11,6 +13,6 @@ import { FootComponent } from './shared/foot/foot.component'
     CommonModule,
     SharedModule
   ],
-  declarations: [MainComponent, NavComponent, FootComponent]
+  declarations: [MainComponent, NavComponent, FootComponent, FeaturedNavigationComponent, FeaturedContentComponent]
 })
 export class HomeModule { }
