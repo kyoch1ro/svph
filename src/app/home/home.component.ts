@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FeaturedSurvey } from 'app/shared/survey-carousel/f-survey.model';
 import { FormGroup, 
          FormBuilder, 
          Validators, 
@@ -13,6 +12,7 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/concat';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-home',
@@ -23,9 +23,12 @@ import { Observable } from 'rxjs/Observable';
 
 
 export class HomeComponent implements OnInit, FormComponent {
-  
-  fSurveys: FeaturedSurvey[] = [];
+  surveys: Survey[] = [];
   form: FormGroup;
+  question: string;
+  testDex: number;
+  activeIndx = new Subject<number>();
+
   private _surveyService : iSurvey;
 
   constructor(private modalService: NgbModal, private fb: FormBuilder, srvc: DevSurveyService) {
@@ -33,27 +36,42 @@ export class HomeComponent implements OnInit, FormComponent {
    }
 
   ngOnInit() {
-    
-    
-
-
     this._surveyService.getFeaturedSurveys()
-    .map(res => new FeaturedSurvey(res))
     .subscribe(
       res => {
-        this.fSurveys.push(res)
+        this.surveys.push(res)
+      },
+      error => {
+      },
+      () => {
+        this.activeIndx.next(0);
+      }
+    )
+
+
+
+    this.activeIndx.subscribe(
+      x => {
+        this.question = this.surveys[x].question_caption;
+        this.testDex = x;
       }
     )
     
-
   }
+
+  
+
+  setData(x){
+      this.activeIndx.next(x);
+  }
+
+
 
   hasUnsavedChanges(){
     return this.form.dirty;
   }
 
   signIn(content){
-
      this.modalService.open(content,{ size: "lg"});
   }
 

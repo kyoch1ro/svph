@@ -23,8 +23,33 @@
     flex-direction: column;
 }
 
+.f-surveys .title{
+    flex: 1;
+    font-weight: 400;
+    color: #ccc;
+    font-size: 13px;
+    margin-bottom: .1rem;
+}
 
+.flex-view{
+    display: flex;
+}
+
+
+
+
+.f-surveys .survey-question{
+    box-sizing: border-box;
+    flex: 1;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    min-height: 100px;
+}
 .m-flex{
+    display: flex;
+}
+
+.paging{
     display: flex;
 }
 
@@ -47,8 +72,9 @@
 
 
 
-
-
+.flex-center{
+    margin: auto;
+}
 
 .flex-item{
     display: flex;
@@ -57,6 +83,7 @@
 }
 
 .margin-lr{
+    box-sizing: border-box;
     padding: 0 20px;
 }
 
@@ -113,4 +140,15 @@
 
 p{
     margin-bottom: 0;
+}
+
+
+.vote-btn .btn-secondary{
+    background-color: transparent;
+    color: #fff;
+    padding: .3rem 2rem;
+}
+
+.survey-info{
+    margin-bottom: 1.5rem;
 }
