@@ -45,5 +45,125 @@
             "respondents": 406,
             "isFeatured": 0
         }
-    ]   
+    ],
+
+
+    "survey_options":[
+        {
+            "id":1,
+            "question_id":1,
+            "option_type":"radio",
+            "option_caption":"No Comment",
+            "option_isactive": 0,
+            "option_isdeleted": 0,
+            "created_at": "2017-05-10 00:00:00",
+            "updated_at": "2017-05-10 00:00:00"
+        },
+        {
+            "id":2,
+            "question_id":1,
+            "option_type":"radio",
+            "option_caption":"No",
+            "option_isactive": 1,
+            "option_isdeleted": 0,
+            "created_at": "2017-05-10 00:00:00",
+            "updated_at": "2017-05-10 00:00:00"
+        },
+        {
+            "id":3,
+            "question_id":2,
+            "option_type":"radio",
+            "option_caption":"Yes",
+            "option_isactive": 1,
+            "option_isdeleted": 0,
+            "created_at": "2017-05-10 00:00:00",
+            "updated_at": "2017-05-10 00:00:00"
+        },
+        {
+            "id":4,
+            "question_id":2,
+            "option_type":"radio",
+            "option_caption":"No",
+            "option_isactive": 1,
+            "option_isdeleted": 0,
+            "created_at": "2017-05-10 00:00:00",
+            "updated_at": "2017-05-10 00:00:00"
+        },
+        {
+            "id":5,
+            "question_id":3,
+            "option_type":"check",
+            "option_caption":"Very Good",
+            "option_isactive": 1,
+            "option_isdeleted": 0,
+            "created_at": "2017-05-10 00:00:00",
+            "updated_at": "2017-05-10 00:00:00"
+        },
+        {
+            "id":6,
+            "question_id":3,
+            "option_type":"check",
+            "option_caption":"Good",
+            "option_isactive": 1,
+            "option_isdeleted": 0,
+            "created_at": "2017-05-10 00:00:00",
+            "updated_at": "2017-05-10 00:00:00"
+        },
+        {
+            "id":7,
+            "question_id":3,
+            "option_type":"check",
+            "option_caption":"Fair",
+            "option_isactive": 1,
+            "option_isdeleted": 0,
+            "created_at": "2017-05-10 00:00:00",
+            "updated_at": "2017-05-10 00:00:00"
+        },
+        {
+            "id":8,
+            "question_id":3,
+            "option_type":"check",
+            "option_caption":"Bad",
+            "option_isactive": 1,
+            "option_isdeleted": 0,
+            "created_at": "2017-05-10 00:00:00",
+            "updated_at": "2017-05-10 00:00:00"
+        },
+        {
+            "id":9,
+            "question_id":4,
+            "option_type":"radio",
+            "option_caption":"Angry",
+            "option_isactive": 1,
+            "option_isdeleted": 0,
+            "created_at": "2017-05-10 00:00:00",
+            "updated_at": "2017-05-10 00:00:00"
+        },
+        {
+            "id":10,
+            "question_id":4,
+            "option_type":"radio",
+            "option_caption":"No Commend",
+            "option_isactive": 1,
+            "option_isdeleted": 0,
+            "created_at": "2017-05-10 00:00:00",
+            "updated_at": "2017-05-10 00:00:00"
+        }
+    ],
+
+    "survey_answers":[
+        {
+            "id": 1,
+            "question_id": 1,
+            "user_id": 1 ,
+            "date_answered": "2017-05-10 00:00:00"
+        },
+        {
+            "id": 2,
+            "question_id": 1,
+            "user_id": 2 ,
+            "date_answered": "2017-05-10 00:00:00"
+        }
+    ]
+
 }
