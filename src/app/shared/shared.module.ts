@@ -4,18 +4,21 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ReactiveFormsModule  }  from '@angular/forms';
 
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   declarations: [NotFoundComponent],
   exports:[
     CommonModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   providers: [
   ]

@@ -1,27 +1,75 @@
 /* You can add global styles to this file, and also import other style files */
 
-survey-carousel-page{
+.full-page{
+    height: 100vh;
+}
+
+
+.home-head{
+    flex-basis: 10%;
+}
+
+.home-body{
+    flex-basis: 80%;
+}
+
+.home-foot{
+    /*background-color: red;*/
+    flex-basis: 10%;
+}
+
+.flex-item-1{
+    flex: 1;
+}
+
+
+.btn-primary{
+    border-color: #d74738;
+    background-color: #e74c3c;
+}
+
+.btn-primary:hover{
+    border-color: #a2352a;
+    background-color: #b33b2e;
+}
+
+.home-featured{
+    flex-basis: 60%;
+    background-color: violet;
+    margin: 60px auto;
+}
+
+.f-title{
+    flex-basis: 6%;
+}
+
+.note-muted{
+    font-size: 15px;
+}
+
+.f-caption{
+    
+    flex-basis: 85%;
+}
+
+.f-active-content{
+    font-size: 33px;
+}
+
+.f-pagination{
+    flex-basis: 9%;
+    background-color: red;
+}
+
+
+.f-active-question{
+    flex: 2;
+}
+
+.f-active-info{
+    flex: 1;
+}
+
+.f-active-content{
     margin: auto;
 }
-
-.button-holder .fa{
-    cursor: pointer;
-    font-size: 13px;
-    margin: 0 2px;
-}
-
-.border-left{
-    border-left: 1px solid #dbdbdb;
-}
-
-
-
-small{
-    font-size: 13px;
-    font-weight: 400;   
-}
-
-h4{
-    margin-bottom: .7em;
-}
-
