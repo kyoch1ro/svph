@@ -1,0 +1,31 @@
+
+<form [formGroup]="form"
+      (ngSubmit)="onSubmit(form.value)">
+  <div class="form-group">
+    <label for="email">Email Address</label>
+    <input type="email" class="form-control" id="email" placeholder="Enter email address" [formGroup]="form"
+           formControlName="email">    
+  </div>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" placeholder="Enter name" [formGroup]="form"
+           formControlName="name">    
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password"  [formGroup]="form"
+           formControlName="password">    
+  </div>
+
+  <div class="form-group">
+    <label for="confirmPassword">Confirm Password</label>
+    <input type="password" class="form-control" id="confirmPassword"  [formGroup]="form"
+           formControlName="confirmPassword">    
+  </div>
+
+
+  <button class="btn btn-primary">Register</button>
+</form>
+
+

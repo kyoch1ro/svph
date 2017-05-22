@@ -4,6 +4,12 @@ import { DevSurveyService } from 'app/survey/shared/dev-survey.service';
 import { ISurveyModel } from 'app/survey/isurvey.model';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from 'app/shared/modal/modal.component';
+
+import { DevUserService } from 'app/user/shared/dev-user.service';
+import { IUserService } from 'app/user/iuser.service';
+
 
 
 
@@ -14,19 +20,19 @@ import { Subject } from 'rxjs/Subject';
 })
 export class MainComponent implements OnInit {
   private _surveySrvc : ISurveyService;
-  public subscription: Observable<any>;
+  private _userSrvc: IUserService;
 
+  public subscription: Observable<any>;
   errorMsg: string;
   surveys: ISurveyModel[];
-  // public surveys: Survey[] = [];
   public activeSurveyIndx = new Subject<number>();
-
   public activeQuestion: string;
   public activeRespondents : number;
   public activeId: number;
 
-  constructor(surveySrvc : DevSurveyService) {
+  constructor(surveySrvc : DevSurveyService,userSrvc: DevUserService,private modalService: NgbModal) {
     this._surveySrvc = surveySrvc;
+    this._userSrvc = userSrvc;
    }
 
   ngOnInit() {
@@ -43,8 +49,11 @@ export class MainComponent implements OnInit {
     )
   }
 
-  showSignInModal(){
-    console.log('yeaho');
+  showSignInModal(content){
+    this.modalService.open(content,{
+      size: 'lg',
+      windowClass: 'transparentModal'
+    });
   }
 
 
@@ -61,5 +70,10 @@ export class MainComponent implements OnInit {
 
   updateIndx(val){
     this.activeSurveyIndx.next(val);
+  }
+
+
+  registerUser(form: any){
+    console.log(form);
   }
 }

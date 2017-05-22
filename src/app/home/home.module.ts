@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { SharedModule } from 'app/shared/shared.module';
 import { MainComponent } from './main/main.component';
 import { NavComponent } from './shared/nav/nav.component';
@@ -10,7 +9,6 @@ import { FeaturedContentComponent } from './shared/featured-content/featured-con
 
 @NgModule({
   imports: [
-    CommonModule,
     SharedModule
   ],
   declarations: [MainComponent, NavComponent, FootComponent, FeaturedNavigationComponent, FeaturedContentComponent]

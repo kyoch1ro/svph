@@ -1,6 +1,3 @@
-import { Observable } from 'rxjs/Observable';
-
-
 export interface ISurveyModel{
     id : number;
     question_type_id: number;

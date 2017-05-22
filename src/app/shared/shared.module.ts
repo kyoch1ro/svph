@@ -5,6 +5,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ReactiveFormsModule  }  from '@angular/forms';
 
 import { RouterModule } from '@angular/router';
+import { ModalComponent } from './modal/modal.component';
+import { RegisterFormComponent } from './register-form/register-form.component';
 
 @NgModule({
   imports: [
@@ -13,14 +15,17 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     RouterModule
   ],
-  declarations: [NotFoundComponent],
+  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent],
   exports:[
     CommonModule,
     NgbModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    ModalComponent,
+    RegisterFormComponent
   ],
   providers: [
-  ]
+  ],
+  entryComponents: [ModalComponent]
 })
 export class SharedModule { }

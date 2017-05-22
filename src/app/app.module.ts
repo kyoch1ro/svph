@@ -10,6 +10,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SurveyModule } from './survey/survey.module';
 import { HomeModule } from './home/home.module';
 import { homeRouting } from './home/home.routing';
+import { UserModule } from './user/user.module'
+
 @NgModule({
   declarations: [
     AppComponent
@@ -23,6 +25,7 @@ import { homeRouting } from './home/home.routing';
     SharedModule,
     CoreModule,
     SurveyModule,
+    UserModule,
     homeRouting,
     routing
     
