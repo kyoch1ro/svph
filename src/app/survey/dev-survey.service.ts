@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { iSurvey } from './i-survey.interface';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/mergeMap';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Survey } from './survey.model';
 import { devServerUrl } from 'app/core/global.const';
