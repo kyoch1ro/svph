@@ -1,5 +1,7 @@
-import { ISurveyModel } from './isurvey.model';
-export class Survey implements ISurveyModel{
+import { Observable } from 'rxjs/Observable';
+
+
+export interface ISurveyModel{
     id : number;
     question_type_id: number;
     question_caption: string;

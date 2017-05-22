@@ -4,6 +4,8 @@
   <div class="home-body d-flex">
     <div class="home-featured d-flex flex-column">
       <div class="note-muted f-title">Featured Title</div>
+
+
       <home-featured-content [question]="activeQuestion" [respondents]="activeRespondents" [id]="activeId"></home-featured-content>
       <home-featured-navigation [surveys]="surveys" (newIndx)="updateIndx($event)" [activeIndx]="activeSurveyIndx | async"></home-featured-navigation>
     </div>

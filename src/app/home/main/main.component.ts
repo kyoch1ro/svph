@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { iSurvey } from 'app/survey/i-survey.interface';
-import { DevSurveyService } from 'app/survey/dev-survey.service';
-import { Survey } from 'app/survey/survey.model';
+import { ISurveyService } from 'app/survey/isurvey.service';
+import { DevSurveyService } from 'app/survey/shared/dev-survey.service';
+import { ISurveyModel } from 'app/survey/isurvey.model';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+
 
 
 @Component({
@@ -12,9 +13,12 @@ import { Subject } from 'rxjs/Subject';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  private _surveySrvc : iSurvey;
+  private _surveySrvc : ISurveyService;
   public subscription: Observable<any>;
-  public surveys: Survey[] = [];
+
+  errorMsg: string;
+  surveys: ISurveyModel[];
+  // public surveys: Survey[] = [];
   public activeSurveyIndx = new Subject<number>();
 
   public activeQuestion: string;
@@ -49,8 +53,8 @@ export class MainComponent implements OnInit {
     this.subscription = this._surveySrvc.getFeaturedSurveys();
     this.subscription
     .subscribe(
-      survey => this.surveys.push(survey), 
-      err => console.log(err),
+      res => this.surveys = res,
+      err => this.errorMsg = <any> err,
       () => this.activeSurveyIndx.next(0)
     )
   }
