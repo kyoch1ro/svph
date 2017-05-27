@@ -8,6 +8,8 @@ import { RouterModule } from '@angular/router';
 import { ModalComponent } from './modal/modal.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { InputHelpComponent } from './input-help/input-help.component';
+import { LoginFormComponent } from './login-form/login-form.component';
+
 
 @NgModule({
   imports: [
@@ -16,7 +18,7 @@ import { InputHelpComponent } from './input-help/input-help.component';
     ReactiveFormsModule,
     RouterModule
   ],
-  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent, InputHelpComponent],
+  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent, InputHelpComponent, LoginFormComponent],
   exports:[
     CommonModule,
     NgbModule,
@@ -24,7 +26,8 @@ import { InputHelpComponent } from './input-help/input-help.component';
     RouterModule,
     ModalComponent,
     RegisterFormComponent,
-    InputHelpComponent
+    InputHelpComponent,
+    LoginFormComponent
   ],
   providers: [
   ],
