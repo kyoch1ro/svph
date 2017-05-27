@@ -7,7 +7,7 @@ import { RegistrationValidator } from './registration-validator';
 import { Observable }  from 'rxjs/Observable';
          
 @Component({
-  selector: 'app-register-form',
+  selector: 'shrd-register-form',
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.css']
 })
