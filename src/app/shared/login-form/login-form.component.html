@@ -1,3 +1,23 @@
-<p>
-  login-form works!
-</p>
+<form action="" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <div class="form-group">
+    <label for="email_l">Email Address</label>
+    <input type="email" class="form-control" id="email_l" placeholder="Enter email address" [formGroup]="form" formControlName="email">
+    <span *ngIf="form.controls['email'].touched">
+      <sh-input-help *ngIf="form.controls['email'].hasError('required')" 
+                     [type]="'danger'">Email address is required.</sh-input-help>
+      <sh-input-help *ngIf="form.controls['email'].hasError('email') && form.controls['email'].value" 
+                     [type]="'danger'">Invalid email address</sh-input-help>
+    </span>
+  </div>
+  <div class="form-group">
+    <label for="password_l">Password</label>
+    <input type="password" class="form-control" id="password_l" [formGroup]="form" formControlName="password">
+    <span *ngIf="form.controls['password'].touched">
+      <sh-input-help *ngIf="form.controls['password'].hasError('required')" 
+                     [type]="'danger'">Password is required.</sh-input-help>
+    </span>
+  </div>
+  <ng-content select=".alert"></ng-content>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<hr class="hidden-md-up">

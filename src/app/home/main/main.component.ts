@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ISurveyService } from 'app/survey/isurvey.service';
 import { DevSurveyService } from 'app/survey/shared/dev-survey.service';
 import { ISurveyModel } from 'app/survey/isurvey.model';
@@ -10,7 +10,8 @@ import { DevUserService } from 'app/user/shared/dev-user.service';
 import { IUserService } from 'app/user/iuser.service';
 
 
-
+import { DevAuthService } from 'app/core/dev-auth.service';
+import { iAuth } from 'app/core/i-auth.service';
 
 @Component({
   selector: 'app-main',
@@ -20,8 +21,12 @@ import { IUserService } from 'app/user/iuser.service';
 export class MainComponent implements OnInit {
   private _surveySrvc : ISurveyService;
   private _userSrvc: IUserService;
+  private _authService: iAuth;
 
-  public subscription: Observable<any>;
+  public surveySubscription: Observable<any>;
+  public authSubscription: Observable<any>;
+
+
   public activeSurveyIndx = new Subject<number>();
   public activeQuestion: string;
   public activeRespondents : number;
@@ -31,15 +36,28 @@ export class MainComponent implements OnInit {
   errorMsg: string;
   surveys: ISurveyModel[];
   isSaving = new Subject<boolean>();
-  constructor(surveySrvc : DevSurveyService,userSrvc: DevUserService,private modalService: NgbModal) {
+  
+
+  constructor(surveySrvc : DevSurveyService,userSrvc: DevUserService,private modalService: NgbModal, authService: DevAuthService) {
     this._surveySrvc = surveySrvc;
     this._userSrvc = userSrvc;
+    this._authService = authService;
    }
 
   ngOnInit() {
+    //initialize subscriptions
+    this.surveySubscription = this._surveySrvc.getFeaturedSurveys();
+    this.authSubscription = this._authService.isLoggedIn;
+    
+    //load functions
     this.loadFeaturedSurveys();
-    this.isSaving.next(false);
+    this.watchForErrorMsg();
+    this.setIsSaving(false);
+    this.watchForNewIndx();
+  }
+  
 
+  watchForNewIndx(){
     this.activeSurveyIndx.subscribe(
       indx => {
         this.activeQuestion = this.surveys[indx].question_caption;
@@ -49,6 +67,24 @@ export class MainComponent implements OnInit {
     )
   }
 
+  setIsSaving(val){
+    this.isSaving.next(val);
+  }
+
+  watchForErrorMsg(){
+    this.authSubscription.subscribe(
+      data=>
+      {
+        if(!data){
+          this.errorMsg = "Username or password was incorrect."
+          setTimeout(function(){
+            this.errorMsg =""
+          }.bind(this),3000);
+        }
+      }
+    );
+  }
+
   showSignInModal(content){
     this.modalService.open(content,{
       size: 'lg'
@@ -56,8 +92,7 @@ export class MainComponent implements OnInit {
   }
 
   loadFeaturedSurveys(){
-    this.subscription = this._surveySrvc.getFeaturedSurveys();
-    this.subscription
+    this.surveySubscription
     .subscribe(
       res => this.surveys = res,
       err => this.errorMsg = <any> err,
@@ -69,13 +104,17 @@ export class MainComponent implements OnInit {
     this.activeSurveyIndx.next(val);
   }
 
-
   registerUser(form: any){
-    this.isSaving.next(true);
+    this.setIsSaving(true);
     this._userSrvc.registerUser(form).subscribe(
       data => {},
       err => this.errorMsg = <any> err,
-      () =>  this.isSaving.next(false)
+      () =>  this.setIsSaving(false)
     )
+  }
+
+  loginUser(form: any){
+    this._authService.login(form['email'],form['password']);
+    // console.log(form);
   }
 }
