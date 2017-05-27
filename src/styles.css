@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
+/*input.ng-touched.ng-invalid{
+    border: 1px solid #d50000  ;
+}*/
+
 .full-page{
     height: 100vh;
 }
@@ -22,8 +26,7 @@
     flex: 1;
 }
 
-
-.btn-primary{
+.btn-primary, .btn-primary.disabled, .btn-primary:disabled{
     border-color: #d74738;
     background-color: #e74c3c;
 }

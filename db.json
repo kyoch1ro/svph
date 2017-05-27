@@ -1,190 +1,247 @@
 {
-    "questions":[
-        {
-            "id": 1,
-            "question_type_id": 1,
-            "question_caption": "Do you agree in same sex marriage?",
-            "question_isactive": 1,
-            "question_isdeleted": 0,
-            "created_at" : "2017-05-10 00:00:00",
-            "updated_at" : "2017-05-10 00:00:00",
-            "respondents": 200,
-            "isFeatured": 1
-        },
-        {
-            "id": 2,
-            "question_type_id": 1,
-            "question_caption": "Do you trust the President?",
-            "question_isactive": 1,
-            "question_isdeleted": 0,
-            "created_at" : "2017-05-10 00:00:00",
-            "updated_at" : "2017-05-10 00:00:00",
-            "respondents": 300,
-            "isFeatured": 1
-
-        },
-        {
-            "id": 3,
-            "question_type_id": 2,
-            "question_caption": "How was your experience in our products",
-            "question_isactive": 1,
-            "question_isdeleted": 0,
-            "created_at" : "2017-05-10 00:00:00",
-            "updated_at" : "2017-05-10 00:00:00",
-            "respondents": 406,
-            "isFeatured": 1
-        },
-        {
-            "id": 4,
-            "question_type_id": 2,
-            "question_caption": "What is your reaction to the rejection of Ms. Gina Lopez?",
-            "question_isactive": 2,
-            "question_isdeleted": 0,
-            "created_at" : "2017-05-10 00:00:00",
-            "updated_at" : "2017-05-10 00:00:00",
-            "respondents": 4006,
-            "isFeatured": 1
-        }
-    ],
-
-
-    "survey_options":[
-        {
-            "id":1,
-            "question_id":1,
-            "option_type":"radio",
-            "option_caption":"No Comment",
-            "option_isactive": 0,
-            "option_isdeleted": 0,
-            "created_at": "2017-05-10 00:00:00",
-            "updated_at": "2017-05-10 00:00:00"
-        },
-        {
-            "id":2,
-            "question_id":1,
-            "option_type":"radio",
-            "option_caption":"No",
-            "option_isactive": 1,
-            "option_isdeleted": 0,
-            "created_at": "2017-05-10 00:00:00",
-            "updated_at": "2017-05-10 00:00:00"
-        },
-        {
-            "id":3,
-            "question_id":2,
-            "option_type":"radio",
-            "option_caption":"Yes",
-            "option_isactive": 1,
-            "option_isdeleted": 0,
-            "created_at": "2017-05-10 00:00:00",
-            "updated_at": "2017-05-10 00:00:00"
-        },
-        {
-            "id":4,
-            "question_id":2,
-            "option_type":"radio",
-            "option_caption":"No",
-            "option_isactive": 1,
-            "option_isdeleted": 0,
-            "created_at": "2017-05-10 00:00:00",
-            "updated_at": "2017-05-10 00:00:00"
-        },
-        {
-            "id":5,
-            "question_id":3,
-            "option_type":"check",
-            "option_caption":"Very Good",
-            "option_isactive": 1,
-            "option_isdeleted": 0,
-            "created_at": "2017-05-10 00:00:00",
-            "updated_at": "2017-05-10 00:00:00"
-        },
-        {
-            "id":6,
-            "question_id":3,
-            "option_type":"check",
-            "option_caption":"Good",
-            "option_isactive": 1,
-            "option_isdeleted": 0,
-            "created_at": "2017-05-10 00:00:00",
-            "updated_at": "2017-05-10 00:00:00"
-        },
-        {
-            "id":7,
-            "question_id":3,
-            "option_type":"check",
-            "option_caption":"Fair",
-            "option_isactive": 1,
-            "option_isdeleted": 0,
-            "created_at": "2017-05-10 00:00:00",
-            "updated_at": "2017-05-10 00:00:00"
-        },
-        {
-            "id":8,
-            "question_id":3,
-            "option_type":"check",
-            "option_caption":"Bad",
-            "option_isactive": 1,
-            "option_isdeleted": 0,
-            "created_at": "2017-05-10 00:00:00",
-            "updated_at": "2017-05-10 00:00:00"
-        },
-        {
-            "id":9,
-            "question_id":4,
-            "option_type":"radio",
-            "option_caption":"Angry",
-            "option_isactive": 1,
-            "option_isdeleted": 0,
-            "created_at": "2017-05-10 00:00:00",
-            "updated_at": "2017-05-10 00:00:00"
-        },
-        {
-            "id":10,
-            "question_id":4,
-            "option_type":"radio",
-            "option_caption":"No Commend",
-            "option_isactive": 1,
-            "option_isdeleted": 0,
-            "created_at": "2017-05-10 00:00:00",
-            "updated_at": "2017-05-10 00:00:00"
-        }
-    ],
-
-    "survey_answers":[
-        {
-            "id": 1,
-            "question_id": 1,
-            "user_id": 1 ,
-            "date_answered": "2017-05-10 00:00:00"
-        },
-        {
-            "id": 2,
-            "question_id": 1,
-            "user_id": 2 ,
-            "date_answered": "2017-05-10 00:00:00"
-        }
-    ],
-
-    "users":[
-        {
-            "id":1,
-            "name": "Rexdale G. David",
-            "email": "rexdaledavid@gmail.com",
-            "password": "password",
-            "remember_token": null,
-            "created_at": "2017-05-12 07:22:59",
-            "updated_at": "2017-05-12 07:22:59"
-        },
-        {
-            "id":2,
-            "name": "Ron Michael Umayan",
-            "email": "umayan.ronmichael@gmail.com",
-            "password": "password",
-            "remember_token": null,
-            "created_at": "2017-05-12 07:22:59",
-            "updated_at": "2017-05-12 07:22:59"
-        }
-    ]
-
+  "questions": [
+    {
+      "id": 1,
+      "question_type_id": 1,
+      "question_caption": "Do you agree in same sex marriage?",
+      "question_isactive": 1,
+      "question_isdeleted": 0,
+      "created_at": "2017-05-10 00:00:00",
+      "updated_at": "2017-05-10 00:00:00",
+      "respondents": 200,
+      "isFeatured": 1
+    },
+    {
+      "id": 2,
+      "question_type_id": 1,
+      "question_caption": "Do you trust the President?",
+      "question_isactive": 1,
+      "question_isdeleted": 0,
+      "created_at": "2017-05-10 00:00:00",
+      "updated_at": "2017-05-10 00:00:00",
+      "respondents": 300,
+      "isFeatured": 1
+    },
+    {
+      "id": 3,
+      "question_type_id": 2,
+      "question_caption": "How was your experience in our products",
+      "question_isactive": 1,
+      "question_isdeleted": 0,
+      "created_at": "2017-05-10 00:00:00",
+      "updated_at": "2017-05-10 00:00:00",
+      "respondents": 406,
+      "isFeatured": 1
+    },
+    {
+      "id": 4,
+      "question_type_id": 2,
+      "question_caption": "What is your reaction to the rejection of Ms. Gina Lopez?",
+      "question_isactive": 2,
+      "question_isdeleted": 0,
+      "created_at": "2017-05-10 00:00:00",
+      "updated_at": "2017-05-10 00:00:00",
+      "respondents": 4006,
+      "isFeatured": 1
+    }
+  ],
+  "survey_options": [
+    {
+      "id": 1,
+      "question_id": 1,
+      "option_type": "radio",
+      "option_caption": "No Comment",
+      "option_isactive": 0,
+      "option_isdeleted": 0,
+      "created_at": "2017-05-10 00:00:00",
+      "updated_at": "2017-05-10 00:00:00"
+    },
+    {
+      "id": 2,
+      "question_id": 1,
+      "option_type": "radio",
+      "option_caption": "No",
+      "option_isactive": 1,
+      "option_isdeleted": 0,
+      "created_at": "2017-05-10 00:00:00",
+      "updated_at": "2017-05-10 00:00:00"
+    },
+    {
+      "id": 3,
+      "question_id": 2,
+      "option_type": "radio",
+      "option_caption": "Yes",
+      "option_isactive": 1,
+      "option_isdeleted": 0,
+      "created_at": "2017-05-10 00:00:00",
+      "updated_at": "2017-05-10 00:00:00"
+    },
+    {
+      "id": 4,
+      "question_id": 2,
+      "option_type": "radio",
+      "option_caption": "No",
+      "option_isactive": 1,
+      "option_isdeleted": 0,
+      "created_at": "2017-05-10 00:00:00",
+      "updated_at": "2017-05-10 00:00:00"
+    },
+    {
+      "id": 5,
+      "question_id": 3,
+      "option_type": "check",
+      "option_caption": "Very Good",
+      "option_isactive": 1,
+      "option_isdeleted": 0,
+      "created_at": "2017-05-10 00:00:00",
+      "updated_at": "2017-05-10 00:00:00"
+    },
+    {
+      "id": 6,
+      "question_id": 3,
+      "option_type": "check",
+      "option_caption": "Good",
+      "option_isactive": 1,
+      "option_isdeleted": 0,
+      "created_at": "2017-05-10 00:00:00",
+      "updated_at": "2017-05-10 00:00:00"
+    },
+    {
+      "id": 7,
+      "question_id": 3,
+      "option_type": "check",
+      "option_caption": "Fair",
+      "option_isactive": 1,
+      "option_isdeleted": 0,
+      "created_at": "2017-05-10 00:00:00",
+      "updated_at": "2017-05-10 00:00:00"
+    },
+    {
+      "id": 8,
+      "question_id": 3,
+      "option_type": "check",
+      "option_caption": "Bad",
+      "option_isactive": 1,
+      "option_isdeleted": 0,
+      "created_at": "2017-05-10 00:00:00",
+      "updated_at": "2017-05-10 00:00:00"
+    },
+    {
+      "id": 9,
+      "question_id": 4,
+      "option_type": "radio",
+      "option_caption": "Angry",
+      "option_isactive": 1,
+      "option_isdeleted": 0,
+      "created_at": "2017-05-10 00:00:00",
+      "updated_at": "2017-05-10 00:00:00"
+    },
+    {
+      "id": 10,
+      "question_id": 4,
+      "option_type": "radio",
+      "option_caption": "No Commend",
+      "option_isactive": 1,
+      "option_isdeleted": 0,
+      "created_at": "2017-05-10 00:00:00",
+      "updated_at": "2017-05-10 00:00:00"
+    }
+  ],
+  "survey_answers": [
+    {
+      "id": 1,
+      "question_id": 1,
+      "user_id": 1,
+      "date_answered": "2017-05-10 00:00:00"
+    },
+    {
+      "id": 2,
+      "question_id": 1,
+      "user_id": 2,
+      "date_answered": "2017-05-10 00:00:00"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Rexdale G. David",
+      "email": "rexdaledavid@gmail.com",
+      "password": "password",
+      "remember_token": null,
+      "created_at": "2017-05-12 07:22:59",
+      "updated_at": "2017-05-12 07:22:59"
+    },
+    {
+      "id": 2,
+      "name": "Ron Michael Umayan",
+      "email": "umayan.ronmichael@gmail.com",
+      "password": "password",
+      "remember_token": null,
+      "created_at": "2017-05-12 07:22:59",
+      "updated_at": "2017-05-12 07:22:59"
+    },
+    {
+      "email": "asdassd@yahhoo",
+      "password": "asdasd",
+      "name": "asdasd",
+      "confirmPassword": "asdasd",
+      "id": 3
+    },
+    {
+      "email": "asdasds@yahooo",
+      "password": "asdasd",
+      "name": "asdasd",
+      "confirmPassword": "asdasd",
+      "id": 4
+    },
+    {
+      "email": "asdasdasd@yahoo",
+      "password": "asdasd",
+      "name": "asdasd",
+      "confirmPassword": "asdasd",
+      "id": 5
+    },
+    {
+      "email": "asdasdasd@yahoo",
+      "password": "asdasd",
+      "name": "asdasd",
+      "confirmPassword": "asdasd",
+      "id": 6
+    },
+    {
+      "email": "asdasd@yahoo",
+      "password": "asdasd",
+      "name": "asdasd",
+      "confirmPassword": "asdasd",
+      "id": 7
+    },
+    {
+      "email": "asdasdasa@yahoo",
+      "password": "asdasd",
+      "name": "asdasd",
+      "confirmPassword": "asdasd",
+      "id": 8
+    },
+    {
+      "email": "umyaan@yahoo",
+      "password": "asdasd",
+      "name": "asdasd",
+      "confirmPassword": "asdasd",
+      "id": 9
+    },
+    {
+      "email": "asdasdas@yahoo.com",
+      "password": "asdasd",
+      "name": "asdasd",
+      "confirmPassword": "asdasd",
+      "id": 10
+    },
+    {
+      "email": "test@yahh",
+      "password": "asdasd",
+      "name": "adsdf",
+      "confirmPassword": "asdasd",
+      "id": 11
+    }
+  ]
 }

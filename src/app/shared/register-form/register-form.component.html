@@ -4,28 +4,54 @@
   <div class="form-group">
     <label for="email">Email Address</label>
     <input type="email" class="form-control" id="email" placeholder="Enter email address" [formGroup]="form"
-           formControlName="email">    
+           formControlName="email">
+    <span *ngIf="form.controls['email'].touched">
+      <sh-input-help *ngIf="form.controls['email'].hasError('required')" 
+                     [type]="'danger'">Email address is required.</sh-input-help>
+      <sh-input-help *ngIf="form.controls['email'].hasError('email') && form.controls['email'].value" 
+                     [type]="'danger'">Invalid email address</sh-input-help>
+    </span>
   </div>
   <div class="form-group">
     <label for="name">Name</label>
     <input type="text" class="form-control" id="name" placeholder="Enter name" [formGroup]="form"
            formControlName="name">    
+    <span *ngIf="form.controls['name'].touched">
+      <sh-input-help *ngIf="form.controls['name'].hasError('required')" 
+                     [type]="'danger'">Name is required.</sh-input-help>
+    </span>
   </div>
 
   <div class="form-group">
     <label for="password">Password</label>
     <input type="password" class="form-control" id="password"  [formGroup]="form"
            formControlName="password">    
+    <span *ngIf="form.controls['password'].touched">
+      <sh-input-help *ngIf="form.controls['password'].hasError('required')" 
+                     [type]="'danger'">Password is required.</sh-input-help>
+      <sh-input-help *ngIf="form.controls['password'].hasError('minlength')" 
+                     [type]="'danger'">Password must be atlease 6 characters.</sh-input-help>
+    </span>
   </div>
 
   <div class="form-group">
     <label for="confirmPassword">Confirm Password</label>
     <input type="password" class="form-control" id="confirmPassword"  [formGroup]="form"
            formControlName="confirmPassword">    
+    <span *ngIf="form.controls['confirmPassword'].touched && 
+                 form.controls['password'].touched && 
+                 form.controls['password'].value">
+
+      <sh-input-help *ngIf="form.controls['confirmPassword'].hasError('required')" 
+                     [type]="'danger'">Please confirm your password.</sh-input-help>
+      <sh-input-help *ngIf="form.controls['confirmPassword'].hasError('matchPassword')" 
+                     [type]="'danger'">Passwords do not match.</sh-input-help>
+
+    </span>
   </div>
-
-
-  <button class="btn btn-primary">Register</button>
+  
+  <button class="btn btn-primary" [disabled]="isSaving">Register</button>
+  
 </form>
 
 

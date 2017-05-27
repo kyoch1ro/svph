@@ -6,7 +6,6 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from 'app/shared/modal/modal.component';
-
 import { DevUserService } from 'app/user/shared/dev-user.service';
 import { IUserService } from 'app/user/iuser.service';
 
@@ -23,40 +22,38 @@ export class MainComponent implements OnInit {
   private _userSrvc: IUserService;
 
   public subscription: Observable<any>;
-  errorMsg: string;
-  surveys: ISurveyModel[];
   public activeSurveyIndx = new Subject<number>();
   public activeQuestion: string;
   public activeRespondents : number;
   public activeId: number;
+  
 
+  errorMsg: string;
+  surveys: ISurveyModel[];
+  isSaving = new Subject<boolean>();
   constructor(surveySrvc : DevSurveyService,userSrvc: DevUserService,private modalService: NgbModal) {
     this._surveySrvc = surveySrvc;
     this._userSrvc = userSrvc;
    }
 
   ngOnInit() {
-    
     this.loadFeaturedSurveys();
+    this.isSaving.next(false);
 
     this.activeSurveyIndx.subscribe(
       indx => {
         this.activeQuestion = this.surveys[indx].question_caption;
         this.activeRespondents = Number(this.surveys[indx].respondents);
         this.activeId = Number(this.surveys[indx].id);
-
       }
     )
   }
 
   showSignInModal(content){
     this.modalService.open(content,{
-      size: 'lg',
-      windowClass: 'transparentModal'
+      size: 'lg'
     });
   }
-
-
 
   loadFeaturedSurveys(){
     this.subscription = this._surveySrvc.getFeaturedSurveys();
@@ -74,6 +71,11 @@ export class MainComponent implements OnInit {
 
 
   registerUser(form: any){
-    console.log(form);
+    this.isSaving.next(true);
+    this._userSrvc.registerUser(form).subscribe(
+      data => {},
+      err => this.errorMsg = <any> err,
+      () =>  this.isSaving.next(false)
+    )
   }
 }

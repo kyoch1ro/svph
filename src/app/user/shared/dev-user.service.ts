@@ -11,7 +11,7 @@ export class DevUserService implements IUserService{
   constructor(private _http: Http) { }
 
 
-  registerUser(newUser: IUserModel): Observable<any>{
+  registerUser(newUser: any): Observable<any>{
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     //for CORS ONLY

@@ -7,6 +7,7 @@ import { ReactiveFormsModule  }  from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ModalComponent } from './modal/modal.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
+import { InputHelpComponent } from './input-help/input-help.component';
 
 @NgModule({
   imports: [
@@ -15,14 +16,15 @@ import { RegisterFormComponent } from './register-form/register-form.component';
     ReactiveFormsModule,
     RouterModule
   ],
-  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent],
+  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent, InputHelpComponent],
   exports:[
     CommonModule,
     NgbModule,
     ReactiveFormsModule,
     RouterModule,
     ModalComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    InputHelpComponent
   ],
   providers: [
   ],
