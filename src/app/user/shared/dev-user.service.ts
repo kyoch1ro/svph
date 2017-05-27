@@ -21,4 +21,19 @@ export class DevUserService implements IUserService{
     })
     return this._http.post(`${this._url}/users`,JSON.stringify(newUser),options);
   }
+
+
+  login(username: string, password: string): Observable<any>{
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    var options = new RequestOptions({
+      headers : headers
+    })
+
+    // http://localhost:3000/users?email=rexdaledavid@gmail.com&password=password
+    return this._http.get(`${this._url}/users?email=${username}&password=${password}`)
+    .map(data => data.json());
+
+
+  }
 }
