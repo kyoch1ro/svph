@@ -17,7 +17,7 @@ export class DevAuthService implements iAuth{
       data => {
         console.log(data);
         if(!data){
-          localStorage.removeItem('username');
+          localStorage.removeItem('token');
         }
       }
     )
@@ -32,18 +32,13 @@ export class DevAuthService implements iAuth{
     this._userService.login(user,password).subscribe(
       data => {
         if(data.length > 0){
+          localStorage.setItem('token','hl25spS%2f31%267$7058aB55b31b');
           this.setIsLoggedIn(true);      
         }else{
           this.setIsLoggedIn(false);
         }
       }
     )
-    // if(user === 'admin@surveyph.com' && password === 'admin'){
-    //   this.setIsLoggedIn(true);
-    //   localStorage.setItem('username',user);
-    //   return;
-    // }
-    
   }
 
   logout(): void{
@@ -55,7 +50,6 @@ export class DevAuthService implements iAuth{
     return localStorage.getItem('username');
   }
 }
-
 
 
 export const DEV_AUTH_PROVIDERS: Array<any>=[

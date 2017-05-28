@@ -7,6 +7,7 @@ import { SharedModule } from 'app/shared/shared.module';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { surveyRouting } from './survey/survey.routing';
 import { SurveyModule } from './survey/survey.module';
 import { HomeModule } from './home/home.module';
 import { homeRouting } from './home/home.routing';
@@ -26,6 +27,7 @@ import { UserModule } from './user/user.module'
     CoreModule,
     SurveyModule,
     UserModule,
+    surveyRouting,
     homeRouting,
     routing
     
