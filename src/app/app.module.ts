@@ -11,7 +11,8 @@ import { surveyRouting } from './survey/survey.routing';
 import { SurveyModule } from './survey/survey.module';
 import { HomeModule } from './home/home.module';
 import { homeRouting } from './home/home.routing';
-import { UserModule } from './user/user.module'
+import { UserModule } from './user/user.module';
+
 
 @NgModule({
   declarations: [

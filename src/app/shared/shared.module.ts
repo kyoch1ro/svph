@@ -9,6 +9,7 @@ import { ModalComponent } from './modal/modal.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { InputHelpComponent } from './input-help/input-help.component';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { UserNavComponent } from './user-nav/user-nav.component';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
     ReactiveFormsModule,
     RouterModule
   ],
-  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent, InputHelpComponent, LoginFormComponent],
+  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent, InputHelpComponent, LoginFormComponent, UserNavComponent],
   exports:[
     CommonModule,
     NgbModule,
@@ -27,7 +28,8 @@ import { LoginFormComponent } from './login-form/login-form.component';
     ModalComponent,
     RegisterFormComponent,
     InputHelpComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    UserNavComponent
   ],
   providers: [
   ],
