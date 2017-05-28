@@ -1,0 +1,51 @@
+
+
+.surveys-nav{
+    background-color: #FEFEFE;
+    border-left: 1px solid #c9c9c9;
+    border-right: 1px solid #c9c9c9;
+    border-bottom: 3px solid #c9c9c9;
+}
+
+.fa{
+    color: #424946;
+}
+
+
+a{
+    box-sizing: border-box;
+    padding: 2px 0;
+    display: block;
+    border-radius: 15px;
+    color: #424946;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+a.active{    
+    color:#fff;
+    background-color: #90AAC5;
+    position: relative;
+}
+
+a.active::after{    
+    width: 0;
+	height: 0;
+	border-top: 8px solid #90AAC5;
+	border-right: 8px solid transparent;
+    content: '';
+    left: 50%;
+    bottom: -8px;
+    position: absolute;
+}
+
+a.active::before{    
+    width: 0;
+	height: 0;
+	border-top: 8px solid #90AAC5;
+	border-left: 8px solid transparent;
+    content: '';
+    right: 50%;
+    bottom: -8px;
+    position: absolute;
+}

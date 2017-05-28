@@ -1,0 +1,11 @@
+.surveys-header{
+    color: #fff;
+    border-radius: 8px 8px 0 0;
+    box-sizing: border-box;
+    background-color: #CBD0D8;
+    border: 1px solid #CBD0D8;
+}
+
+.form-control{
+    border: 1px solid transparent;
+}

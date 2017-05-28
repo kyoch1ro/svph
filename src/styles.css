@@ -4,6 +4,11 @@
     border: 1px solid #d50000  ;
 }*/
 
+
+body{
+    background-color: #ebebeb;
+}
+
 .full-page{
     height: 100vh;
 }
@@ -101,4 +106,30 @@
 
 h3 small{
     font-size: 15px;
+}
+
+
+
+.p-rel{
+    position: relative;
+}
+
+.p-abs{
+    position: absolute;
+}
+
+
+.surveys-container .survey-host{
+    border-bottom: 1px solid #c9c9c9;
+    /*padding-bottom: 1rem;*/
+    display: block;
+    margin-top: 1rem;
+}
+
+.surveys-container .survey-host:first-child{
+    margin-top: 0;
+}
+
+.surveys-container .survey-host:last-child{
+    border-bottom: none;
 }

@@ -9,4 +9,8 @@ export const routes: Routes = [
       path: ':id', 
       component: SurveyComponent
   },
+  {
+    path: '',
+    component: SurveysComponent
+  }
 ];

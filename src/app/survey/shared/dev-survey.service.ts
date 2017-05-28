@@ -19,4 +19,15 @@ export class DevSurveyService implements ISurveyService {
     .map((res: Response) => <ISurveyModel[]> res.json())
   }
 
+
+  getSurveys(page?: number): Observable<ISurveyModel[]>{
+    page = (page) ? page : 1; 
+    return this._http.get(`${this._url}/questions?_page=${page}`)
+                     .map((res: Response) => <ISurveyModel[]> res.json());
+
+  }
+
+
+
+
 }

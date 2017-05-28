@@ -4,4 +4,5 @@ export interface ISurveyModel{
     question_caption: string;
     updated_at : string;
     respondents: number;
+    question_img: string;
 }

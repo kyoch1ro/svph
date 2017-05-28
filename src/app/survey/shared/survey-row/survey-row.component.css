@@ -1,0 +1,101 @@
+.img-holder{
+    -webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,.7);
+	   -moz-box-shadow: 0 8px 6px -6px rgba(0,0,0,.7);
+	        box-shadow: 0 8px 6px -6px rgba(0,0,0,.7);
+
+	margin-bottom: 1rem;
+}
+
+
+.survey-tags{
+	list-style-type: none;
+	padding: 0;
+	display: inline-block;
+	
+}
+
+.survey-tags li{
+	position: relative;
+	display: inline-block;
+	margin-right: 15px;
+}
+
+
+.survey-tags li::after{
+	content: '\f111';
+	font-family: FontAwesome;
+	font-size: 8px;
+	position: absolute;
+	top: 6px;
+	right: -14px;
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+.survey-tags li:last-child{
+	margin-right: 0;
+}
+.survey-tags li:last-child::after{
+	content: '';
+	
+}
+.survey-info{
+	color: #ccc;
+    font-weight: 300;
+    /*font-size: 1em;*/
+}
+
+.survey-info i, .survey-info span{
+	display: inline-block;
+}
+
+.survey-info span{
+	position: relative;
+	margin-right: 13px;
+}
+
+
+.survey-info span::after{
+	content: '\f111';
+	font-family: FontAwesome;
+	font-size: 8px;
+	position: absolute;
+	top: 6px;
+	right: -12px;
+	font-weight: normal;
+	font-style: normal;
+}
+
+.survey-info span:last-child::after{
+	content: '';
+	
+}
+
+.button-holder{
+	bottom: 1rem;
+	right: 1rem;
+}
+
+
+.button-holder a{
+	font-size: .9em;
+	text-decoration: none;
+	color: #888;
+	background-color: #dbdbdb;
+	padding: 6px 10px 6px 60px;
+	border-radius: 20px;
+	position: relative;
+}
+
+.button-holder a::after{
+	content: 'Vote!';
+	position: absolute;
+	background-color: #e74c3c;
+	color: #fff;
+	font-weight: 700;
+	left: -30px;
+	border-radius: 20px;
+	top: 0;
+	padding: 6px 25px 6px 25px;
+}
