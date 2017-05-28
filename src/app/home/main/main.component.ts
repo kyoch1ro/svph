@@ -47,11 +47,8 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     //initialize subscriptions
     this.surveySubscription = this._surveySrvc.getFeaturedSurveys();
-    this.authSubscription = this._authService.isLoggedIn;
     
-    //load functions
     this.loadFeaturedSurveys();
-    this.watchForErrorMsg();
     this.setIsSaving(false);
     this.watchForNewIndx();
   }
@@ -69,20 +66,6 @@ export class MainComponent implements OnInit {
 
   setIsSaving(val){
     this.isSaving.next(val);
-  }
-
-  watchForErrorMsg(){
-    this.authSubscription.subscribe(
-      data=>
-      {
-        if(!data){
-          this.errorMsg = "Username or password was incorrect."
-          setTimeout(function(){
-            this.errorMsg =""
-          }.bind(this),3000);
-        }
-      }
-    );
   }
 
   showSignInModal(content){
@@ -115,6 +98,11 @@ export class MainComponent implements OnInit {
 
   loginUser(form: any){
     this._authService.login(form['email'],form['password']);
-    // console.log(form);
+    if(!this._authService.isLoggedIn()){
+      this.errorMsg = "Username or password was incorrect."
+      setTimeout(function(){
+        this.errorMsg =""
+      }.bind(this),3000);
+    }
   }
 }

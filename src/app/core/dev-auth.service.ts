@@ -7,25 +7,11 @@ import { DevUserService } from 'app/user/shared/dev-user.service';
 
 @Injectable()
 export class DevAuthService implements iAuth{
-  public isLoggedIn =  new Subject<boolean>();
+  // public isLoggedIn =  new Subject<boolean>();
   private _userService : IUserService;
 
   constructor(userService: DevUserService) {
-    this._userService = userService;
-    this.setIsLoggedIn(false);    
-    this.isLoggedIn.subscribe(
-      data => {
-        console.log(data);
-        if(!data){
-          localStorage.removeItem('token');
-        }
-      }
-    )
-  }
-
-
-  setIsLoggedIn(val){
-      this.isLoggedIn.next(val);
+    this._userService = userService; 
   }
 
   login(user: string, password: string){
@@ -33,21 +19,27 @@ export class DevAuthService implements iAuth{
       data => {
         if(data.length > 0){
           localStorage.setItem('token','hl25spS%2f31%267$7058aB55b31b');
-          this.setIsLoggedIn(true);      
-        }else{
-          this.setIsLoggedIn(false);
         }
       }
     )
   }
 
   logout(): void{
-    this.setIsLoggedIn(false);
+    
+    // this.setIsLoggedIn(false);
+  }
+
+  isLoggedIn(): boolean{
+    return this.getToken() !== null;
   }
 
 
   getUser(): string{
     return localStorage.getItem('username');
+  }
+
+  getToken(): string{
+    return localStorage.getItem('token');
   }
 }
 
