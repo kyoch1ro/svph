@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SurveyService } from './shared/survey.service';
-import { DevSurveyService } from './shared/dev-survey.service';
+import { SurveyService } from './survey.service';
+import { DevSurveyService } from './dev-survey.service';
 import { SurveysComponent } from './surveys/surveys.component';
 import { SharedModule } from 'app/shared/shared.module';
 import { SurveyComponent } from './survey/survey.component';
