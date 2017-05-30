@@ -61,5 +61,6 @@ export class DevAuthService implements iAuth{
 
 
 export const AUTH_PROVIDERS: Array<any>=[
+  { provide: AuthService ,useClass: AuthService },
   { provide: DevAuthService ,useClass: DevAuthService }
 ]
