@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ISurveyService } from 'app/survey/isurvey.service';
-import { DevSurveyService } from 'app/survey/survey.service';
+import { DevSurveyService, SurveyService } from 'app/survey/survey.service';
 import { ISurveyModel } from 'app/survey/isurvey.model';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from 'app/shared/modal/modal.component';
 import { DevUserService } from 'app/user/shared/dev-user.service';
@@ -27,7 +28,7 @@ export class MainComponent implements OnInit {
   public authSubscription: Observable<any>;
 
 
-  public activeSurveyIndx = new Subject<number>();
+  public activeSurveyIndx = new BehaviorSubject<number>(0);
   public activeQuestion: string;
   public activeRespondents : number;
   public activeId: number;
@@ -38,7 +39,7 @@ export class MainComponent implements OnInit {
   isSaving = new Subject<boolean>();
   
 
-  constructor(surveySrvc : DevSurveyService,userSrvc: DevUserService,private modalService: NgbModal, authService: DevAuthService) {
+  constructor(surveySrvc : SurveyService,userSrvc: DevUserService,private modalService: NgbModal, authService: DevAuthService) {
     this._surveySrvc = surveySrvc;
     this._userSrvc = userSrvc;
     this._authService = authService;
@@ -47,10 +48,9 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     //initialize subscriptions
     this.surveySubscription = this._surveySrvc.getFeaturedSurveys();
-    
     this.loadFeaturedSurveys();
     this.setIsSaving(false);
-    this.watchForNewIndx();
+
   }
   
 
@@ -77,9 +77,11 @@ export class MainComponent implements OnInit {
   loadFeaturedSurveys(){
     this.surveySubscription
     .subscribe(
-      res => this.surveys = res,
+      res => {
+        this.surveys = res;
+      },
       err => this.errorMsg = <any> err,
-      () => this.activeSurveyIndx.next(0)
+      () => this.watchForNewIndx()
     )
   }
 
