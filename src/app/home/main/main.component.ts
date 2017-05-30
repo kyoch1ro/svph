@@ -10,7 +10,7 @@ import { DevUserService } from 'app/user/shared/dev-user.service';
 import { IUserService } from 'app/user/iuser.service';
 
 
-import { DevAuthService } from 'app/core/services/dev-auth.service';
+import { DevAuthService } from 'app/core/services/auth.service';
 import { iAuth } from 'app/core/services/i-auth.service';
 
 @Component({

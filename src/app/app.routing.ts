@@ -1,5 +1,5 @@
 import { Router, RouterModule } from '@angular/router';
-import { LoginGuard } from 'app/core/login.guard';
+import { LoginGuard } from 'app/core/guards/login.guard';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { MainComponent as HomeMain } from 'app/home/main/main.component';
 import { MainComponent as SurveyHome } from 'app/survey/main/main.component';

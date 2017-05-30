@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DEV_AUTH_PROVIDERS} from './services/dev-auth.service';
+import { AUTH_PROVIDERS } from './services/auth.service';
 import { LoginGuard } from './guards/login.guard';
 @NgModule({
   imports: [
@@ -11,7 +11,7 @@ import { LoginGuard } from './guards/login.guard';
     
   ],
   providers:[
-    DEV_AUTH_PROVIDERS,
+    AUTH_PROVIDERS,
     LoginGuard
   ]
 })
