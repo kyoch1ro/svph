@@ -133,3 +133,8 @@ h3 small{
 .surveys-container .survey-host:last-child{
     border-bottom: none;
 }
+
+.landing-page{
+    background: url('assets/images/landing-bg.jpg');
+    color: #fff;
+}
