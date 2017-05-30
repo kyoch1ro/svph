@@ -10,12 +10,13 @@ import { SurveyRowComponent } from './shared/survey-row/survey-row.component';
 import { SurveyListSearchComponent } from './shared/survey-list-search/survey-list-search.component';
 import { SurveyListNavComponent } from './shared/survey-list-nav/survey-list-nav.component';
 import { SurveyListContainerComponent } from './shared/survey-list-container/survey-list-container.component';
+import { SurveyListPaginationComponent } from './shared/survey-list-pagination/survey-list-pagination.component';
 
 @NgModule({
   imports: [
     SharedModule
   ],
-  declarations: [SurveysComponent, SurveyComponent, MainComponent, SurveyRowComponent, SurveyListSearchComponent, SurveyListNavComponent, SurveyListContainerComponent],
+  declarations: [SurveysComponent, SurveyComponent, MainComponent, SurveyRowComponent, SurveyListSearchComponent, SurveyListNavComponent, SurveyListContainerComponent, SurveyListPaginationComponent],
   providers:[
     SurveyService,DevSurveyService
   ]

@@ -17,6 +17,7 @@ export class DevAuthService implements iAuth{
   login(user: string, password: string){
     this._userService.login(user,password).subscribe(
       data => {
+        console.log(data);
         if(data.length > 0){
           localStorage.setItem('token','hl25spS%2f31%267$7058aB55b31b');
         }

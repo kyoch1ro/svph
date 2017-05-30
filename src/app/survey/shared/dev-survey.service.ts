@@ -22,12 +22,14 @@ export class DevSurveyService implements ISurveyService {
 
   getSurveys(page?: number): Observable<ISurveyModel[]>{
     page = (page) ? page : 1; 
-    return this._http.get(`${this._url}/questions?_page=${page}`)
+    return this._http.get(`${this._url}/questions?_page=${page}&_limit=1`)
                      .map((res: Response) => <ISurveyModel[]> res.json());
 
   }
 
-
+  getSurveysCount(): Observable<number>{
+    return this._http.get(`${this._url}/questions`).map((res: Response) => res.json()).map(data => data.length);
+  }
 
 
 }

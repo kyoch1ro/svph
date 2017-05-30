@@ -1,3 +1,10 @@
+
+
 <survey-list-search></survey-list-search>
 <survey-list-nav></survey-list-nav>
-<survey-list-container></survey-list-container>
+<survey-list-container [surveys]="surveys" [surveyCount]="surveyCount | async"></survey-list-container>
+
+
+
+<!--<a [routerLink]="['/surveys','page','1']">1</a>
+<a [routerLink]="['/surveys','page','2']">2</a>-->

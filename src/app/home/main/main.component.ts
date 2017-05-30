@@ -100,8 +100,9 @@ export class MainComponent implements OnInit {
     this._authService.login(form['email'],form['password']);
     if(!this._authService.isLoggedIn()){
       this.errorMsg = "Username or password was incorrect."
+      console.log(this.errorMsg);
       setTimeout(function(){
-        this.errorMsg =""
+        this.errorMsg ="";
       }.bind(this),3000);
     }
   }
