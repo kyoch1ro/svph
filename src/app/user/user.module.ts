@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'app/shared/shared.module';
-import { DevUserService } from './shared/dev-user.service';
+import { USER_PROVIDERS } from './user.service';
 
 @NgModule({
   imports: [
@@ -8,7 +8,7 @@ import { DevUserService } from './shared/dev-user.service';
   ],
   declarations: [],
   providers:[
-    DevUserService
+    USER_PROVIDERS
   ]
 })
 export class UserModule { }

@@ -5,4 +5,5 @@ export interface iAuth{
     logout(): void;
     getUser(): string;
     isLoggedIn(): boolean;
+    getToken(): string;
 }

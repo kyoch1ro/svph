@@ -7,11 +7,10 @@ import { Subject } from 'rxjs/Subject';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from 'app/shared/modal/modal.component';
-import { DevUserService } from 'app/user/shared/dev-user.service';
 import { IUserService } from 'app/user/iuser.service';
 
 
-import { DevAuthService } from 'app/core/services/auth.service';
+import { DevAuthService,AuthService } from 'app/core/services/auth.service';
 import { iAuth } from 'app/core/services/i-auth.service';
 
 @Component({
@@ -39,9 +38,8 @@ export class MainComponent implements OnInit {
   isSaving = new Subject<boolean>();
   
 
-  constructor(surveySrvc : SurveyService,userSrvc: DevUserService,private modalService: NgbModal, authService: DevAuthService) {
+  constructor(surveySrvc : SurveyService,private modalService: NgbModal, authService: AuthService) {
     this._surveySrvc = surveySrvc;
-    this._userSrvc = userSrvc;
     this._authService = authService;
    }
 
