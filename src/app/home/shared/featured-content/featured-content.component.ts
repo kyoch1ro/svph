@@ -31,10 +31,8 @@ export class FeaturedContentComponent implements OnInit {
   ngOnInit() {
   }
 
-
   redirect(val){
     console.log(val);
     
   }
-
 }

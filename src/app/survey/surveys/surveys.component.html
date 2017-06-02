@@ -2,8 +2,9 @@
 
 <survey-list-search></survey-list-search>
 <survey-list-nav></survey-list-nav>
-<survey-list-container [surveys]="surveys" [surveyCount]="surveyCount"></survey-list-container>
-
+<survey-list-container [surveys]="surveys"></survey-list-container>
+<app-pagination *ngIf="surveyCount" [dataCount]="70" ></app-pagination>
+<!--<survey-list-pagination [dataCount]="surveyCount"></survey-list-pagination>-->
 
 
 <!--<a [routerLink]="['/surveys','page','1']">1</a>

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ISurveyService } from './../isurvey.service';
-import { DevSurveyService } from './../survey.service';
+import { DevSurveyService, SurveyService } from './../survey.service';
 import { ISurveyModel } from './../isurvey.model';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -22,7 +22,7 @@ export class SurveysComponent implements OnInit {
 
   surveys : ISurveyModel[];
   surveyCount:number;
-
+  // surveyCount = new Subject<number>();
 
 
   constructor(surveyService: DevSurveyService, private _route: ActivatedRoute) {

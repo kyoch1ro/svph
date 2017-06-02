@@ -95,7 +95,6 @@ export class DevSurveyService implements ISurveyService {
     page = (page) ? page : 1; 
     return this._http.get(`${this._url}/questions?_page=${page}&_limit=1`)
                      .map((res: Response) => <ISurveyModel[]> res.json());
-
   }
 
   getSurveysCount(): Observable<number>{

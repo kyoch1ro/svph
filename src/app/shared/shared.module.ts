@@ -10,6 +10,7 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import { InputHelpComponent } from './input-help/input-help.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { UserNavComponent } from './user-nav/user-nav.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { UserNavComponent } from './user-nav/user-nav.component';
     ReactiveFormsModule,
     RouterModule
   ],
-  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent, InputHelpComponent, LoginFormComponent, UserNavComponent],
+  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent, InputHelpComponent, LoginFormComponent, UserNavComponent, PaginationComponent],
   exports:[
     CommonModule,
     NgbModule,
@@ -29,7 +30,8 @@ import { UserNavComponent } from './user-nav/user-nav.component';
     RegisterFormComponent,
     InputHelpComponent,
     LoginFormComponent,
-    UserNavComponent
+    UserNavComponent,
+    PaginationComponent
   ],
   providers: [
   ],

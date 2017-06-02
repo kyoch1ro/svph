@@ -1,4 +1,4 @@
-<nav aria-label="Page navigation example">
+<!--<nav aria-label="Page navigation example">
   <ul class="pagination">
 
     <li class="page-item">
@@ -7,10 +7,6 @@
         <span class="sr-only">Previous</span>
       </a>
     </li>
-
-
-
-    
 
     <li *ngFor="let page of Arr(dataCount).fill(1); let i = index" class="page-item">
       <a class="page-link" [routerLink]="['/surveys','page',i + 1]" href="#">{{i + 1}}</a>
@@ -25,4 +21,11 @@
     </li>
 
   </ul>
-</nav>
+</nav>-->
+
+
+
+<p>dataCount: {{dataCount}}</p>
+<p>dataPerPage: {{dataPerPage}}</p>
+<p>route: {{route}}</p>
+<p>pages: {{pages}}</p>
