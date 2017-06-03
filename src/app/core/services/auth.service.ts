@@ -9,11 +9,9 @@ import { apiUrl } from 'app/core/global.const';
 
 @Injectable()
 export class AuthService implements iAuth{
-  private _userService: IUserService;
   private _url : string =  apiUrl;
 
-    constructor(userService: UserService, private _http: Http) {
-      this._userService = userService; 
+    constructor(private _http: Http) {
     }
 
     login(user: string, password: string){

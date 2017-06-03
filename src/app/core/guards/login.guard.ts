@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { DevAuthService } from './../services/auth.service';
+import { DevAuthService, AuthService } from './../services/auth.service';
 import { iAuth } from './../services/i-auth.service';
 
 
@@ -9,7 +9,7 @@ import { iAuth } from './../services/i-auth.service';
 export class LoginGuard implements CanActivate {
   private _authService : iAuth;
   
-  constructor(authService : DevAuthService){
+  constructor(authService : AuthService){
     this._authService = authService;
   }
   canActivate(
