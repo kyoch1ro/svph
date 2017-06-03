@@ -12,15 +12,67 @@
                      [type]="'danger'">Invalid email address</sh-input-help>
     </span>
   </div>
+
+
   <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" placeholder="Enter name" [formGroup]="form"
-           formControlName="name">    
-    <span *ngIf="form.controls['name'].touched">
-      <sh-input-help *ngIf="form.controls['name'].hasError('required')" 
-                     [type]="'danger'">Name is required.</sh-input-help>
+    <label for="name">First Name</label>
+    <input type="text" class="form-control" id="name" placeholder="Enter First name" [formGroup]="form"
+          formControlName="fname">    
+    <span *ngIf="form.controls['fname'].touched">
+      <sh-input-help *ngIf="form.controls['fname'].hasError('required')" 
+                    [type]="'danger'">First Name is required.</sh-input-help>
     </span>
   </div>
+
+
+  <div class="form-group">
+    <label for="lname">Last Name</label>
+    <input type="text" class="form-control" id="lname" placeholder="Enter Last name" [formGroup]="form"
+          formControlName="lname">    
+    <span *ngIf="form.controls['lname'].touched">
+      <sh-input-help *ngIf="form.controls['lname'].hasError('required')" 
+                    [type]="'danger'">Last Name is required.</sh-input-help>
+    </span>
+  </div>
+
+
+
+  <div class="row">
+    <div class="col-md-6">
+       <div class="form-group">
+        <label for="gender">Gender</label>
+        <select class="form-control" id="gender" [formGroup]="form"
+              formControlName="gender">
+              <option value="">Please Select</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+        </select>
+        <span *ngIf="form.controls['gender'].touched">
+          <sh-input-help *ngIf="form.controls['gender'].hasError('required')" 
+                        [type]="'danger'">Gender is required.</sh-input-help>
+        </span>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="text" class="form-control" id="age" placeholder="Enter Age" [formGroup]="form"
+              formControlName="age">    
+        <span *ngIf="form.controls['age'].touched">
+          <sh-input-help *ngIf="form.controls['age'].hasError('required')" 
+                        [type]="'danger'">Age is required.</sh-input-help>
+        </span>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
 
   <div class="form-group">
     <label for="password">Password</label>
@@ -48,6 +100,13 @@
                      [type]="'danger'">Passwords do not match.</sh-input-help>
 
     </span>
+  </div>
+
+
+
+
+  <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
+    {{errorMsg}}
   </div>
   
   <button class="btn btn-primary" [disabled]="isSaving">Register</button>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { devServerUrl,webServerUrl } from 'app/core/global.const';
+import { apiUrl } from 'app/core/global.const';
 import { ISurveyService } from './isurvey.service';
 import { ISurveyModel } from './isurvey.model';
 import { Observable } from 'rxjs/Observable';
@@ -11,7 +11,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 @Injectable()
 export class SurveyService implements ISurveyService {
   constructor(private _http: Http) { }
-   private _url: string = webServerUrl;
+   private _url: string = apiUrl;
 
     getFeaturedSurveys(): Observable<ISurveyModel[]>{
       return Observable.of(
@@ -81,7 +81,7 @@ export class SurveyService implements ISurveyService {
 
 @Injectable()
 export class DevSurveyService implements ISurveyService {
-  private _url: string = devServerUrl;
+  private _url: string = apiUrl;
 
 
   constructor(private _http: Http) { }

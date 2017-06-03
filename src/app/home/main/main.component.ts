@@ -9,6 +9,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from 'app/shared/modal/modal.component';
 import { IUserService } from 'app/user/iuser.service';
 
+import { DevUserService, UserService } from 'app/user/user.service';
 
 import { DevAuthService,AuthService } from 'app/core/services/auth.service';
 import { iAuth } from 'app/core/services/i-auth.service';
@@ -22,32 +23,53 @@ export class MainComponent implements OnInit {
   private _surveySrvc : ISurveyService;
   private _userSrvc: IUserService;
   private _authService: iAuth;
+  public surveys: ISurveyModel[];
 
+  //Subscription
   public surveySubscription: Observable<any>;
   public authSubscription: Observable<any>;
 
 
+  //Login
+  public errLogin: string;
+
+
+
+  //Registration
+  public errRegister: string;
+  public isSaving : boolean = false;
+
+
+
+  //refactor this code to featured component
   public activeSurveyIndx = new BehaviorSubject<number>(0);
   public activeQuestion: string;
   public activeRespondents : number;
   public activeId: number;
   
 
+
+
   errorMsg: string;
-  surveys: ISurveyModel[];
-  isSaving = new Subject<boolean>();
+  
   
 
-  constructor(surveySrvc : SurveyService,private modalService: NgbModal, authService: AuthService) {
+
+  
+
+  constructor(surveySrvc : SurveyService,authService: AuthService, userService: UserService, private modalService: NgbModal) {
     this._surveySrvc = surveySrvc;
     this._authService = authService;
+    this._userSrvc = userService;
    }
 
   ngOnInit() {
     //initialize subscriptions
     this.surveySubscription = this._surveySrvc.getFeaturedSurveys();
+
+    //added unsubscribe
     this.loadFeaturedSurveys();
-    this.setIsSaving(false);
+    // this.setIsSaving(false);
 
   }
   
@@ -62,9 +84,9 @@ export class MainComponent implements OnInit {
     )
   }
 
-  setIsSaving(val){
-    this.isSaving.next(val);
-  }
+  // setIsSaving(val){
+  //   this.isSaving.next(val);
+  // }
 
   showSignInModal(content){
     this.modalService.open(content,{
@@ -88,16 +110,25 @@ export class MainComponent implements OnInit {
   }
 
   registerUser(form: any){
-    this.setIsSaving(true);
-    this._userSrvc.registerUser(form).subscribe(
-      data => {},
-      err => this.errorMsg = <any> err,
-      () =>  this.setIsSaving(false)
-    )
+    // console.log(form);
+    this.isSaving = true;
+
+
+
+
+
+
+    // this.setIsSaving(true);
+    // this._userSrvc.registerUser(form).subscribe(
+    //   data => {},
+    //   err => this.errorMsg = <any> err,
+    //   () =>  this.setIsSaving(false)
+    // )
   }
 
   loginUser(form: any){
-    this._authService.login(form['email'],form['password']);
+    console.log(form);
+    // this._authService.login(form['email'],form['password']);
     // if(!this._authService.isLoggedIn()){
     //   this.errorMsg = "Username or password was incorrect."
     //   console.log(this.errorMsg);

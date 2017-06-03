@@ -15,6 +15,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export class RegisterFormComponent implements OnInit {
   @Output() register : EventEmitter<any> = new EventEmitter();
+  @Input() errorMsg: string = '';
   @Input() 
     set isSaving(value) {
       this._isSaving.next(value);    
@@ -22,9 +23,6 @@ export class RegisterFormComponent implements OnInit {
     get isSaving() {
         return this._isSaving.getValue();
     };
-
-
-
 
   private _isSaving = new BehaviorSubject<boolean>(false);
   public form: FormGroup;
@@ -38,11 +36,16 @@ export class RegisterFormComponent implements OnInit {
           Validators.email,
           Validators.required
         ]) ],
+        fname: ['', Validators.required],
+        lname: ['', Validators.required],
+        gender: ['', Validators.required],
+        age: ['', Validators.compose([
+          Validators.required
+        ])],
         password: ['',Validators.compose([
           Validators.required,
           Validators.minLength(6)
         ])],
-        name: ['', Validators.required],
         confirmPassword: ['',Validators.required]
       }, { validator: RegistrationValidator.matchPassword }
     )

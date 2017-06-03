@@ -3,18 +3,20 @@ import { iAuth } from './i-auth.service';
 import { IUserService } from 'app/user/iuser.service';
 import { DevUserService, UserService } from 'app/user/user.service';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { webServerUrl } from 'app/core/global.const';
+import { apiUrl } from 'app/core/global.const';
+
+
 
 @Injectable()
 export class AuthService implements iAuth{
   private _userService: IUserService;
+  private _url : string =  apiUrl;
 
     constructor(userService: UserService, private _http: Http) {
       this._userService = userService; 
     }
 
     login(user: string, password: string){
-
       var headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('access-control-request-method', 'POST');
@@ -22,11 +24,13 @@ export class AuthService implements iAuth{
         headers : headers
       });
 
-      this._http.post(`${webServerUrl}/user/signin`,{
+      this._http.post(`${this._url}/user/signin`,{
         'email': user,
         'password': password
       }, options)
       .subscribe(data => console.log(data));
+
+
       // this._userService.login(user,password).subscribe(
       //   data => {
       //     // console.log(data);
@@ -61,14 +65,14 @@ export class DevAuthService implements iAuth{
   }
 
   login(user: string, password: string){
-    this._userService.login(user,password).subscribe(
-      data => {
-        console.log(data);
-        if(data.length > 0){
-          localStorage.setItem('token','hl25spS%2f31%267$7058aB55b31b');
-        }
-      }
-    )
+    // this._userService.login(user,password).subscribe(
+    //   data => {
+    //     console.log(data);
+    //     if(data.length > 0){
+    //       localStorage.setItem('token','hl25spS%2f31%267$7058aB55b31b');
+    //     }
+    //   }
+    // )
   }
 
   logout(): void{
