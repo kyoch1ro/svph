@@ -4,8 +4,9 @@ import { FormGroup,
          Validators, 
          FormControl} from '@angular/forms';
 import { RegistrationValidator } from './registration-validator';
-import { Observable }  from 'rxjs/Observable';
-         
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
+
 @Component({
   selector: 'shrd-register-form',
   templateUrl: './register-form.component.html',
@@ -14,8 +15,19 @@ import { Observable }  from 'rxjs/Observable';
 
 export class RegisterFormComponent implements OnInit {
   @Output() register : EventEmitter<any> = new EventEmitter();
-  @Input() isSaving : boolean = false;
-  form: FormGroup;
+  @Input() 
+    set isSaving(value) {
+      this._isSaving.next(value);    
+    };
+    get isSaving() {
+        return this._isSaving.getValue();
+    };
+
+
+
+
+  private _isSaving = new BehaviorSubject<boolean>(false);
+  public form: FormGroup;
 
   constructor(private fb: FormBuilder) {}
 

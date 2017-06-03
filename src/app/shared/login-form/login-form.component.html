@@ -18,6 +18,6 @@
     </span>
   </div>
   <ng-content select=".alert"></ng-content>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary" [disabled]="isLoading">Submit</button>
 </form>
 <hr class="hidden-md-up">

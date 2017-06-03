@@ -106,6 +106,5 @@ export class DevSurveyService implements ISurveyService {
 
 
 export const SURVEY_PROVIDERS: Array<any>=[
-  { provide: SurveyService ,useClass: SurveyService },
-  { provide: DevSurveyService ,useClass: DevSurveyService }
+  { provide: SurveyService ,useClass: SurveyService }
 ]

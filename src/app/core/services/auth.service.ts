@@ -2,24 +2,39 @@ import { Injectable } from '@angular/core';
 import { iAuth } from './i-auth.service';
 import { IUserService } from 'app/user/iuser.service';
 import { DevUserService, UserService } from 'app/user/user.service';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { webServerUrl } from 'app/core/global.const';
 
 @Injectable()
 export class AuthService implements iAuth{
   private _userService: IUserService;
 
-    constructor(userService: UserService) {
+    constructor(userService: UserService, private _http: Http) {
       this._userService = userService; 
     }
 
     login(user: string, password: string){
-      this._userService.login(user,password).subscribe(
-        data => {
-          // console.log(data);
-          if(data.length > 0){
-            localStorage.setItem('token','hl25spS%2f31%267$7058aB55b31b');
-          }
-        }
-      )
+
+      var headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('access-control-request-method', 'POST');
+      var options = new RequestOptions({
+        headers : headers
+      });
+
+      this._http.post(`${webServerUrl}/user/signin`,{
+        'email': user,
+        'password': password
+      }, options)
+      .subscribe(data => console.log(data));
+      // this._userService.login(user,password).subscribe(
+      //   data => {
+      //     // console.log(data);
+      //     if(data.length > 0){
+      //       localStorage.setItem('token','hl25spS%2f31%267$7058aB55b31b');
+      //     }
+      //   }
+      // )
     };
     logout(): void{
         return;

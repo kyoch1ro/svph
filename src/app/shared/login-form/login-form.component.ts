@@ -4,7 +4,7 @@ import { FormGroup,
          Validators, 
          FormControl} from '@angular/forms';
 import { LoginValidator } from './login-validator';
-import { Observable }  from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'shrd-login-form',
@@ -13,7 +13,14 @@ import { Observable }  from 'rxjs/Observable';
 })
 export class LoginFormComponent implements OnInit {
   @Output() login : EventEmitter<any> = new EventEmitter();
-  @Input() isLoading : boolean = false;
+  private _isLoading = new BehaviorSubject<boolean>(false);
+  @Input() 
+  set isLoading(value) {
+    this._isLoading.next(value);    
+  };
+  get isLoading() {
+      return this._isLoading.getValue();
+  };
   form: FormGroup;
 
 
@@ -38,6 +45,7 @@ export class LoginFormComponent implements OnInit {
       this.form.get('password').markAsTouched();
       return;
     }
+    console.log(form);
     this.login.emit(form);
   }
 }
