@@ -4,8 +4,14 @@
     box-sizing: border-box;
     background-color: #CBD0D8;
     border: 1px solid #CBD0D8;
+    padding: 1em 0;
 }
 
 .form-control{
     border: 1px solid transparent;
+}
+
+
+.surveys-header .form-group{
+    margin-bottom: 0;
 }
