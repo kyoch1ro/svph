@@ -104,10 +104,10 @@
 
 
 
-
-  <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
+  <shrd-well *ngIf="msg" [type]="isSuccess ? 'success': 'danger'">{{msg}}</shrd-well>
+  <!--<div *ngIf="errorMsg" class="alert alert-danger" role="alert">
     {{errorMsg}}
-  </div>
+  </div>-->
   
   <button class="btn btn-primary" [disabled]="isSaving">Register</button>
   

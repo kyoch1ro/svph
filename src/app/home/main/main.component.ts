@@ -36,7 +36,8 @@ export class MainComponent implements OnInit {
 
 
   //Registration
-  public errRegister: string;
+  public registrationMsg: string;
+  public registrationIsSuccess: boolean;
   public isSaving : boolean = false;
 
 
@@ -51,12 +52,6 @@ export class MainComponent implements OnInit {
 
 
   errorMsg: string;
-  
-  
-
-
-  
-
   constructor(surveySrvc : SurveyService,authService: AuthService, userService: UserService, private modalService: NgbModal) {
     this._surveySrvc = surveySrvc;
     this._authService = authService;
@@ -110,20 +105,21 @@ export class MainComponent implements OnInit {
   }
 
   registerUser(form: any){
-    // console.log(form);
     this.isSaving = true;
-
-
-
-
-
-
-    // this.setIsSaving(true);
-    // this._userSrvc.registerUser(form).subscribe(
-    //   data => {},
-    //   err => this.errorMsg = <any> err,
-    //   () =>  this.setIsSaving(false)
-    // )
+    this._userSrvc.registerUser(form)
+      .subscribe(
+        data => {
+          this.registrationMsg = "Registration success.";
+          this.registrationIsSuccess = true;
+          
+        },
+        err => {
+          this.registrationMsg = 'Please try again later.';
+          this.registrationIsSuccess = false;
+        },
+        () => {
+          this.isSaving = false;
+        });
   }
 
   loginUser(form: any){

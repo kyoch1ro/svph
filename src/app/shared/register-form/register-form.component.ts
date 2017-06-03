@@ -15,7 +15,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export class RegisterFormComponent implements OnInit {
   @Output() register : EventEmitter<any> = new EventEmitter();
-  @Input() errorMsg: string = '';
+  @Input() msg: string;
+  @Input() isSuccess: boolean;
   @Input() 
     set isSaving(value) {
       this._isSaving.next(value);    

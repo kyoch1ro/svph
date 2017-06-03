@@ -9,14 +9,18 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 @Injectable()
 export class UserService implements IUserService {
-  
-  constructor() { }
+  private _url: string = apiUrl;
+  constructor(private _http: Http) { }
 
   registerUser(newUser: any): Observable<any>{
-    return new Observable<any>();
-
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('access-control-request-method', 'POST'); 
+    var options = new RequestOptions({
+      headers : headers
+    })
+    return this._http.post(`${this._url}/users`,JSON.stringify(newUser),options);
   }
-
 }
 
 

@@ -11,6 +11,7 @@ import { InputHelpComponent } from './input-help/input-help.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { UserNavComponent } from './user-nav/user-nav.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { WellComponent } from './well/well.component';
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import { PaginationComponent } from './pagination/pagination.component';
     ReactiveFormsModule,
     RouterModule
   ],
-  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent, InputHelpComponent, LoginFormComponent, UserNavComponent, PaginationComponent],
+  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent, InputHelpComponent, LoginFormComponent, UserNavComponent, PaginationComponent, WellComponent],
   exports:[
     CommonModule,
     NgbModule,
@@ -31,7 +32,8 @@ import { PaginationComponent } from './pagination/pagination.component';
     InputHelpComponent,
     LoginFormComponent,
     UserNavComponent,
-    PaginationComponent
+    PaginationComponent,
+    WellComponent
   ],
   providers: [
   ],
