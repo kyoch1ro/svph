@@ -17,13 +17,10 @@ import { ISubscription } from "rxjs/Subscription";
 })
 export class SurveysComponent implements OnInit {
   private _surveyService: ISurveyService;
-
   private _surveySubscription: ISubscription;
 
   surveys : ISurveyModel[];
   surveyCount:number;
-  // surveyCount = new Subject<number>();
-
 
   constructor(surveyService: DevSurveyService, private _route: ActivatedRoute) {
     this._surveyService = surveyService;
