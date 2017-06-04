@@ -17,9 +17,9 @@
   <div class="form-group">
     <label for="name">First Name</label>
     <input type="text" class="form-control" id="name" placeholder="Enter First name" [formGroup]="form"
-          formControlName="fname">    
-    <span *ngIf="form.controls['fname'].touched">
-      <sh-input-help *ngIf="form.controls['fname'].hasError('required')" 
+          formControlName="firstname">    
+    <span *ngIf="form.controls['firstname'].touched">
+      <sh-input-help *ngIf="form.controls['firstname'].hasError('required')" 
                     [type]="'danger'">First Name is required.</sh-input-help>
     </span>
   </div>
@@ -28,9 +28,9 @@
   <div class="form-group">
     <label for="lname">Last Name</label>
     <input type="text" class="form-control" id="lname" placeholder="Enter Last name" [formGroup]="form"
-          formControlName="lname">    
-    <span *ngIf="form.controls['lname'].touched">
-      <sh-input-help *ngIf="form.controls['lname'].hasError('required')" 
+          formControlName="lastname">    
+    <span *ngIf="form.controls['lastname'].touched">
+      <sh-input-help *ngIf="form.controls['lastname'].hasError('required')" 
                     [type]="'danger'">Last Name is required.</sh-input-help>
     </span>
   </div>
@@ -102,10 +102,8 @@
     </span>
   </div>
 
-
-
   <shrd-well *ngIf="msg" [type]="isSuccess ? 'success': 'danger'">{{msg}}</shrd-well>  
-  <button class="btn btn-primary" [disabled]="isSaving">Register</button>
+  <button class="btn btn-primary" [disabled]="pending">Register</button>
   
 </form>
 

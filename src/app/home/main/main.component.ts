@@ -8,15 +8,14 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from 'app/shared/modal/modal.component';
 import { IUserService } from 'app/user/iuser.service';
-
-import { DevUserService, UserService } from 'app/user/user.service';
-
-import { DevAuthService,AuthService } from 'app/core/services/auth.service';
+import { UserService } from 'app/user/user.service';
+import { AuthService } from 'app/core/services/auth.service';
 import { iAuth } from 'app/core/services/i-auth.service';
 import { ISubscription } from "rxjs/Subscription";
 import { Router }  from '@angular/router';
-import { LoginModel } from './login.model';
 
+import { LoginModel } from './login.model';
+import { RegisterModel } from './register.model';
 
 
 
@@ -43,18 +42,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
 
   public login : LoginModel;
-
-
-
-  
-
-
-  //Registration
-  public registrationMsg: string;
-  public registrationIsSuccess: boolean;
-  public isSaving : boolean = false;
-
-
+  public register: RegisterModel;
 
   //refactor this code to featured component
   public activeSurveyIndx = new BehaviorSubject<number>(0);
@@ -71,14 +59,11 @@ export class MainComponent implements OnInit, OnDestroy {
               userService: UserService, 
               router: Router,
               private modalService: NgbModal) {
-
-
-
-    
     this._surveySrvc = surveySrvc;
     this._authService = authService;
     this._userSrvc = userService;
     this.login = new LoginModel(authService,router);
+    this.register = new RegisterModel(userService, this.login);
    }
 
   ngOnInit() {
@@ -120,22 +105,9 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   registerUser(form: any){
-    this.isSaving = true;
-    this._subscription = this._userSrvc.registerUser(form)
-                        .subscribe(
-                          data => {
-                            this.registrationMsg = "Registration success.";
-                            this.registrationIsSuccess = true;
-                            
-                          },
-                          err => {
-                            this.registrationMsg = 'Please try again later.';
-                            this.registrationIsSuccess = false;
-                          },
-                          () => {
-                            this.isSaving = false;
-                            this._subscription.unsubscribe();
-                          });
+    // console.log(form);
+    this.register.registerUser(form);
+    console.log(this.register.registrationIsSuccess);
   }
 
   loginUser(form: any){

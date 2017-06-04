@@ -42,8 +42,8 @@ export class RegisterFormComponent implements OnInit, IForm, IAlert {
           Validators.email,
           Validators.required
         ]) ],
-        fname: ['', Validators.required],
-        lname: ['', Validators.required],
+        firstname: ['', Validators.required],
+        lastname: ['', Validators.required],
         gender: ['', Validators.required],
         age: ['', Validators.compose([
           Validators.required

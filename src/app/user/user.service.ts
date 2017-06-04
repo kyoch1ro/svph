@@ -15,11 +15,10 @@ export class UserService implements IUserService {
   registerUser(newUser: any): Observable<any>{
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    headers.append('access-control-request-method', 'POST'); 
     var options = new RequestOptions({
       headers : headers
     })
-    return this._http.post(`${this._url}/users`,JSON.stringify(newUser),options);
+    return this._http.post(`${this._url}/user`,JSON.stringify(newUser),options);
   }
 }
 

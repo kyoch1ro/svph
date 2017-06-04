@@ -18,7 +18,7 @@ export class LoginModel{
                             data => {
                                 if(!data['token']){
                                 console.log('Token not provided!');
-                                return;
+                                    return;
                                 } 
                                 localStorage.setItem('token',data['token']);
                                 this.router.navigate(['surveys']);
