@@ -6,5 +6,5 @@ export interface iAuth{
     getUser(): string;
     isLoggedIn(): boolean;
     getToken(): string;
-
+    isAdmin(): boolean;
 }

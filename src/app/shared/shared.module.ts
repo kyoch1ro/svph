@@ -12,6 +12,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { NavComponent } from './nav/nav.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { WellComponent } from './well/well.component';
+import { NavLinkComponent } from './nav/nav-link.component';
 
 
 @NgModule({
@@ -21,7 +22,7 @@ import { WellComponent } from './well/well.component';
     ReactiveFormsModule,
     RouterModule
   ],
-  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent, InputHelpComponent, LoginFormComponent, NavComponent, PaginationComponent, WellComponent],
+  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent, InputHelpComponent, LoginFormComponent, NavComponent, PaginationComponent, WellComponent, NavLinkComponent],
   exports:[
     CommonModule,
     NgbModule,

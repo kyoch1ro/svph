@@ -1,3 +1,8 @@
-<p>
-  surveys works!
-</p>
+<div class="row">
+    <div class="col-md-3">
+        <a class="nav-link" [routerLink]="['./add']">Add</a>
+    </div>
+    <div class="col-md-9">
+        <router-outlet></router-outlet>
+    </div>
+</div>
