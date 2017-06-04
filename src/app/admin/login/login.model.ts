@@ -3,6 +3,7 @@ import { ISubscription } from "rxjs/Subscription";
 import { Router }  from '@angular/router';
 import { ILogin } from 'app/core/contracts/ILogin';
 
+
 export class LoginModel implements ILogin{
     private _subscription: ISubscription;
     public loginMsg: string;
@@ -13,7 +14,7 @@ export class LoginModel implements ILogin{
 
     login(form: any){
         this.isSigningIn = true;
-        this._subscription = this._authService.login(form['email'],form['password'],false)
+        this._subscription = this._authService.login(form['email'],form['password'],true)
                             .subscribe(
                             data => {
                                 if(!data['token']){
@@ -22,8 +23,8 @@ export class LoginModel implements ILogin{
                                 }
 
                                 localStorage.setItem('token',data['token']);
-                                localStorage.setItem('accType','user');
-                                this.router.navigate(['surveys']);
+                                localStorage.setItem('accType','admin');
+                                this.router.navigate(['admin']);
                             },
                             err => {
                                 this.loginIsSuccess = false;

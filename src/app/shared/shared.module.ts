@@ -9,7 +9,7 @@ import { ModalComponent } from './modal/modal.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { InputHelpComponent } from './input-help/input-help.component';
 import { LoginFormComponent } from './login-form/login-form.component';
-import { UserNavComponent } from './user-nav/user-nav.component';
+import { NavComponent } from './nav/nav.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { WellComponent } from './well/well.component';
 
@@ -21,7 +21,7 @@ import { WellComponent } from './well/well.component';
     ReactiveFormsModule,
     RouterModule
   ],
-  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent, InputHelpComponent, LoginFormComponent, UserNavComponent, PaginationComponent, WellComponent],
+  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent, InputHelpComponent, LoginFormComponent, NavComponent, PaginationComponent, WellComponent],
   exports:[
     CommonModule,
     NgbModule,
@@ -31,7 +31,7 @@ import { WellComponent } from './well/well.component';
     RegisterFormComponent,
     InputHelpComponent,
     LoginFormComponent,
-    UserNavComponent,
+    NavComponent,
     PaginationComponent,
     WellComponent
   ],

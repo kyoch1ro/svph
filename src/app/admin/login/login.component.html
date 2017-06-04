@@ -1,0 +1,25 @@
+<div id="login-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="login-form">
+            <h3>
+              <small class="text-muted">Admin Panel</small> <br> 
+              <img src="assets/images/brand.png" width="30px" alt="">  SurveyPH
+            </h3>
+            <shrd-login-form (formSubmit)="loginUser($event)"
+                      [pending]="model.isSigningIn"
+                      [msg]="model.loginMsg"
+                      [isSuccess]="model.loginIsSuccess">
+            </shrd-login-form>
+            <br>
+           </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+
+

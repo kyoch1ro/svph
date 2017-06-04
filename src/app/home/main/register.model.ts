@@ -6,9 +6,6 @@ import { LoginModel } from './login.model';
 
 export class RegisterModel{
     private _subscription: ISubscription;
-
-
-
     public registrationMsg: string;
     public registrationIsSuccess: boolean;
     public isSaving : boolean = false;
@@ -31,7 +28,7 @@ export class RegisterModel{
                             this.isSaving = false;
                           },
                           () => {
-                            this._login.loginUser(form);
+                            this._login.login(form);
                             this._subscription.unsubscribe();
                           });
     }

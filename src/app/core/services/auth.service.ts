@@ -14,18 +14,19 @@ export class AuthService implements iAuth{
     constructor(private _http: Http) {
     }
 
-    login(user: string, password: string): Observable<any>{
+    login(user: string, password: string, isAdmin: boolean = false): Observable<any>{
       var headers = new Headers();
       headers.append('Content-Type', 'application/json');
       var options = new RequestOptions({
         headers : headers
       });
-
-      return this._http.post(`${this._url}/user/signin`,{
+      const userType = (isAdmin) ? 'admin' : 'user';
+      return this._http.post(`${this._url}/${userType}/signin`,{
         'email': user,
         'password': password
       }, options).map(data => data.json());
     };
+
     logout(): void{
         return;
     };
@@ -38,6 +39,17 @@ export class AuthService implements iAuth{
     getToken(): string{
       return localStorage.getItem('token');
     }
+
+
+    isAdmin(): boolean{
+      return this._isAccountAdmin();
+    }
+    private _isAccountAdmin(): boolean{
+      return (localStorage.getItem('accType') == 'admin') ? true : false;
+    }
+
+
+    
 }
 
 
@@ -78,6 +90,10 @@ export class DevAuthService implements iAuth{
 
   getToken(): string{
     return localStorage.getItem('token');
+  }
+
+  isAdmin(): boolean{
+      return false;
   }
 }
 

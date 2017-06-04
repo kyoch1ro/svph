@@ -135,6 +135,10 @@ h3 small{
 }
 
 .landing-page{
-    background: url('assets/images/landing-bg.jpg');
+    background: url('assets/images/landing-bg.jpg')no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     color: #fff;
 }

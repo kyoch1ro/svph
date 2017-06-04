@@ -10,7 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SurveyModule } from './survey/survey.module';
 import { HomeModule } from './home/home.module';
 import { UserModule } from './user/user.module';
-
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +24,7 @@ import { UserModule } from './user/user.module';
     HomeModule,
     SharedModule,
     CoreModule,
+    AdminModule,
     SurveyModule,
     UserModule,
     routing

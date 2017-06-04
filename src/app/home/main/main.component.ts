@@ -41,8 +41,8 @@ export class MainComponent implements OnInit, OnDestroy {
 
 
 
-  public login : LoginModel;
-  public register: RegisterModel;
+  public loginModel : LoginModel;
+  public registerModel: RegisterModel;
 
   //refactor this code to featured component
   public activeSurveyIndx = new BehaviorSubject<number>(0);
@@ -62,8 +62,8 @@ export class MainComponent implements OnInit, OnDestroy {
     this._surveySrvc = surveySrvc;
     this._authService = authService;
     this._userSrvc = userService;
-    this.login = new LoginModel(authService,router);
-    this.register = new RegisterModel(userService, this.login);
+    this.loginModel = new LoginModel(authService,router);
+    this.registerModel = new RegisterModel(userService, this.loginModel);
    }
 
   ngOnInit() {
@@ -106,12 +106,12 @@ export class MainComponent implements OnInit, OnDestroy {
 
   registerUser(form: any){
     // console.log(form);
-    this.register.registerUser(form);
-    console.log(this.register.registrationIsSuccess);
+    this.registerModel.registerUser(form);
+    console.log(this.registerModel.registrationIsSuccess);
   }
 
   loginUser(form: any){
-    this.login.loginUser(form);
+    this.loginModel.login(form);
   }
 
 

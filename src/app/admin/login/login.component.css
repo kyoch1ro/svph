@@ -1,0 +1,26 @@
+#login-container{
+    padding-top: 18vh;
+    height: 100vh;
+    background: url('./../../../assets/images/admin-bg.jpg')no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+.max-height{
+    height: 100%;
+}
+
+.d-flex .container-fluid{
+    flex-basis: 100%;
+}
+
+
+.login-form{
+    box-sizing: border-box;
+    padding: 1em;
+    background-color: #fff;
+    border-radius: 5px;
+}
