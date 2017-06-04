@@ -15,43 +15,48 @@ import { ISubscription } from "rxjs/Subscription";
   templateUrl: './surveys.component.html',
   styleUrls: ['./surveys.component.css']
 })
-export class SurveysComponent implements OnInit {
+export class SurveysComponent implements OnInit{
   private _surveyService: ISurveyService;
   private _surveySubscription: ISubscription;
 
   surveys : ISurveyModel[];
   surveyCount:number;
 
-  constructor(surveyService: DevSurveyService, private _route: ActivatedRoute) {
+  constructor(surveyService: SurveyService, private _route: ActivatedRoute) {
     this._surveyService = surveyService;
   
    }
 
   ngOnInit() {
-      this.loadSurveys(1);
       this.loadSurveysByPage();
-      this.setSurveyCount();
+      // this.setSurveyCount();
   }
 
-  loadSurveys(page: number){
-    this._surveyService.getSurveys(page)
-    .subscribe(data => this.surveys = data);
+  loadSurveys(page?: number){
+    this._surveySubscription = this._surveyService.getSurveys(page)
+    .subscribe(
+      data => this.surveys = <ISurveyModel[]> data,
+      err => {},
+      () => this._surveySubscription.unsubscribe());
   }
 
   loadSurveysByPage(){
     this._route.params.subscribe(params => { 
-      this.loadSurveys(<number> params['page']);
+      if(params){
+        this.loadSurveys(<number> params['page']);
+      }else{
+        this.loadSurveys(1);
+      }
     })
   }
 
 
   setSurveyCount(){
-    this._surveySubscription = this._surveyService.getSurveysCount().subscribe(data => this.surveyCount = data);
-  }
-
-
-  ngOnDestroy(){
-    this._surveySubscription.unsubscribe();
+    this._surveySubscription = this._surveyService.getSurveysCount()
+    .subscribe(
+    data => this.surveyCount = data,
+    err=> {},
+    () => this._surveySubscription.unsubscribe());
   }
 
 }

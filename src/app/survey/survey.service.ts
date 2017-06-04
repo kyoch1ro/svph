@@ -13,65 +13,21 @@ export class SurveyService implements ISurveyService {
   constructor(private _http: Http) { }
    private _url: string = apiUrl;
 
-    getFeaturedSurveys(): Observable<ISurveyModel[]>{
-      return Observable.of(
-        [
-           {
-              "id": 1,
-              "question_type_id": 1,
-              "question_caption": "Do you agree in same sex marriage?",
-              "question_isactive": 1,
-              "question_isdeleted": 0,
-              "created_at": "2017-05-10 00:00:00",
-              "updated_at": "2017-05-10 00:00:00",
-              "respondents": 200,
-              "isFeatured": 1,
-              "question_img": "assets/images/sem.jpg"
-            },
-            {
-              "id": 2,
-              "question_type_id": 1,
-              "question_caption": "Do you trust the President?",
-              "question_isactive": 1,
-              "question_isdeleted": 0,
-              "created_at": "2017-05-10 00:00:00",
-              "updated_at": "2017-05-10 00:00:00",
-              "respondents": 300,
-              "isFeatured": 1,
-              "question_img": "assets/images/pres.jpg"
-            },
-            {
-              "id": 3,
-              "question_type_id": 2,
-              "question_caption": "How was your experience in our products",
-              "question_isactive": 1,
-              "question_isdeleted": 0,
-              "created_at": "2017-05-10 00:00:00",
-              "updated_at": "2017-05-10 00:00:00",
-              "respondents": 406,
-              "isFeatured": 1,
-              "question_img": "assets/images/product.jpg"
-            },
-            {
-              "id": 4,
-              "question_type_id": 2,
-              "question_caption": "What is your reaction to the rejection of Ms. Gina Lopez?",
-              "question_isactive": 2,
-              "question_isdeleted": 0,
-              "created_at": "2017-05-10 00:00:00",
-              "updated_at": "2017-05-10 00:00:00",
-              "respondents": 106,
-              "isFeatured": 1,
-              "question_img": "assets/images/gina lopez.jpg"
-            }
-        ]
-      ).map(data => <ISurveyModel[]> data)
-      
-      // this._http.get(`${this._url}/questions?isFeatured=1`)
-      // .map((res: Response) => <ISurveyModel[]> res.json())
+    getFeaturedSurveys(): Observable<any[]>{
+        // var headers = new Headers();
+        // headers.append('Content-Type', 'application/json');
+
+        // var options = new RequestOptions({
+        //   headers : headers
+        // });
+      return this._http.get(`${this._url}/question/featured`)
+      .map((res: Response) => res.json())
     };
-    getSurveys(page? : number) : Observable<ISurveyModel[]>{
-      return new Observable<ISurveyModel[]>();
+
+    getSurveys(page? : number) : Observable<any[]>{
+       page = (page) ? page : 1; 
+      return this._http.get(`${this._url}/questions?_page=${page}&_limit=10`)
+                     .map((res: Response) => res.json());
     };
     getSurveysCount(): Observable<number>{
       return new Observable<number>();
@@ -86,12 +42,12 @@ export class DevSurveyService implements ISurveyService {
 
   constructor(private _http: Http) { }
 
-  getFeaturedSurveys(): Observable<ISurveyModel[]>{
+  getFeaturedSurveys(): Observable<any[]>{
     return this._http.get(`${this._url}/questions?isFeatured=1`)
     .map((res: Response) => <ISurveyModel[]> res.json())
   }
 
-  getSurveys(page?: number): Observable<ISurveyModel[]>{
+  getSurveys(page?: number): Observable<any[]>{
     page = (page) ? page : 1; 
     return this._http.get(`${this._url}/questions?_page=${page}&_limit=1`)
                      .map((res: Response) => <ISurveyModel[]> res.json());

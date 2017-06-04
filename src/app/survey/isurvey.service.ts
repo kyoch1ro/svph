@@ -3,7 +3,7 @@ import { ISurveyModel } from './isurvey.model';
 
 
 export interface ISurveyService{
-    getFeaturedSurveys(): Observable<ISurveyModel[]>;
-    getSurveys(page? : number) : Observable<ISurveyModel[]>;
+    getFeaturedSurveys(): Observable<any[]>;
+    getSurveys(page? : number) : Observable<any[]>;
     getSurveysCount(): Observable<number>;
 }

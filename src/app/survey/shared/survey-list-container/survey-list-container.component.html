@@ -1,8 +1,4 @@
-
-{{ surveys | json}}
 <div class="surveys-container p-3">
-    <survey-row></survey-row>
-    <survey-row></survey-row>
-    <survey-row></survey-row>
+    <survey-row *ngFor="let item of surveys" [survey]="item"></survey-row>
 </div>
 

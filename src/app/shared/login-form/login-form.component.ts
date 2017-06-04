@@ -5,25 +5,49 @@ import { FormGroup,
          FormControl} from '@angular/forms';
 import { LoginValidator } from './login-validator';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { IForm } from './../iform';
+import { IAlert } from './../ialert';
+
 
 @Component({
   selector: 'shrd-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css']
 })
-export class LoginFormComponent implements OnInit {
-  @Output() login : EventEmitter<any> = new EventEmitter();
-  private _isLoading = new BehaviorSubject<boolean>(false);
+export class LoginFormComponent implements OnInit, IForm, IAlert {
+  @Output() formSubmit : EventEmitter<any> = new EventEmitter();
+ 
   @Input() 
-  set isLoading(value) {
-    this._isLoading.next(value);    
+  set pending(value) {
+    this._isLoading.next(value);
+    if(value) this._msg.next('');
   };
-  get isLoading() {
+  get pending() {
       return this._isLoading.getValue();
   };
+
+  @Input() 
+    set msg(value){
+      this._msg.next(value);
+    };
+    get msg(){
+      return this._msg.getValue();
+    }
+
+
+  @Input()
+    set isSuccess(value){
+      this._isSuccess.next(value);
+    };
+    get isSuccess(){
+      return this._isSuccess.getValue();
+    }
+
+
+  private _isLoading = new BehaviorSubject<boolean>(false);
+  private _msg = new BehaviorSubject<string>('');
+  private _isSuccess = new BehaviorSubject<boolean>(false);
   form: FormGroup;
-
-
   constructor(private fb: FormBuilder) {
   }
 
@@ -45,7 +69,7 @@ export class LoginFormComponent implements OnInit {
       this.form.get('password').markAsTouched();
       return;
     }
-    console.log(form);
-    this.login.emit(form);
+    // console.log(form);
+    this.formSubmit.emit(form);
   }
 }

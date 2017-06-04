@@ -18,6 +18,7 @@
     </span>
   </div>
   <ng-content select=".alert"></ng-content>
-  <button type="submit" class="btn btn-primary" [disabled]="isLoading">Submit</button>
+  <shrd-well *ngIf="msg" [type]="isSuccess ? 'success': 'danger'">{{msg}}</shrd-well>  
+  <button type="submit" class="btn btn-primary" [disabled]="pending">Submit</button>
 </form>
 <hr class="hidden-md-up">

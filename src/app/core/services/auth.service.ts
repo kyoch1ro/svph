@@ -4,8 +4,8 @@ import { IUserService } from 'app/user/iuser.service';
 import { DevUserService, UserService } from 'app/user/user.service';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { apiUrl } from 'app/core/global.const';
-
-
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class AuthService implements iAuth{
@@ -14,29 +14,17 @@ export class AuthService implements iAuth{
     constructor(private _http: Http) {
     }
 
-    login(user: string, password: string){
+    login(user: string, password: string): Observable<any>{
       var headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      headers.append('access-control-request-method', 'POST');
       var options = new RequestOptions({
         headers : headers
       });
 
-      this._http.post(`${this._url}/user/signin`,{
+      return this._http.post(`${this._url}/user/signin`,{
         'email': user,
         'password': password
-      }, options)
-      .subscribe(data => console.log(data));
-
-
-      // this._userService.login(user,password).subscribe(
-      //   data => {
-      //     // console.log(data);
-      //     if(data.length > 0){
-      //       localStorage.setItem('token','hl25spS%2f31%267$7058aB55b31b');
-      //     }
-      //   }
-      // )
+      }, options).map(data => data.json());
     };
     logout(): void{
         return;
@@ -63,6 +51,7 @@ export class DevAuthService implements iAuth{
   }
 
   login(user: string, password: string){
+    return new Observable<any>();
     // this._userService.login(user,password).subscribe(
     //   data => {
     //     console.log(data);

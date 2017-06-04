@@ -5,7 +5,8 @@ import { FormGroup,
          FormControl} from '@angular/forms';
 import { RegistrationValidator } from './registration-validator';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-
+import { IForm } from './../iform';
+import { IAlert } from './../ialert';
 
 @Component({
   selector: 'shrd-register-form',
@@ -13,17 +14,21 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
   styleUrls: ['./register-form.component.css']
 })
 
-export class RegisterFormComponent implements OnInit {
-  @Output() register : EventEmitter<any> = new EventEmitter();
-  @Input() msg: string;
-  @Input() isSuccess: boolean;
+export class RegisterFormComponent implements OnInit, IForm, IAlert {
+  @Output() formSubmit : EventEmitter<any> = new EventEmitter();
   @Input() 
-    set isSaving(value) {
+    set pending(value) {
       this._isSaving.next(value);    
     };
-    get isSaving() {
+    get pending() {
         return this._isSaving.getValue();
     };
+
+  @Input() msg: string;
+  @Input() isSuccess: boolean;
+
+
+
 
   private _isSaving = new BehaviorSubject<boolean>(false);
   public form: FormGroup;
@@ -59,7 +64,7 @@ export class RegisterFormComponent implements OnInit {
       this.form.get('name').markAsTouched();
       return;
     }
-    this.register.emit(form);
+    this.formSubmit.emit(form);
   }
 
 }

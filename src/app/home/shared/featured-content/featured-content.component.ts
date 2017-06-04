@@ -10,7 +10,7 @@ import { Component, OnInit, HostBinding, Input } from '@angular/core';
           </div>
           <div class="f-active-info d-flex" >
             <div class="p-2 flex-item-1 d-flex justify-content-end">
-              <div><i class="fa fa-circle" aria-hidden="true" style="color:#e74c3c"></i> {{respondents |  number }} Respondents</div>
+              <div><i class="fa fa-circle" aria-hidden="true" style="color:#e74c3c"></i> {{ respondents || 0 |  number }} Respondents</div>
             </div>
             <div class="p-2 flex-item-1 d-flex justify-content-start">
               <div>

@@ -13,6 +13,8 @@ import { DevUserService, UserService } from 'app/user/user.service';
 
 import { DevAuthService,AuthService } from 'app/core/services/auth.service';
 import { iAuth } from 'app/core/services/i-auth.service';
+import { ISubscription } from "rxjs/Subscription";
+import { Router }  from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -23,7 +25,13 @@ export class MainComponent implements OnInit {
   private _surveySrvc : ISurveyService;
   private _userSrvc: IUserService;
   private _authService: iAuth;
+  private _modalRef: any;
+  public _subscription :ISubscription;
+  closeResult: string;
   public surveys: ISurveyModel[];
+  
+
+
 
   //Subscription
   public surveySubscription: Observable<any>;
@@ -31,8 +39,9 @@ export class MainComponent implements OnInit {
 
 
   //Login
-  public errLogin: string;
-
+  public loginMsg: string;
+  public isSigningIn: boolean = false;
+  public loginIsSuccess: boolean;
 
 
   //Registration
@@ -52,20 +61,19 @@ export class MainComponent implements OnInit {
 
 
   errorMsg: string;
-  constructor(surveySrvc : SurveyService,authService: AuthService, userService: UserService, private modalService: NgbModal) {
+  constructor(surveySrvc : SurveyService,
+              authService: AuthService, 
+              userService: UserService, 
+              private modalService: NgbModal,
+              private router: Router) {
     this._surveySrvc = surveySrvc;
     this._authService = authService;
     this._userSrvc = userService;
    }
 
   ngOnInit() {
-    //initialize subscriptions
     this.surveySubscription = this._surveySrvc.getFeaturedSurveys();
-
-    //added unsubscribe
     this.loadFeaturedSurveys();
-    // this.setIsSaving(false);
-
   }
   
 
@@ -74,30 +82,29 @@ export class MainComponent implements OnInit {
       indx => {
         this.activeQuestion = this.surveys[indx].question_caption;
         this.activeRespondents = Number(this.surveys[indx].respondents);
-        this.activeId = Number(this.surveys[indx].id);
+        this.activeId = Number(this.surveys[indx].question_id);
       }
     )
   }
 
-  // setIsSaving(val){
-  //   this.isSaving.next(val);
-  // }
-
   showSignInModal(content){
-    this.modalService.open(content,{
-      size: 'lg'
-    });
+    this._modalRef = this.modalService.open(content,{
+                        size: 'lg'
+                      });
   }
 
   loadFeaturedSurveys(){
-    this.surveySubscription
-    .subscribe(
-      res => {
-        this.surveys = res;
-      },
-      err => this.errorMsg = <any> err,
-      () => this.watchForNewIndx()
-    )
+    this._subscription = this.surveySubscription
+                        .subscribe(
+                          res => {
+                            this.surveys = res['featured'];
+                          },
+                          err => this.errorMsg = <any> err,
+                          () => {
+                            this.watchForNewIndx(),
+                            this._subscription.unsubscribe()
+                          } 
+                        )
   }
 
   updateIndx(val){
@@ -106,31 +113,48 @@ export class MainComponent implements OnInit {
 
   registerUser(form: any){
     this.isSaving = true;
-    this._userSrvc.registerUser(form)
-      .subscribe(
-        data => {
-          this.registrationMsg = "Registration success.";
-          this.registrationIsSuccess = true;
-          
-        },
-        err => {
-          this.registrationMsg = 'Please try again later.';
-          this.registrationIsSuccess = false;
-        },
-        () => {
-          this.isSaving = false;
-        });
+    this._subscription = this._userSrvc.registerUser(form)
+                        .subscribe(
+                          data => {
+                            this.registrationMsg = "Registration success.";
+                            this.registrationIsSuccess = true;
+                            
+                          },
+                          err => {
+                            this.registrationMsg = 'Please try again later.';
+                            this.registrationIsSuccess = false;
+                          },
+                          () => {
+                            this.isSaving = false;
+                            this._subscription.unsubscribe();
+                          });
   }
 
   loginUser(form: any){
-    console.log(form);
-    // this._authService.login(form['email'],form['password']);
-    // if(!this._authService.isLoggedIn()){
-    //   this.errorMsg = "Username or password was incorrect."
-    //   console.log(this.errorMsg);
-    //   setTimeout(function(){
-    //     this.errorMsg ="";
-    //   }.bind(this),3000);
-    // }
+    this.isSigningIn = true;
+    this._subscription = this._authService.login(form['email'],form['password'])
+                        .subscribe(
+                          data => {
+                            if(!data['token']){
+                              console.log('Token not provided!');
+                              return;
+                            } 
+                            this._modalRef.close();
+                            localStorage.setItem('token',data['token']);
+                            this.router.navigate(['surveys']);
+                          },
+                          err => {
+                            this.loginIsSuccess = false;
+                            this.isSigningIn = false;
+                            if(err['status'] == 422){
+                              this.loginMsg = err.json().email[0];
+                              return;
+                            }
+                            this.loginMsg = 'Invalid username or password';
+                          },
+                          () => {
+                            this._subscription.unsubscribe();
+                          }
+                        )
   }
 }
