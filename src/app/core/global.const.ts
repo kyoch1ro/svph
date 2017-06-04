@@ -8,16 +8,8 @@ export const apiUrl = 'http://surveyph.heroesrider.com/api';
 
 export const adminNavLinks : INavLink[] = [
                                 {
-                                    'title':'Survey',
-                                    'link' : ['/admin','surveys']
-                                },
-                                {
-                                    'title':'Category',
-                                    'link' : ['/admin','surveys','category']
-                                },
-                                {
-                                    'title':'Type',
-                                    'link' : ['/admin','surveys','type']
+                                    'title':'Surveys',
+                                    'link' : ['/admin','surveys','list']
                                 }
                             ];
 export const userNavLinks: INavLink[] = [

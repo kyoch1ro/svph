@@ -142,3 +142,22 @@ h3 small{
     background-size: cover;
     color: #fff;
 }
+
+
+.admin-content{
+    box-sizing: border-box;
+    padding: 1em;
+    border-radius: .25rem;
+    border: 1px solid rgba(0,0,0,.125);
+    background-color: #fff;
+}
+
+.admin-content h4{
+    font-weight: 400;
+}
+
+
+.admin-content hr{
+    margin-top: .5em;
+    
+}

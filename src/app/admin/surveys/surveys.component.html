@@ -1,8 +1,23 @@
 <div class="row">
-    <div class="col-md-3">
-        <a class="nav-link" [routerLink]="['./add']">Add</a>
-    </div>
-    <div class="col-md-9">
+   
+    <div class="col-md-9 push-md-3">
         <router-outlet></router-outlet>
+    </div>
+
+     <div class="col-md-3 pull-md-9">
+      <div class="list-group">
+        <a  class="list-group-item list-group-item-action d-flex justify-content-between"
+            [routerLinkActive]="['active']" 
+            [routerLink]="['/admin','surveys','list']">
+            <span>Surveys</span>
+            <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+        </a>
+        <a  class="list-group-item list-group-item-action d-flex justify-content-between"
+            [routerLinkActive]="['active']" 
+            [routerLink]="['/admin','surveys','add']">
+            <span>Add</span>
+            <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+        </a>
+      </div>
     </div>
 </div>

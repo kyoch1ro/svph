@@ -4,7 +4,7 @@ import { SurveyAddComponent } from './survey-add/survey-add.component';
 
 export const route: Routes = [
     { 
-        path: '', 
+        path: 'list', 
         component: SurveyListComponent
     },
     { 
