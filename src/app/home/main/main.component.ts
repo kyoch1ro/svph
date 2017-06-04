@@ -15,33 +15,38 @@ import { DevAuthService,AuthService } from 'app/core/services/auth.service';
 import { iAuth } from 'app/core/services/i-auth.service';
 import { ISubscription } from "rxjs/Subscription";
 import { Router }  from '@angular/router';
+import { LoginModel } from './login.model';
+
+
+
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
   private _surveySrvc : ISurveyService;
   private _userSrvc: IUserService;
   private _authService: iAuth;
   private _modalRef: any;
   public _subscription :ISubscription;
-  closeResult: string;
   public surveys: ISurveyModel[];
   
-
-
-
-  //Subscription
+  //move to ISubscription
   public surveySubscription: Observable<any>;
   public authSubscription: Observable<any>;
 
 
-  //Login
-  public loginMsg: string;
-  public isSigningIn: boolean = false;
-  public loginIsSuccess: boolean;
+
+
+
+
+  public login : LoginModel;
+
+
+
+  
 
 
   //Registration
@@ -64,11 +69,16 @@ export class MainComponent implements OnInit {
   constructor(surveySrvc : SurveyService,
               authService: AuthService, 
               userService: UserService, 
-              private modalService: NgbModal,
-              private router: Router) {
+              router: Router,
+              private modalService: NgbModal) {
+
+
+
+    
     this._surveySrvc = surveySrvc;
     this._authService = authService;
     this._userSrvc = userService;
+    this.login = new LoginModel(authService,router);
    }
 
   ngOnInit() {
@@ -88,9 +98,7 @@ export class MainComponent implements OnInit {
   }
 
   showSignInModal(content){
-    this._modalRef = this.modalService.open(content,{
-                        size: 'lg'
-                      });
+    this._modalRef = this.modalService.open(content,{ size: 'lg' });
   }
 
   loadFeaturedSurveys(){
@@ -131,30 +139,15 @@ export class MainComponent implements OnInit {
   }
 
   loginUser(form: any){
-    this.isSigningIn = true;
-    this._subscription = this._authService.login(form['email'],form['password'])
-                        .subscribe(
-                          data => {
-                            if(!data['token']){
-                              console.log('Token not provided!');
-                              return;
-                            } 
-                            this._modalRef.close();
-                            localStorage.setItem('token',data['token']);
-                            this.router.navigate(['surveys']);
-                          },
-                          err => {
-                            this.loginIsSuccess = false;
-                            this.isSigningIn = false;
-                            if(err['status'] == 422){
-                              this.loginMsg = err.json().email[0];
-                              return;
-                            }
-                            this.loginMsg = 'Invalid username or password';
-                          },
-                          () => {
-                            this._subscription.unsubscribe();
-                          }
-                        )
+    this.login.loginUser(form);
+  }
+
+
+  private _closeModal(){
+    if(this._modalRef) this._modalRef.close();
+  } 
+
+  ngOnDestroy(){
+     this._closeModal();
   }
 }
