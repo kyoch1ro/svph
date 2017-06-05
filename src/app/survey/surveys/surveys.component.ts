@@ -28,31 +28,19 @@ export class SurveysComponent implements OnInit, IPaginated{
    }
 
   ngOnInit() {
-      this.loadSurveysByPage();
+      this.load();
       // this.setSurveyCount();
   }
 
-  loadSurveys(page?: number){
+  load(page?: number){
     this._surveySubscription = this._surveyService.getSurveys()
     .subscribe(
       data =>{
         this.data = <ISurveyModel[]> data['questions']
-        console.log(data);
-      } ,
+      },
       err => {},
       () => this._surveySubscription.unsubscribe());
   }
-
-  loadSurveysByPage(){
-    this._route.params.subscribe(params => { 
-      if(params){
-        this.loadSurveys(<number> params['page']);
-      }else{
-        this.loadSurveys(1);
-      }
-    })
-  }
-
 
   setSurveyCount(){
     this._surveySubscription = this._surveyService.getSurveysCount()
