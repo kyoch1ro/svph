@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { apiUrl } from 'app/core/global.const';
-import { ISurveyService } from './isurvey.service';
-import { ISurveyModel } from './isurvey.model';
+import { ISurveyService } from 'app/core/contracts/ISurvey.service';
+import { ISurveyModel } from 'app/core/contracts/ISurvey.model';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';

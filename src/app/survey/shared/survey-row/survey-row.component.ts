@@ -1,5 +1,5 @@
 import { Component, OnInit, HostBinding, Input } from '@angular/core';
-import { ISurveyModel } from 'app/survey/isurvey.model';
+import { ISurveyModel } from 'app/core/contracts/ISurvey.model';
 
 
 @Component({

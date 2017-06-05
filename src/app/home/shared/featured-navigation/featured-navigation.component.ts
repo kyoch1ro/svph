@@ -1,5 +1,5 @@
 import { Component, OnInit, HostBinding, Input, EventEmitter, Output } from '@angular/core';
-import { ISurveyModel }  from 'app/survey/isurvey.model';
+import { ISurveyModel } from 'app/core/contracts/ISurvey.model';
 @Component({
   selector: 'home-featured-navigation',
   template: `

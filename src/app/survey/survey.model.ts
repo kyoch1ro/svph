@@ -1,4 +1,4 @@
-import { ISurveyModel } from './isurvey.model';
+import { ISurveyModel } from 'app/core/contracts/ISurvey.model';
 export class Survey implements ISurveyModel{
     question_id : number;
     question_type_id: number;

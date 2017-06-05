@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ISurveyService } from './../isurvey.service';
+import { ISurveyService } from 'app/core/contracts/ISurvey.service';
 import { DevSurveyService, SurveyService } from './../survey.service';
-import { ISurveyModel } from './../isurvey.model';
+import { ISurveyModel } from 'app/core/contracts/ISurvey.model';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { ActivatedRoute } from '@angular/router';

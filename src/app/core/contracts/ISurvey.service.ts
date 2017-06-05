@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Observable';
-import { ISurveyModel } from './isurvey.model';
+import { ISurveyModel } from 'app/core/contracts/ISurvey.model';
 
 
 export interface ISurveyService{
