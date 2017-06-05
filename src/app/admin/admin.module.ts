@@ -7,6 +7,7 @@ import { SurveysComponent } from './surveys/surveys.component';
 import { SurveyTypeComponent } from './survey-type/survey-type.component';
 import { SurveyListComponent } from './survey-list/survey-list.component';
 import { SurveyAddComponent } from './survey-add/survey-add.component';
+import { SurveyRowComponent } from './survey-row/survey-row.component';
 
 
 
@@ -17,6 +18,6 @@ import { SurveyAddComponent } from './survey-add/survey-add.component';
   imports: [
     SharedModule
   ],
-  declarations: [LoginComponent, MainComponent, SurveyCategoryComponent, SurveysComponent, SurveyTypeComponent, SurveyListComponent, SurveyAddComponent]
+  declarations: [LoginComponent, MainComponent, SurveyCategoryComponent, SurveysComponent, SurveyTypeComponent, SurveyListComponent, SurveyAddComponent, SurveyRowComponent]
 })
 export class AdminModule { }

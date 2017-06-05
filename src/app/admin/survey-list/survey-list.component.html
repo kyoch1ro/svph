@@ -4,13 +4,13 @@
       <h4>Surveys</h4>
     </div>
     <div class="col-md-4 offset-md-2">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search">
-        <span class="input-group-btn">
-          <button class="btn btn-secondary" type="button">Go!</button>
-        </span>
-      </div>
+      <shrd-search [pending]="test" (query)="search($event)"></shrd-search>
     </div>
   </div>
   <hr>
+  
+  <admn-survey-row></admn-survey-row>
+  <admn-survey-row></admn-survey-row>
+  <admn-survey-row></admn-survey-row>
+
 </div>

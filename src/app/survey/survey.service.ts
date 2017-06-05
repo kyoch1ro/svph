@@ -6,37 +6,44 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { AuthService } from 'app/core/services/auth.service'
+import { iAuth } from 'app/core/services/i-auth.service'
+
 // import { Rx } from 'rxjs/Rx';
 
 @Injectable()
 export class SurveyService implements ISurveyService {
-  constructor(private _http: Http) { }
+  
    private _url: string = apiUrl;
+   private _authService: iAuth;
 
-    getFeaturedSurveys(): Observable<any[]>{
-        // var headers = new Headers();
-        // headers.append('Content-Type', 'application/json');
 
-        // var options = new RequestOptions({
-        //   headers : headers
-        // });
-      return this._http.get(`${this._url}/question/featured`)
-      .map((res: Response) => res.json())
-    };
+  constructor(private _http: Http, authService : AuthService ) {
+     this._authService = authService;
+  }
+  getFeaturedSurveys(): Observable<any>{
+    return this._http.get(`${this._url}/question/featured`)
+    .map((res: Response) => res.json())
+  };
 
-    getSurveys(page? : number) : Observable<any[]>{
-       page = (page) ? page : 1; 
-      return this._http.get(`${this._url}/questions?_page=${page}&_limit=10`)
-                     .map((res: Response) => res.json());
-    };
-    getSurveysCount(): Observable<number>{
-      return new Observable<number>();
-    };
+  getSurveys() : Observable<any>{
+    const user = (this._authService.isAdmin()) ? 'admin/' : '';
+    const token = this._authService.getToken();
+    return this._http.get(`${this._url}/${user}question?token=${token}`)
+           .map((res: Response) => res.json());
+  };
+  getSurveysCount(): Observable<number>{
+    return new Observable<number>();
+  };
+
+
+
+
 }
 
 
 @Injectable()
-export class DevSurveyService implements ISurveyService {
+export class DevSurveyService{
   private _url: string = apiUrl;
 
 

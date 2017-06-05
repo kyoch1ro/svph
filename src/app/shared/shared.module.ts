@@ -13,6 +13,7 @@ import { NavComponent } from './nav/nav.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { WellComponent } from './well/well.component';
 import { NavLinkComponent } from './nav/nav-link.component';
+import { SearchBoxComponent } from './search-box/search-box.component';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { NavLinkComponent } from './nav/nav-link.component';
     ReactiveFormsModule,
     RouterModule
   ],
-  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent, InputHelpComponent, LoginFormComponent, NavComponent, PaginationComponent, WellComponent, NavLinkComponent],
+  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent, InputHelpComponent, LoginFormComponent, NavComponent, PaginationComponent, WellComponent, NavLinkComponent, SearchBoxComponent, SearchBoxComponent],
   exports:[
     CommonModule,
     NgbModule,
@@ -34,7 +35,8 @@ import { NavLinkComponent } from './nav/nav-link.component';
     LoginFormComponent,
     NavComponent,
     PaginationComponent,
-    WellComponent
+    WellComponent,
+    SearchBoxComponent
   ],
   providers: [
   ],

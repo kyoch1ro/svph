@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./survey-list.component.css']
 })
 export class SurveyListComponent implements OnInit {
-
   constructor() { }
-
   ngOnInit() {
+    
   }
 
+
+  search(val){
+    console.log(val)
+  }
 }

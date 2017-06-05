@@ -33,9 +33,12 @@ export class SurveysComponent implements OnInit{
   }
 
   loadSurveys(page?: number){
-    this._surveySubscription = this._surveyService.getSurveys(page)
+    this._surveySubscription = this._surveyService.getSurveys()
     .subscribe(
-      data => this.surveys = <ISurveyModel[]> data,
+      data =>{
+        this.surveys = <ISurveyModel[]> data['questions']
+        console.log(data);
+      } ,
       err => {},
       () => this._surveySubscription.unsubscribe());
   }
