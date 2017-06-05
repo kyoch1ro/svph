@@ -8,31 +8,50 @@ import 'rxjs/add/operator/map';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AuthService } from 'app/core/services/auth.service'
 import { iAuth } from 'app/core/services/i-auth.service'
-
+import { IHttpService } from 'app/core/contracts/ihttp-service';
 // import { Rx } from 'rxjs/Rx';
 
 @Injectable()
-export class SurveyService implements ISurveyService {
+export class SurveyService implements ISurveyService, IHttpService {
   
    private _url: string = apiUrl;
    private _authService: iAuth;
 
-
   constructor(private _http: Http, authService : AuthService ) {
      this._authService = authService;
   }
+
+  
   getFeaturedSurveys(): Observable<any>{
     return this._http.get(`${this._url}/question/featured`)
     .map((res: Response) => res.json())
   };
 
-  getSurveys() : Observable<any>{
+
+
+  add(): Observable<any>{
+    return new Observable<any>();
+  }
+
+  delete(): Observable<any>{
+    return new Observable<any>();
+  }
+  getById(): Observable<any>{
+    return new Observable<any>();
+  }
+
+  update(): Observable<any>{
+    return new Observable<any>();
+  }
+
+  list() : Observable<any>{
     const user = (this._authService.isAdmin()) ? 'admin/' : '';
     const token = this._authService.getToken();
     return this._http.get(`${this._url}/${user}question?token=${token}`)
            .map((res: Response) => res.json());
   };
-  getSurveysCount(): Observable<number>{
+
+  count(): Observable<number>{
     return new Observable<number>();
   };
 

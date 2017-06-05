@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy,Inject } from '@angular/core';
 import { ISurveyService } from 'app/core/contracts/ISurvey.service';
 import { SurveyService } from 'app/survey/survey.service';
 import { ISurveyModel } from 'app/core/contracts/ISurvey.model';
@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { takeWhile } from 'rxjs/operator/takeWhile';
 import { ISubscription } from "rxjs/Subscription";
 import { IPaginated } from 'app/core/contracts/IPaginated';
-
+import { IHttpService } from 'app/core/contracts/ihttp-service';
 
 @Component({
   selector: 'app-surveys',
@@ -16,13 +16,13 @@ import { IPaginated } from 'app/core/contracts/IPaginated';
   styleUrls: ['./surveys.component.css']
 })
 export class SurveysComponent implements OnInit, IPaginated{
-  private _surveyService: ISurveyService;
+  private _surveyService: IHttpService;
   private _surveySubscription: ISubscription;
 
   data : ISurveyModel[];
   count:number;
 
-  constructor(surveyService: SurveyService, private _route: ActivatedRoute) {
+  constructor(@Inject(SurveyService) surveyService: IHttpService, private _route: ActivatedRoute) {
     this._surveyService = surveyService;
   
    }
@@ -33,7 +33,7 @@ export class SurveysComponent implements OnInit, IPaginated{
   }
 
   load(page?: number){
-    this._surveySubscription = this._surveyService.getSurveys()
+    this._surveySubscription = this._surveyService.list()
     .subscribe(
       data =>{
         this.data = <ISurveyModel[]> data['questions']
@@ -43,7 +43,7 @@ export class SurveysComponent implements OnInit, IPaginated{
   }
 
   setSurveyCount(){
-    this._surveySubscription = this._surveyService.getSurveysCount()
+    this._surveySubscription = this._surveyService.count()
     .subscribe(
     data => this.count = data,
     err=> {},
