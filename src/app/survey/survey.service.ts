@@ -6,8 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { AuthService } from 'app/core/services/auth.service'
-import { iAuth } from 'app/core/services/i-auth.service'
+import { AuthService } from 'app/core/services/auth.service';
+import { iAuth } from 'app/core/services/i-auth.service';
 import { IHttpService } from 'app/core/contracts/ihttp-service';
 // import { Rx } from 'rxjs/Rx';
 
@@ -29,8 +29,15 @@ export class SurveyService implements ISurveyService, IHttpService {
 
 
 
-  add(): Observable<any>{
-    return new Observable<any>();
+  add(form: any): Observable<any>{
+    const token = this._authService.getToken();
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    var options = new RequestOptions({
+      headers : headers
+    })
+    return this._http.post(`${this._url}/admin/question?token=${token}`,JSON.stringify(form),options)
+          .map((res: Response) => res.json());
   }
 
   delete(): Observable<any>{

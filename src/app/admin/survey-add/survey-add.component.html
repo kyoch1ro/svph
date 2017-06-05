@@ -7,9 +7,17 @@
     </div>
   </div>
   <hr>
-  
 
-
-
-  form
+  <div class="row">
+    <div class="col-md-6">
+                      
+      <shrd-survey-form 
+        (formSubmit)="save($event)"
+        [categories]="categories" 
+        [types]="types" 
+        [pending]="isSaving"
+        [msg]="msg"
+        [isSuccess]="isSuccess"></shrd-survey-form>
+    </div>
+  </div>
 </div>

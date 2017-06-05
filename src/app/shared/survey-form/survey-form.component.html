@@ -1,0 +1,51 @@
+<form action="" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+
+
+
+  <div class="form-group">
+    <label for="question_caption">Question Caption</label>
+    <input type="text" class="form-control" id="question_caption" placeholder="Enter question caption" 
+          [formGroup]="form"
+          formControlName="question_caption">    
+    <span *ngIf="form.controls['question_caption'].touched">
+      <sh-input-help *ngIf="form.controls['question_caption'].hasError('required')" 
+                    [type]="'danger'">This is a required field.</sh-input-help>
+    </span>
+  </div>
+
+  <div class="form-group">
+    <label for="question_category_id">Question Category</label>
+    <select id="question_category_id"
+            class="form-control" 
+            [formGroup]="form" 
+            formControlName="question_category_id" >
+            <option value="">Please Select</option>
+            <option *ngFor="let item of categories" value="{{item.id}}">{{item.category_name}}</option>
+    </select>
+    <span *ngIf="form.controls['question_category_id'].touched">
+      <sh-input-help *ngIf="form.controls['question_category_id'].hasError('required')" 
+                    [type]="'danger'">This is a required field.</sh-input-help>
+    </span>
+  </div>
+
+
+
+  <div class="form-group">
+    <label for="question_type_id">Question Type</label>
+    <select id="question_type_id"
+            class="form-control" 
+            [formGroup]="form" 
+            formControlName="question_type_id" >
+            <option value="">Please Select</option>
+            <option *ngFor="let item of types" value="{{item.type_id}}">{{item.type_name}}</option>
+    </select>
+    <span *ngIf="form.controls['question_type_id'].touched">
+      <sh-input-help *ngIf="form.controls['question_type_id'].hasError('required')" 
+                    [type]="'danger'">This is a required field.</sh-input-help>
+    </span>
+  </div>
+
+
+  <shrd-well *ngIf="msg" [type]="isSuccess ? 'success': 'danger'">{{msg}}</shrd-well>  
+  <button class="btn btn-primary" [disabled]="pending">Save</button>
+</form>

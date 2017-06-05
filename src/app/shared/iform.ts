@@ -5,5 +5,6 @@ export interface IForm {
     form : FormGroup;
     formSubmit : EventEmitter<any>;
     pending : boolean;
+    onSubmit(form: any);
 }
 
