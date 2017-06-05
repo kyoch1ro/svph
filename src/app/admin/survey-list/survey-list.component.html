@@ -8,9 +8,6 @@
     </div>
   </div>
   <hr>
-  
-  <admn-survey-row></admn-survey-row>
-  <admn-survey-row></admn-survey-row>
-  <admn-survey-row></admn-survey-row>
+  <admn-survey-row *ngFor="let survey of data" [survey]="survey"></admn-survey-row>
 
 </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ISurveyService } from 'app/core/contracts/ISurvey.service';
-import { DevSurveyService, SurveyService } from './../survey.service';
+import { SurveyService } from 'app/survey/survey.service';
 import { ISurveyModel } from 'app/core/contracts/ISurvey.model';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
