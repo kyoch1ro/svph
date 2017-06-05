@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
   selector: 'home-nav',
   template:`
         <div class="d-flex flex-item-1 justify-content-start">
-          <a [routerLink]="['/surveys']" class="btn btn-primary">SURVEY</a>
+          <a [routerLink]="['/admin','login']" class="btn btn-primary">SURVEY</a>
         </div>
         <div class="d-flex flex-item-1 justify-content-end">
           <button class="btn btn-primary" (click)="signIn()">SIGN IN</button>
