@@ -1,9 +1,9 @@
 import { Component, OnInit,OnDestroy,Inject } from '@angular/core';
-import { ISurveyService } from 'app/core/contracts/ISurvey.service';
+import { IFeaturable } from 'app/core/contracts/ifeaturable';
 import { SurveyService } from 'app/survey/survey.service';
 import { OptionsService } from './../options/options.service';
 import { IOptionDTO } from './../options/ioption';
-import { ISurveyModel } from 'app/core/contracts/ISurvey.model';
+import { ISurveyDTO } from 'app/survey/isurvey';
 import { Survey } from 'app/survey/survey.model';
 import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute } from '@angular/router';
@@ -11,16 +11,15 @@ import { ISubscription } from "rxjs/Subscription";
 import { IHttpService } from 'app/core/contracts/ihttp-service';
 
 
-
-
 @Component({
-  selector: 'app-survey',
-  templateUrl: './survey.component.html',
-  styleUrls: ['./survey.component.css']
+  selector: 'app-view',
+  templateUrl: './view.component.html',
+  styleUrls: ['./view.component.css']
 })
-export class SurveyComponent implements OnInit {
+export class ViewComponent implements OnInit {
   survey: Survey;
   options: IOptionDTO[];
+
   constructor(
               @Inject(SurveyService) private _surveyService: IHttpService, 
               @Inject(OptionsService) private _optionsService: IHttpService, 
@@ -33,8 +32,8 @@ export class SurveyComponent implements OnInit {
     this._surveyIdSubscription = this._route.params
                                     .subscribe(
                                       params => {
-                                        this.loadSurvey(<number> params['id']);
-                                        this.loadOptions(<number> params['id']);
+                                        this.setSurvey(<number> params['id']);
+                                        // this.loadOptions(<number> params['id']);
                                       },
                                       err => {},
                                       () => this._surveyIdSubscription.unsubscribe()
@@ -44,23 +43,23 @@ export class SurveyComponent implements OnInit {
 
 
 
-  loadSurvey(id: number){
+  setSurvey(id: number){
    let subscription : ISubscription = this._surveyService.getById(id).subscribe(
-      res => this.survey = <ISurveyModel> res['question'],
+      res => this.survey = new Survey(this._surveyService,this._optionsService,res['survey']),
       err => {},
       () => subscription.unsubscribe()
     );
   }
 
 
-  loadOptions(id: number){
-    let subscription : ISubscription = this._optionsService.list(id)
-                                        .subscribe(
-                                          res => this.options = <IOptionDTO[]> res['option'],
-                                          err => {},
-                                          () => subscription.unsubscribe()
-                                        );
-  }
+  // loadOptions(id: number){
+  //   let subscription : ISubscription = this._optionsService.list(id)
+  //                                       .subscribe(
+  //                                         res => this.options = <IOptionDTO[]> res['option'],
+  //                                         err => {},
+  //                                         () => subscription.unsubscribe()
+  //                                       );
+  // }
 
 
 

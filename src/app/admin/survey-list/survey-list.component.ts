@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { ISubscription } from 'rxjs/Subscription';
-import { ISurveyModel } from 'app/core/contracts/ISurvey.model';
+import { ISurveyDTO } from 'app/survey/isurvey';
 import { IPaginated } from 'app/core/contracts/IPaginated';
 import { IHttpService } from 'app/core/contracts/ihttp-service';
 import { SurveyService } from 'app/survey/survey.service';
@@ -14,7 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SurveyListComponent implements OnInit,IPaginated {
   private _subscription : ISubscription;
-  data : ISurveyModel[];
+  data : ISurveyDTO[];
   count: number;
 
   constructor(@Inject(SurveyService) private _surveyService: IHttpService, private _route: ActivatedRoute) {
@@ -26,7 +26,7 @@ export class SurveyListComponent implements OnInit,IPaginated {
   load(page?: number){
     var _page = (page) ? page : 1;
     this._subscription = this._surveyService.list()
-                         .subscribe(data => this.data = <ISurveyModel[]> data['questions']);
+                         .subscribe(data => this.data = <ISurveyDTO[]> data['survey']);
   }
 
   search(val){

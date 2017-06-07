@@ -2,50 +2,83 @@ import { Injectable } from '@angular/core';
 import { apiUrl } from 'app/core/global.const';
 import { IUserService }  from './iuser.service';
 import { Observable } from 'rxjs/Observable';
+
+
+import { IHttpService } from 'app/core/contracts/ihttp-service';
 import { IUserModel } from './iuser.model';
 import 'rxjs/add/observable/of';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 
 @Injectable()
-export class UserService implements IUserService {
+export class UserService implements IHttpService {
   private _url: string = apiUrl;
   constructor(private _http: Http) { }
 
-  registerUser(newUser: any): Observable<any>{
+  getById(id: number): Observable<any>{
+    return;
+  };
+  list(id?: number): Observable<any>{
+    return;
+  };
+
+  add(newUser: any): Observable<any>{
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     var options = new RequestOptions({
       headers : headers
     })
     return this._http.post(`${this._url}/user`,JSON.stringify(newUser),options);
-  }
+  };
+  
+  delete(id: number): Observable<any>{
+    return;
+  };
+  update(id: number): Observable<any>{
+    return;
+  };
+  count(): Observable<any>{
+    return;
+  };
+
+
+
+
+
+
+  // registerUser(newUser: any): Observable<any>{
+  //   var headers = new Headers();
+  //   headers.append('Content-Type', 'application/json');
+  //   var options = new RequestOptions({
+  //     headers : headers
+  //   })
+  //   return this._http.post(`${this._url}/user`,JSON.stringify(newUser),options);
+  // }
 }
 
 
 
-@Injectable()
-export class DevUserService implements IUserService{
-  private _url: string = apiUrl;
-  constructor(private _http: Http) { }
+// @Injectable()
+// export class DevUserService implements IUserService{
+//   private _url: string = apiUrl;
+//   constructor(private _http: Http) { }
 
 
-  registerUser(newUser: any): Observable<any>{
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    //for CORS ONLY
-    // headers.append('access-control-request-method', 'POST'); 
-    var options = new RequestOptions({
-      headers : headers
-    })
-    return this._http.post(`${this._url}/users`,JSON.stringify(newUser),options);
-  }
+//   registerUser(newUser: any): Observable<any>{
+//     var headers = new Headers();
+//     headers.append('Content-Type', 'application/json');
+//     //for CORS ONLY
+//     // headers.append('access-control-request-method', 'POST'); 
+//     var options = new RequestOptions({
+//       headers : headers
+//     })
+//     return this._http.post(`${this._url}/users`,JSON.stringify(newUser),options);
+//   }
 
 
-}
+// }
 
 
 export const USER_PROVIDERS: Array<any>=[
-  { provide: UserService ,useClass: UserService },
-  { provide: DevUserService ,useClass: DevUserService }
+  { provide: UserService ,useClass: UserService }
 ]

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy,Inject } from '@angular/core';
-import { ISurveyService } from 'app/core/contracts/ISurvey.service';
+import { IFeaturable } from 'app/core/contracts/ifeaturable';
 import { SurveyService } from 'app/survey/survey.service';
-import { ISurveyModel } from 'app/core/contracts/ISurvey.model';
+import { ISurveyDTO } from 'app/survey/isurvey';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { ActivatedRoute } from '@angular/router';
@@ -18,7 +18,7 @@ import { IHttpService } from 'app/core/contracts/ihttp-service';
 export class SurveysComponent implements OnInit, IPaginated{
   private _surveySubscription: ISubscription;
 
-  data : ISurveyModel[];
+  data : ISurveyDTO[];
   count:number;
 
   constructor(@Inject(SurveyService) private _surveyService: IHttpService, private _route: ActivatedRoute) {
@@ -35,7 +35,7 @@ export class SurveysComponent implements OnInit, IPaginated{
     this._surveySubscription = this._surveyService.list()
     .subscribe(
       data =>{
-        this.data = <ISurveyModel[]> data['questions']
+        this.data = <ISurveyDTO[]> data['survey']
       },
       err => {},
       () => this._surveySubscription.unsubscribe());

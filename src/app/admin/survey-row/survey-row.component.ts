@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { ISurveyModel } from 'app/core/contracts/ISurvey.model';
+import { ISurveyDTO } from 'app/survey/isurvey';
 
 @Component({
   selector: 'admn-survey-row',
@@ -27,7 +27,7 @@ import { ISurveyModel } from 'app/core/contracts/ISurvey.model';
   `
 })
 export class SurveyRowComponent implements OnInit {
-  @Input() survey: ISurveyModel;
+  @Input() survey: ISurveyDTO;
   constructor() { }
 
   ngOnInit() {

@@ -4,8 +4,8 @@ import { FormGroup,
          Validators, 
          FormControl} from '@angular/forms';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { IForm } from './../iform';
-import { IAlert } from './../ialert';
+import { IForm } from 'app/core/contracts/iform';
+import { IAlert } from 'app/core/contracts/ialert';
 import { CategoryService } from 'app/survey/category/category.service';
 import { ICategoryModel } from 'app/survey/category/icategory-model';
 import { ITypeModel } from 'app/survey/type/itype-model';

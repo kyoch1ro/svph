@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ISurveyModel } from 'app/core/contracts/ISurvey.model';
+import { ISurveyDTO } from 'app/survey/isurvey';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
@@ -16,7 +16,7 @@ export class SurveyListContainerComponent implements OnInit {
     return this._surveys.getValue();
   }
   
-  private _surveys = new BehaviorSubject<ISurveyModel[]>([]);
+  private _surveys = new BehaviorSubject<ISurveyDTO[]>([]);
 
   constructor() {
 

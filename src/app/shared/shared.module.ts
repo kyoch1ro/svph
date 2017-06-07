@@ -8,7 +8,6 @@ import { RouterModule } from '@angular/router';
 import { ModalComponent } from './modal/modal.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { InputHelpComponent } from './input-help/input-help.component';
-import { LoginFormComponent } from './login-form/login-form.component';
 import { NavComponent } from './nav/nav.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { WellComponent } from './well/well.component';
@@ -24,7 +23,7 @@ import { SurveyFormComponent } from './survey-form/survey-form.component';
     ReactiveFormsModule,
     RouterModule
   ],
-  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent, InputHelpComponent, LoginFormComponent, NavComponent, PaginationComponent, WellComponent, NavLinkComponent, SearchBoxComponent, SearchBoxComponent, SurveyFormComponent],
+  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent, InputHelpComponent, NavComponent, PaginationComponent, WellComponent, NavLinkComponent, SearchBoxComponent, SearchBoxComponent, SurveyFormComponent],
   exports:[
     CommonModule,
     NgbModule,
@@ -33,7 +32,6 @@ import { SurveyFormComponent } from './survey-form/survey-form.component';
     ModalComponent,
     RegisterFormComponent,
     InputHelpComponent,
-    LoginFormComponent,
     NavComponent,
     PaginationComponent,
     WellComponent,

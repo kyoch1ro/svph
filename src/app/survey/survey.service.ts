@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { apiUrl } from 'app/core/global.const';
-import { ISurveyService } from 'app/core/contracts/ISurvey.service';
-import { ISurveyModel } from 'app/core/contracts/ISurvey.model';
+import { IFeaturable } from 'app/core/contracts/ifeaturable';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
@@ -12,7 +11,7 @@ import { IHttpService } from 'app/core/contracts/ihttp-service';
 // import { Rx } from 'rxjs/Rx';
 
 @Injectable()
-export class SurveyService implements ISurveyService, IHttpService {
+export class SurveyService implements IFeaturable, IHttpService {
   
    private _url: string = apiUrl;
    private _authService: iAuth;
@@ -22,8 +21,8 @@ export class SurveyService implements ISurveyService, IHttpService {
   }
 
   
-  getFeaturedSurveys(): Observable<any>{
-    return this._http.get(`${this._url}/question/featured`)
+  getFeaturedList(): Observable<any>{
+    return this._http.get(`${this._url}/survey/featured`)
     .map((res: Response) => res.json())
   };
 
@@ -36,7 +35,7 @@ export class SurveyService implements ISurveyService, IHttpService {
     var options = new RequestOptions({
       headers : headers
     })
-    return this._http.post(`${this._url}/admin/question?token=${token}`,JSON.stringify(form),options)
+    return this._http.post(`${this._url}/admin/survey?token=${token}`,JSON.stringify(form),options)
           .map((res: Response) => res.json());
   }
 
@@ -49,7 +48,7 @@ export class SurveyService implements ISurveyService, IHttpService {
   getById(id: number): Observable<any>{
     const user = (this._authService.isAdmin()) ? 'admin/' : '';
     const token = this._authService.getToken();
-    return this._http.get(`${this._url}/${user}question/${id}?token=${token}`)
+    return this._http.get(`${this._url}/${user}getsurvey/${id}?token=${token}`)
            .map((res: Response) => res.json());
   }
 
@@ -60,7 +59,7 @@ export class SurveyService implements ISurveyService, IHttpService {
   list() : Observable<any>{
     const user = (this._authService.isAdmin()) ? 'admin/' : '';
     const token = this._authService.getToken();
-    return this._http.get(`${this._url}/${user}question?token=${token}`)
+    return this._http.get(`${this._url}/${user}allsurvey?token=${token}`)
            .map((res: Response) => res.json());
   };
 
@@ -83,13 +82,13 @@ export class DevSurveyService{
 
   getFeaturedSurveys(): Observable<any[]>{
     return this._http.get(`${this._url}/questions?isFeatured=1`)
-    .map((res: Response) => <ISurveyModel[]> res.json())
+    .map((res: Response) =>  res.json())
   }
 
   getSurveys(page?: number): Observable<any[]>{
     page = (page) ? page : 1; 
     return this._http.get(`${this._url}/questions?_page=${page}&_limit=1`)
-                     .map((res: Response) => <ISurveyModel[]> res.json());
+                     .map((res: Response) => res.json());
   }
 
   getSurveysCount(): Observable<number>{

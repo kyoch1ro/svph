@@ -1,5 +1,5 @@
 import { Component, OnInit, HostBinding, Input, EventEmitter, Output } from '@angular/core';
-import { ISurveyModel } from 'app/core/contracts/ISurvey.model';
+import { ISurveyDTO } from 'app/survey/isurvey';
 @Component({
   selector: 'home-featured-navigation',
   template: `
@@ -18,7 +18,7 @@ import { ISurveyModel } from 'app/core/contracts/ISurvey.model';
 export class FeaturedNavigationComponent implements OnInit {
   @HostBinding('class') classes = 'f-pagination d-flex';
   @Input() activeIndx : number = 0;
-  @Input() surveys : ISurveyModel[] = [];
+  @Input() surveys : ISurveyDTO[] = [];
   @Output() newIndx : EventEmitter<number> = new EventEmitter();
   constructor() { }
 

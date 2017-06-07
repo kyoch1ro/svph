@@ -1,14 +1,12 @@
-<pre>
-{{ option | json }}
-</pre>
-<div class="vote-container p-3">
+
+<div *ngIf="survey" class="vote-container p-3">
   <h4>
-    {{survey.question_caption}} 
+    {{survey.survey_title}} 
     <br>
     <small class="text-muted">{{ survey.created_at  | date:'fullDate' }}</small>
   </h4>
   <div class="d-flex o-x-hidden p-2">
-    <img src="{{survey.question_img || 'assets/images/default-img.jpg'}}" class="d-block mlr-auto" alt="">
+    <img src="{{survey.survey_img || 'assets/images/default-img.jpg'}}" class="d-block mlr-auto" alt="">
   </div>
 
   <div class="option-holder">
@@ -20,4 +18,3 @@
   </div>
 </div>
 <br>
-<!--[options]="options"-->

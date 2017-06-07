@@ -25,7 +25,7 @@ export class OptionsService implements IHttpService {
   
   list(id: number): any{
     const token = this._authService.getToken();
-     return this._http.get(`${this._url}/option/ByQid/${id}?token=${token}`)
+     return this._http.get(`${this._url}/questionnaire/${id}?token=${token}`)
            .map((res: Response) => res.json());
   };
 

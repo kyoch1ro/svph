@@ -5,8 +5,8 @@ import { FormGroup,
          FormControl} from '@angular/forms';
 import { RegistrationValidator } from './registration-validator';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { IForm } from './../iform';
-import { IAlert } from './../ialert';
+import { IForm } from 'app/core/contracts/iform';
+import { IAlert } from 'app/core/contracts/ialert';
 
 @Component({
   selector: 'shrd-register-form',

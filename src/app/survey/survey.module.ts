@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from 'app/shared/shared.module';
 import { SURVEY_PROVIDERS } from './survey.service';
 import { SurveysComponent } from './surveys/surveys.component';
-import { SurveyComponent } from './survey/survey.component';
+// import { SurveyComponent } from './view/view.component';
 import { MainComponent } from './main/main.component';
 import { CategoryModule } from './category/category.module';
 import { TypeModule } from './type/type.module';
@@ -14,6 +14,7 @@ import { SurveyListPaginationComponent } from './shared/survey-list-pagination/s
 import { PollOptionComponent } from './shared/poll-option/poll-option.component';
 import { FormsModule } from '@angular/forms';
 import { OptionsModule } from './options/options.module';
+import { ViewComponent } from './view/view.component';
 @NgModule({
   imports: [
     SharedModule,
@@ -22,7 +23,7 @@ import { OptionsModule } from './options/options.module';
     OptionsModule,
     TypeModule
   ],
-  declarations: [SurveysComponent, SurveyComponent, MainComponent, SurveyRowComponent, SurveyListSearchComponent, SurveyListNavComponent, SurveyListContainerComponent, SurveyListPaginationComponent, PollOptionComponent],
+  declarations: [SurveysComponent, MainComponent, SurveyRowComponent, SurveyListSearchComponent, SurveyListNavComponent, SurveyListContainerComponent, SurveyListPaginationComponent, PollOptionComponent, ViewComponent],
   providers:[
     SURVEY_PROVIDERS
   ]

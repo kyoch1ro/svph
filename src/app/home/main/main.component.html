@@ -15,11 +15,11 @@
     <div class="row">
       <div class="col-md-6">
         <h3><small class="text-muted">Already have an account?</small> <br> Sign in</h3><br>
-        <shrd-login-form (formSubmit)="loginUser($event)"
+        <usr-login-form (formSubmit)="loginUser($event)"
                           [pending]="loginModel.isSigningIn"
                           [msg]="loginModel.loginMsg"
                           [isSuccess]="loginModel.loginIsSuccess">
-        </shrd-login-form>
+        </usr-login-form>
       </div>
       <div class="col-md-6">
         <h3><small class="text-muted">Dont have an account?</small> <br> Register Now</h3><br>

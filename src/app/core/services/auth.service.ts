@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { iAuth } from './i-auth.service';
 import { IUserService } from 'app/user/iuser.service';
-import { DevUserService, UserService } from 'app/user/user.service';
+import { UserService } from 'app/user/user.service';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { apiUrl } from 'app/core/global.const';
 import { Observable } from 'rxjs/Observable';
@@ -53,53 +53,6 @@ export class AuthService implements iAuth{
     
 }
 
-
-@Injectable()
-export class DevAuthService implements iAuth{
-  // public isLoggedIn =  new Subject<boolean>();
-  private _userService : IUserService;
-
-  constructor(userService: UserService) {
-    this._userService = userService; 
-  }
-
-  login(user: string, password: string){
-    return new Observable<any>();
-    // this._userService.login(user,password).subscribe(
-    //   data => {
-    //     console.log(data);
-    //     if(data.length > 0){
-    //       localStorage.setItem('token','hl25spS%2f31%267$7058aB55b31b');
-    //     }
-    //   }
-    // )
-  }
-
-  logout(): void{
-    
-    // this.setIsLoggedIn(false);
-  }
-
-  isLoggedIn(): boolean{
-    return this.getToken() !== null;
-  }
-
-
-  getUser(): string{
-    return localStorage.getItem('username');
-  }
-
-  getToken(): string{
-    return localStorage.getItem('token');
-  }
-
-  isAdmin(): boolean{
-      return false;
-  }
-}
-
-
 export const AUTH_PROVIDERS: Array<any>=[
-  { provide: AuthService ,useClass: AuthService },
-  { provide: DevAuthService ,useClass: DevAuthService }
+  { provide: AuthService ,useClass: AuthService }
 ]

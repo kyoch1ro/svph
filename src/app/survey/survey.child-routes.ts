@@ -1,19 +1,17 @@
 import { Routes } from '@angular/router';
 import { SurveysComponent } from './surveys/surveys.component';
 import { LoginGuard } from 'app/core/guards/login.guard';
-import { SurveyComponent } from './survey/survey.component';
+import { ViewComponent } from './view/view.component';
 
 
 export const routes: Routes = [
-  
-  
   { 
       path: 'page/:page', 
       component: SurveysComponent
   },
   { 
       path: ':id', 
-      component: SurveyComponent
+      component: ViewComponent
   },
   {
     path: '',
