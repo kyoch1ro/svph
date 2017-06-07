@@ -43,8 +43,14 @@ export class SurveyService implements ISurveyService, IHttpService {
   delete(): Observable<any>{
     return new Observable<any>();
   }
-  getById(): Observable<any>{
-    return new Observable<any>();
+
+
+
+  getById(id: number): Observable<any>{
+    const user = (this._authService.isAdmin()) ? 'admin/' : '';
+    const token = this._authService.getToken();
+    return this._http.get(`${this._url}/${user}question/${id}?token=${token}`)
+           .map((res: Response) => res.json());
   }
 
   update(): Observable<any>{

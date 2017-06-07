@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-4">
         <div class="img-holder">
-            <img src="{{survey.question_img}}" class="img-fluid img-thumbnail" alt="">
+            <img src="{{survey.question_img || 'assets/images/default-img.jpg'}}" class="img-fluid img-thumbnail" alt="">
         </div>
     </div>
     <div class="col-md-8 p-rel d-flex flex-column">
@@ -14,7 +14,7 @@
           <span>No</span>
         </div>
         <div class="button-holder align-self-end f-10">
-          <a href="" >{{ survey.respondents || 0}} Respondents</a>
+          <a [routerLink]="['/surveys',survey.question_id]" >0 Respondents</a>
         </div>
     </div>
 </div>

@@ -6,4 +6,5 @@ export class Survey implements ISurveyModel{
     question_caption: string;
     updated_at : string;
     question_img: string;
+    respondents: number;
 }

@@ -16,14 +16,13 @@ import { IHttpService } from 'app/core/contracts/ihttp-service';
   styleUrls: ['./surveys.component.css']
 })
 export class SurveysComponent implements OnInit, IPaginated{
-  private _surveyService: IHttpService;
   private _surveySubscription: ISubscription;
 
   data : ISurveyModel[];
   count:number;
 
-  constructor(@Inject(SurveyService) surveyService: IHttpService, private _route: ActivatedRoute) {
-    this._surveyService = surveyService;
+  constructor(@Inject(SurveyService) private _surveyService: IHttpService, private _route: ActivatedRoute) {
+
   
    }
 

@@ -11,14 +11,18 @@ import { SurveyListSearchComponent } from './shared/survey-list-search/survey-li
 import { SurveyListNavComponent } from './shared/survey-list-nav/survey-list-nav.component';
 import { SurveyListContainerComponent } from './shared/survey-list-container/survey-list-container.component';
 import { SurveyListPaginationComponent } from './shared/survey-list-pagination/survey-list-pagination.component';
-
+import { PollOptionComponent } from './shared/poll-option/poll-option.component';
+import { FormsModule } from '@angular/forms';
+import { OptionsModule } from './options/options.module';
 @NgModule({
   imports: [
     SharedModule,
     CategoryModule,
+    FormsModule,
+    OptionsModule,
     TypeModule
   ],
-  declarations: [SurveysComponent, SurveyComponent, MainComponent, SurveyRowComponent, SurveyListSearchComponent, SurveyListNavComponent, SurveyListContainerComponent, SurveyListPaginationComponent],
+  declarations: [SurveysComponent, SurveyComponent, MainComponent, SurveyRowComponent, SurveyListSearchComponent, SurveyListNavComponent, SurveyListContainerComponent, SurveyListPaginationComponent, PollOptionComponent],
   providers:[
     SURVEY_PROVIDERS
   ]

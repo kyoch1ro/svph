@@ -1,0 +1,11 @@
+
+
+#option-holder .flx-item{
+    flex: 1;
+    margin-bottom: 1em;
+}
+
+
+#option-holder .flx-item:last-child{
+    margin-bottom: 0;
+}
