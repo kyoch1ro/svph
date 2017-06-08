@@ -15,6 +15,7 @@ import { NavLinkComponent } from './nav/nav-link.component';
 import { SearchBoxComponent } from './search-box/search-box.component';
 import { SurveyFormComponent } from './survey-form/survey-form.component';
 import { RadioInputComponent } from './radio-input/radio-input.component';
+import { CheckInputComponent } from './check-input/check-input.component';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { RadioInputComponent } from './radio-input/radio-input.component';
     ReactiveFormsModule,
     RouterModule
   ],
-  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent, InputHelpComponent, NavComponent, PaginationComponent, WellComponent, NavLinkComponent, SearchBoxComponent, SearchBoxComponent, SurveyFormComponent, RadioInputComponent],
+  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent, InputHelpComponent, NavComponent, PaginationComponent, WellComponent, NavLinkComponent, SearchBoxComponent, SearchBoxComponent, SurveyFormComponent, RadioInputComponent, CheckInputComponent],
   exports:[
     CommonModule,
     NgbModule,
@@ -38,7 +39,8 @@ import { RadioInputComponent } from './radio-input/radio-input.component';
     WellComponent,
     SearchBoxComponent,
     SurveyFormComponent,
-    RadioInputComponent
+    RadioInputComponent,
+    CheckInputComponent
   ],
   providers: [
   ],

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Question }  from 'app/survey/question/question.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Radio } from 'app/shared/radio-input/radio.model';
+import { Check } from 'app/shared/check-input/check.model';
 import { IOptionDTO } from 'app/survey/question/options/ioption';
 
 @Component({
@@ -25,8 +26,10 @@ export class QuestionInputComponent implements OnInit {
 
 
   questionToIMultiInput(val : IOptionDTO){
+    if(this.question.option_type.toLowerCase() == 'check'){
+      return new Check(val.question_id,val.option_caption,val.option_id);
+    }
     return new Radio(val.question_id,val.option_caption,val.option_id);
-    
   }
 
 }

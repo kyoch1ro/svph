@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Radio } from './radio.model';
-import { IMultiInput } from 'app/core/contracts/imulti-input';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Component({
   selector: 'shrd-radio-input',

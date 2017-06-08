@@ -1,4 +1,6 @@
-<!--{{survey.questions | json}} -->
+<pre>
+{{survey.questions | json}} 
+</pre>
 <div *ngIf="survey" class="vote-container p-3">
   <h4>
     {{survey.survey_title}} 
@@ -8,5 +10,48 @@
   <div class="d-flex o-x-hidden p-2">
     <img src="{{survey.survey_img || 'assets/images/default-img.jpg'}}" class="d-block mlr-auto" alt="">
   </div>
-  <opt-question-input *ngFor="let item of survey.questions" [question]="item"></opt-question-input>
+<!--
+  <form action="" [formGroup]="surveyForm" novalidate (ngSubmit)="onSubmit(surveyForm)">
+
+
+
+
+
+     <button type="submit" >Submit</button>
+  </form>
+-->
+
+
+
+  <form #pollOption="ngForm" (ngSubmit)="onSubmit(pollOption.value)">
+    <!--<opt-question-input *ngFor="let item of survey.questions" [question]="item"></opt-question-input>-->
+
+    
+      <div *ngFor="let item of survey.questions">
+        <p>{{item.question_caption}}</p>
+
+
+
+          <div *ngIf="item.option_type.toLowerCase() =='check'">
+            <label *ngFor="let opt of item.options; let i = index"class="custom-control custom-radio">
+              <input  name="options" ng-control="options" [value]="opt.option_id" type="radio" class="custom-control-input" required>
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">{{opt.option_caption}}</span>
+            </label>
+          </div>
+
+
+          <div *ngIf="item.option_type.toLowerCase() =='radio'">
+            <label *ngFor="let opt of item.options; let i = index" class="custom-control custom-checkbox">
+              <input type="checkbox" [value]="opt.option_id" class="custom-control-input">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">{{opt.option_caption}}</span>
+            </label>
+          </div>
+      </div>
+    
+
+
+    <button>asdasd</button>
+  </form>
 </div>

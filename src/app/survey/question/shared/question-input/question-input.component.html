@@ -1,4 +1,9 @@
 <p>{{question.question_caption}}</p>
-<div class="custom-controls-stacked">
+<div *ngIf="question.option_type.toLowerCase() == 'radio'" class="custom-controls-stacked">
     <shrd-radio-input *ngFor="let data of question.options" [radio]="questionToIMultiInput(data)"></shrd-radio-input>
+</div>
+
+
+<div *ngIf="question.option_type.toLowerCase() == 'check'" class="custom-controls-stacked">
+    <shrd-check-input *ngFor="let data of question.options" [check]="questionToIMultiInput(data)"></shrd-check-input>
 </div>
