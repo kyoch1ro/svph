@@ -1,0 +1,4 @@
+<p>{{question.question_caption}}</p>
+<div class="custom-controls-stacked">
+    <shrd-radio-input *ngFor="let data of question.options" [radio]="questionToIMultiInput(data)"></shrd-radio-input>
+</div>

@@ -14,6 +14,7 @@ import { WellComponent } from './well/well.component';
 import { NavLinkComponent } from './nav/nav-link.component';
 import { SearchBoxComponent } from './search-box/search-box.component';
 import { SurveyFormComponent } from './survey-form/survey-form.component';
+import { RadioInputComponent } from './radio-input/radio-input.component';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { SurveyFormComponent } from './survey-form/survey-form.component';
     ReactiveFormsModule,
     RouterModule
   ],
-  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent, InputHelpComponent, NavComponent, PaginationComponent, WellComponent, NavLinkComponent, SearchBoxComponent, SearchBoxComponent, SurveyFormComponent],
+  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent, InputHelpComponent, NavComponent, PaginationComponent, WellComponent, NavLinkComponent, SearchBoxComponent, SearchBoxComponent, SurveyFormComponent, RadioInputComponent],
   exports:[
     CommonModule,
     NgbModule,
@@ -36,7 +37,8 @@ import { SurveyFormComponent } from './survey-form/survey-form.component';
     PaginationComponent,
     WellComponent,
     SearchBoxComponent,
-    SurveyFormComponent
+    SurveyFormComponent,
+    RadioInputComponent
   ],
   providers: [
   ],

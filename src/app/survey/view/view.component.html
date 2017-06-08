@@ -1,4 +1,4 @@
-
+<!--{{survey.questions | json}} -->
 <div *ngIf="survey" class="vote-container p-3">
   <h4>
     {{survey.survey_title}} 
@@ -8,13 +8,5 @@
   <div class="d-flex o-x-hidden p-2">
     <img src="{{survey.survey_img || 'assets/images/default-img.jpg'}}" class="d-block mlr-auto" alt="">
   </div>
-
-  <div class="option-holder">
-    <srvy-poll-option
-      [pending]="'false'"
-      [isSuccess]="'false'"
-      [options]="options"
-      (formSubmit)="vote($event)"></srvy-poll-option>
-  </div>
+  <opt-question-input *ngFor="let item of survey.questions" [question]="item"></opt-question-input>
 </div>
-<br>

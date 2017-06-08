@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { OPTION_PROVIDERS } from './options.service';
 
 @NgModule({
-  imports: [],
+  imports: [ ],
   declarations: [],
-  providers:[OPTION_PROVIDERS]
+  providers:[ OPTION_PROVIDERS ]
 })
 export class OptionsModule { }

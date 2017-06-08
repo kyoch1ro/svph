@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter,Input,Output } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { IOptionDTO }  from 'app/survey/options/ioption';
+import { IOptionDTO }  from 'app/survey/question/options/ioption';
 
 
 @Component({

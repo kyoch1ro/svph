@@ -1,15 +1,15 @@
 import { Component, OnInit,OnDestroy,Inject } from '@angular/core';
 import { IFeaturable } from 'app/core/contracts/ifeaturable';
 import { SurveyService } from 'app/survey/survey.service';
-import { OptionsService } from './../options/options.service';
-import { IOptionDTO } from './../options/ioption';
+import { OptionsService } from 'app/survey/question/options/options.service';
 import { ISurveyDTO } from 'app/survey/isurvey';
+import { IChild }  from 'app/core/contracts/ichild';
 import { Survey } from 'app/survey/survey.model';
 import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute } from '@angular/router';
 import { ISubscription } from "rxjs/Subscription";
 import { IHttpService } from 'app/core/contracts/ihttp-service';
-
+import { QuestionService } from './../question/question.service';
 
 @Component({
   selector: 'app-view',
@@ -18,11 +18,11 @@ import { IHttpService } from 'app/core/contracts/ihttp-service';
 })
 export class ViewComponent implements OnInit {
   survey: Survey;
-  options: IOptionDTO[];
 
   constructor(
               @Inject(SurveyService) private _surveyService: IHttpService, 
-              @Inject(OptionsService) private _optionsService: IHttpService, 
+              @Inject(OptionsService) private _optionsService: IHttpService,
+              @Inject(QuestionService) private _questionService: IChild,
               private _route: ActivatedRoute) { }
   private _surveyIdSubscription: ISubscription;
 
@@ -45,7 +45,13 @@ export class ViewComponent implements OnInit {
 
   setSurvey(id: number){
    let subscription : ISubscription = this._surveyService.getById(id).subscribe(
-      res => this.survey = new Survey(this._surveyService,this._optionsService,res['survey']),
+      res => {
+        this.survey = new Survey(this._surveyService,
+                                      this._optionsService,
+                                      this._questionService,
+                                      res['survey']);
+        this.survey.setQuestions();
+      },
       err => {},
       () => subscription.unsubscribe()
     );

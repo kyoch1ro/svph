@@ -1,5 +1,6 @@
 export interface IOptionDTO {
     option_id : number;
+    question_id: number;
     option_type: string;
     option_caption: string;
     option_isactive: number;

@@ -1,7 +1,9 @@
 import { ISurveyBL, ISurveyDTO } from './isurvey';
-import { IOptionDTO } from './options/ioption';
+import { IOptionDTO } from './question/options/ioption';
+import { IQuestionDTO } from './question/iquestion';
 import { IHttpService } from 'app/core/contracts/ihttp-service';
 import { ISubscription } from 'rxjs/Subscription';
+import { IChild } from 'app/core/contracts/ichild';
 export class Survey implements ISurveyDTO{
     id : number;
     survey_category_id : number;
@@ -13,10 +15,11 @@ export class Survey implements ISurveyDTO{
     updated_at : string;
     respondents: number;
     survey_img: string;
-    options: IOptionDTO[];
+    questions: IQuestionDTO[];
 
     constructor(private _surveyService: IHttpService,
-                private _optionsService: IHttpService, 
+                private _optionsService: IHttpService,
+                private _questionService: IChild,
                 obj?: ISurveyDTO){
         this.id                 = obj && obj.id                 || null;
         this.survey_category_id = obj && obj.survey_category_id || null;
@@ -28,17 +31,19 @@ export class Survey implements ISurveyDTO{
         this.updated_at         = obj && obj.updated_at         || null;
         this.respondents        = obj && obj.respondents        || null;
         this.survey_img         = obj && obj.survey_img         || null;
-        this.options            = obj && obj.options            || null;
+        this.questions          = obj && obj.questions            || null;
 
-        if(this.id) this.setOptions();
+        // if(this.id) this.setQuestions();
     }
 
-
-
-
-    setOptions(){
-        let subscription =  this._optionsService.list(this.id)
-                                .subscribe(response => console.log(response));
+    setQuestions(){
+        let subs : ISubscription = this._questionService.getByParentId(this.id)
+                                        .subscribe(data => {
+                                            this.questions = <IQuestionDTO[]> data['questionnaire']
+                                        },
+                                        err => {},
+                                        () => {}
+                                        );
     }
 
 

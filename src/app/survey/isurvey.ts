@@ -1,4 +1,4 @@
-import { IOptionDTO } from './options/ioption';
+import { IQuestionDTO } from './question/iquestion';
 export interface ISurveyDTO{
     id : number;
     survey_category_id : number;
@@ -10,7 +10,7 @@ export interface ISurveyDTO{
     updated_at : string;
     respondents: number;
     survey_img: string;
-    options: IOptionDTO[];
+    questions: IQuestionDTO[];
 }
 
 
