@@ -27,7 +27,7 @@ export class ViewComponent implements OnInit {
 
   survey: ISurveyDTO;
   questions :  IQuestionDTO[];
-  form_data: any;
+  form_data: any[] = [];
   constructor(
               @Inject(SurveyService) private _surveyService: IHttpService, 
               @Inject(OptionsService) private _optionsService: IHttpService,
@@ -57,7 +57,15 @@ export class ViewComponent implements OnInit {
     let questionSubscription = this._questions.subscribe(
       questions => {
         this.questions = <IQuestionDTO[]> questions;
-        this.buildForm();
+        this.questions.forEach(question => {
+          this.form_data.push({
+            question_id: question.question_id,
+            selected_option: (question.option_type.toLowerCase() == 'radio') ? '' : [] 
+          })
+        })
+
+
+        console.log(this.form_data)
       }
     )
 
@@ -77,6 +85,7 @@ export class ViewComponent implements OnInit {
      let subscription : ISubscription = this._questionService.getByParentId(id).subscribe(
       res => {
         this._questions.next(<IQuestionDTO[]> res['questionnaire'])
+        
       },
       err => {},
       () => subscription.unsubscribe()
@@ -102,7 +111,20 @@ export class ViewComponent implements OnInit {
     console.log(value);
   }
   
+  toggleSelected(event,quest_indx,option_id){
 
+    if(event.target.checked){
+      this.form_data[quest_indx].selected_option.push(option_id);
+    }else{
+      var index = this.form_data[quest_indx].selected_option.indexOf(option_id);
+
+      if(index!=-1){
+
+        this.form_data[quest_indx].selected_option.splice(index, 1);
+      }
+    }
+    
+  }
 
   vote(form: any){
     console.log(form);

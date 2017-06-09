@@ -6,3 +6,20 @@
 <pre>
   {{questions | json}}
 </pre>
+
+
+
+<div *ngFor="let question of questions; let i = index">
+  <!--{{form_data | json}}-->
+  
+  <div [ngSwitch]="question.option_type.toLowerCase()">
+    <div *ngSwitchCase="'radio'">
+      {{form_data[i] | json}}
+      <input *ngFor="let option of question.options" [value]="option.option_id" name="test" type="radio" [(ngModel)]="form_data[i].selected_option">    
+    </div>
+    <div *ngSwitchCase="'check'">
+      {{form_data[i] | json}}
+      <input *ngFor="let option of question.options" name="" (change)="toggleSelected($event,i,option.option_id)" type="checkbox">    
+    </div>
+  </div>
+</div>
