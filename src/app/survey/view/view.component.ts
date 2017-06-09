@@ -23,6 +23,8 @@ import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 })
 export class ViewComponent implements OnInit {
   private _survey :  ReplaySubject<ISurveyDTO> = new ReplaySubject<ISurveyDTO>();
+  private _questions :  ReplaySubject<IQuestionDTO[]> = new ReplaySubject<IQuestionDTO[]>();
+
   survey: ISurveyDTO;
   questions :  IQuestionDTO[];
   form_data: any;
@@ -44,13 +46,21 @@ export class ViewComponent implements OnInit {
         err => {},
         () => this._surveyIdSubscription.unsubscribe()
     );
-    
+
     let surveySubscription = this._survey.subscribe(
       survey => {
-        this.survey = survey;
+        this.survey = <ISurveyDTO> survey;
         this.setQuestions(survey.id);
       }
     )
+
+    let questionSubscription = this._questions.subscribe(
+      questions => {
+        this.questions = <IQuestionDTO[]> questions;
+        this.buildForm();
+      }
+    )
+
   }
 
   setSurvey(id: number){
@@ -66,12 +76,26 @@ export class ViewComponent implements OnInit {
   setQuestions(id: number){
      let subscription : ISubscription = this._questionService.getByParentId(id).subscribe(
       res => {
-        this.questions = <IQuestionDTO[]> res['questionnaire'];
+        this._questions.next(<IQuestionDTO[]> res['questionnaire'])
       },
       err => {},
       () => subscription.unsubscribe()
     );
   }
+
+  setForm(){
+
+  }
+
+
+  buildForm(){
+    const arr = this.questions.map(
+      question => {
+        question.options.map(opt => console.log(opt))
+      });
+  }
+
+
 
 
   onSubmit(value: any){

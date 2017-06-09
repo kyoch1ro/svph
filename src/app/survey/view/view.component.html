@@ -1,33 +1,8 @@
-asdasdsad
-<form action=""  #surveyForm="ngForm" (ngSubmit)="onSubmit(surveyForm.value)">
-  <div *ngFor="let question of questions"  [ngSwitch]="question.option_type.toLowerCase()">
-    <div class="custom-controls-stacked" *ngSwitchCase="'radio'" >
-      <label *ngFor="let option of question.options"class="custom-control custom-radio">
-        <input [name]="option.question_id" [value]="option.option_id" type="radio" class="custom-control-input" ngModel >
-        <span class="custom-control-indicator"></span>
-        <span class="custom-control-description">{{option.option_caption}}</span>
-      </label>
-    </div>
-    <div class="custom-controls-stacked" *ngSwitchCase="'check'">
-      <label *ngFor="let option of question.options" class="custom-control custom-checkbox">
-          <input  [name]="option.question_id"  [value]="option.option_id"  type="checkbox" class="custom-control-input" ngModel checkbox-group>
-          <span class="custom-control-indicator"></span>
-          <span class="custom-control-description">{{option.option_caption}}</span>
-      </label>
-    </div>   
-  </div>
-  <button>asdads</button>
-</form>
-
 <pre>
   {{survey | json}}
 </pre>
 
+
 <pre>
-{{questions| json}}
+  {{questions | json}}
 </pre>
-
-
-
-
-
