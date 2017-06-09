@@ -19,8 +19,13 @@ export class Survey implements ISurveyDTO{
 
     constructor(private _surveyService: IHttpService,
                 private _optionsService: IHttpService,
-                private _questionService: IChild,
-                obj?: ISurveyDTO){
+                private _questionService: IChild){
+        // if(this.id) this.setQuestions();
+    }
+
+
+
+    setData(obj? :any){
         this.id                 = obj && obj.id                 || null;
         this.survey_category_id = obj && obj.survey_category_id || null;
         this.survey_isactive    = obj && obj.survey_isactive    || null;
@@ -31,9 +36,7 @@ export class Survey implements ISurveyDTO{
         this.updated_at         = obj && obj.updated_at         || null;
         this.respondents        = obj && obj.respondents        || null;
         this.survey_img         = obj && obj.survey_img         || null;
-        this.questions          = obj && obj.questions            || null;
-
-        // if(this.id) this.setQuestions();
+        this.questions          = obj && obj.questions          || null;
     }
 
     setQuestions(){

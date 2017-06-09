@@ -3,10 +3,12 @@ import { IFeaturable } from 'app/core/contracts/ifeaturable';
 import { SurveyService } from 'app/survey/survey.service';
 import { OptionsService } from 'app/survey/question/options/options.service';
 import { ISurveyDTO } from 'app/survey/isurvey';
+import { IQuestionDTO } from 'app/survey/question/iquestion';
 import { IChild }  from 'app/core/contracts/ichild';
 import { Survey } from 'app/survey/survey.model';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { ActivatedRoute } from '@angular/router';
 import { ISubscription } from "rxjs/Subscription";
 import { IHttpService } from 'app/core/contracts/ihttp-service';
@@ -20,8 +22,10 @@ import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
   styleUrls: ['./view.component.css']
 })
 export class ViewComponent implements OnInit {
-  survey: Survey;
-  private _survey :  BehaviorSubject<Survey>;
+  private _survey :  ReplaySubject<ISurveyDTO> = new ReplaySubject<ISurveyDTO>();
+  survey: ISurveyDTO;
+  questions :  IQuestionDTO[];
+  form_data: any;
   constructor(
               @Inject(SurveyService) private _surveyService: IHttpService, 
               @Inject(OptionsService) private _optionsService: IHttpService,
@@ -33,51 +37,42 @@ export class ViewComponent implements OnInit {
   
 
   ngOnInit() {
-    this._surveyIdSubscription = this._route.params
-                                    .subscribe(
-                                      params => {
-                                        this.setSurvey(<number> params['id']);
-                                        // this.loadOptions(<number> params['id']);
-                                      },
-                                      err => {},
-                                      () => this._surveyIdSubscription.unsubscribe()
-                                    );
-    // this.surveyForm = this._fb.group({
-
-    // })
-
-
-    let surveyIdSubscription = this._survey.subscribe(
-      data => console.log(data)
+   let id_param_subscription = 
+    this._route.params
+      .subscribe(
+        params => this.setSurvey(<number> params['id']),
+        err => {},
+        () => this._surveyIdSubscription.unsubscribe()
+    );
+    
+    let surveySubscription = this._survey.subscribe(
+      survey => {
+        this.survey = survey;
+        this.setQuestions(survey.id);
+      }
     )
   }
-
-
-
 
   setSurvey(id: number){
    let subscription : ISubscription = this._surveyService.getById(id).subscribe(
       res => {
-        this.survey = new Survey(this._surveyService,
-                                      this._optionsService,
-                                      this._questionService,
-                                      res['survey']);
-        this.survey.setQuestions();
+        this._survey.next(<ISurveyDTO> res['survey']);
       },
       err => {},
       () => subscription.unsubscribe()
     );
   }
 
+  setQuestions(id: number){
+     let subscription : ISubscription = this._questionService.getByParentId(id).subscribe(
+      res => {
+        this.questions = <IQuestionDTO[]> res['questionnaire'];
+      },
+      err => {},
+      () => subscription.unsubscribe()
+    );
+  }
 
-  // loadOptions(id: number){
-  //   let subscription : ISubscription = this._optionsService.list(id)
-  //                                       .subscribe(
-  //                                         res => this.options = <IOptionDTO[]> res['option'],
-  //                                         err => {},
-  //                                         () => subscription.unsubscribe()
-  //                                       );
-  // }
 
   onSubmit(value: any){
     console.log(value);

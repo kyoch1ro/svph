@@ -1,7 +1,6 @@
 <form #pollOption="ngForm" (ngSubmit)="onSubmit(pollOption.value)">
   <div id="option-holder" class="d-flex flex-column">
     <div class="flx-item d-flex flex-column">
-
         <label *ngFor="let item of options; let i = index"class="custom-control custom-radio">
           <input id="opt-{{I}}"  name="options" ng-control="options" [value]="item.option_id" type="radio" class="custom-control-input" [(ngModel)]="poll" required>
           <span class="custom-control-indicator"></span>
@@ -15,6 +14,4 @@
       </div>
     </div>
   </div>
-  
-
 </form>
