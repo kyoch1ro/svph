@@ -34,6 +34,9 @@ export class UserService implements IUploadable {
   };
 
   add(newUser: any): Observable<any>{
+    //append the recently uploaded govertment_id
+    newUser['govt_id'] = localStorage.getItem('imageName');
+
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     var options = new RequestOptions({

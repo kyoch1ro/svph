@@ -20,30 +20,19 @@ import { RegistrationFormModel } from './registration-form.model';
 })
 export class RegistrationFormComponent implements  OnInit, IForm{
   //Asked for an IAlert to be passed
-  @Input() set model(val: IAlert){ 
-    this._model.next(val);
-  }
+  @Input() set model(val: IAlert){ this._model.next(val); }
   @Output() formSubmit : EventEmitter<any> = new EventEmitter();
+  @Input() set pending(val: boolean) { this._pending.next(val); };
+  get pending(){ return this._pending.getValue(); }
 
-  @Input() 
-  set pending(val: boolean) {
-    this._pending.next(val);
-    if(val) this.formModel.msg = "";
-  };
-
-  get pending(){
-    return this._pending.getValue();
-  }
-
-  formModel : RegistrationFormModel;
   private _model = new ReplaySubject<RegistrationFormModel>();
   private _pending = new BehaviorSubject<boolean>(false);
+
+  formModel : RegistrationFormModel;
   form: FormGroup;
 
-
-
   constructor(private _fb: FormBuilder) { }
-
+  
   ngOnInit() {
     this.form = this._fb.group(
       {
@@ -68,6 +57,10 @@ export class RegistrationFormComponent implements  OnInit, IForm{
 
     this._model.subscribe(data => {
       this.formModel = new RegistrationFormModel(data);
+    })
+
+    this._pending.subscribe(data => {
+      if(data) this.formModel.msg = "";
     })
   }
 

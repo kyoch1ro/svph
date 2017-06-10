@@ -1,1 +1,4 @@
-<reg-shrd-registration-form [model]="registrationModel"></reg-shrd-registration-form>
+<reg-shrd-registration-form 
+        [pending]="pending"
+        [model]="registrationModel"
+        (formSubmit)="register($event)"></reg-shrd-registration-form>
