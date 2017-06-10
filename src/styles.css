@@ -208,3 +208,9 @@ h3 small{
 .v-center{
     margin: auto 0;
 }
+
+
+.loading{
+    height: 300px;
+    display: flex;
+}

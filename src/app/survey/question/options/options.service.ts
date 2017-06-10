@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { IOptionDTO } from './ioption';
-import { IHttpService } from 'app/core/contracts/ihttp-service';
+import { IHttpService, IOptionHttpService } from 'app/core/contracts/ihttp-service';
 import { Observable } from 'rxjs/Observable';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AuthService } from 'app/core/services/auth.service';
@@ -10,7 +10,7 @@ import { apiUrl } from 'app/core/global.const';
 
 
 @Injectable()
-export class OptionsService implements IHttpService {
+export class OptionsService implements IOptionHttpService {
   private _url: string = apiUrl;
 
 
@@ -29,7 +29,15 @@ export class OptionsService implements IHttpService {
            .map((res: Response) => res.json());
   };
 
-
+  saveOptions(form: any){
+    const token = this._authService.getToken();
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    var options = new RequestOptions({
+      headers : headers
+    })
+    return this._http.post(`${this._url}/answeroption?token=${token}`,JSON.stringify(form),options);
+  }
 
   add(data: any): Observable<any>{
     return;

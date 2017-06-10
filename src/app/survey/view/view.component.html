@@ -1,25 +1,47 @@
-<pre>
-  {{survey | json}}
-</pre>
-
-
-<pre>
-  {{questions | json}}
-</pre>
-
-
-
-<div *ngFor="let question of questions; let i = index">
-  <!--{{form_data | json}}-->
+<div class="vote-container p-3">
+  <shrd-loading *ngIf="!survey && !questions"></shrd-loading>
+  <div *ngIf="survey && questions">
+    <h2>{{survey.survey_title}}
+      <small class="text-muted d-block">{{ survey.created_at | date:'fullDate'}}</small>
+    </h2>
   
-  <div [ngSwitch]="question.option_type.toLowerCase()">
-    <div *ngSwitchCase="'radio'">
-      {{form_data[i] | json}}
-      <input *ngFor="let option of question.options" [value]="option.option_id" name="test" type="radio" [(ngModel)]="form_data[i].selected_option">    
+    <div class="d-flex o-x-hidden srvy-img">
+      <img src="{{survey.survey_img || 'assets/images/default-img.jpg' }}" alt="" class="d-block m-auto">
     </div>
-    <div *ngSwitchCase="'check'">
-      {{form_data[i] | json}}
-      <input *ngFor="let option of question.options" name="" (change)="toggleSelected(i,option.option_id)" type="checkbox">    
+
+
+
+
+    <div  *ngFor="let question of questions; let i = index">
+      <p><strong>{{question.question_caption}}</strong></p>
+      <div [ngSwitch]="question.option_type.toLowerCase()">
+        <div class="custom-controls-stacked" *ngSwitchCase="'radio'">
+            <label class="custom-control custom-radio" *ngFor="let option of question.options" >
+              <input name="" type="radio" class="custom-control-input"
+                    [value]="option.option_id"
+                    [(ngModel)]="form_data[i].selected_option">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">{{option.option_caption}}</span>
+            </label>
+        </div>
+
+        <div class="custom-controls-stacked" *ngSwitchCase="'check'">
+            <label class="custom-control custom-checkbox" *ngFor="let option of question.options" >
+              <input type="checkbox" class="custom-control-input" (change)="toggleSelected($event,i,option.option_id)">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">{{option.option_caption}}</span>
+            </label>
+        </div>
+
+        <br>
+      </div>
     </div>
+    <div class="row">
+      <div class="col-md-2 offset-md-10">
+        <button (click)="vote()" class="btn btn-primary btn-block">Vote</button>
+      </div>
+    </div>    
+    <br>
   </div>
 </div>
+<br><br>

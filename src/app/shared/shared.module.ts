@@ -17,6 +17,7 @@ import { SurveyFormComponent } from './survey-form/survey-form.component';
 import { RadioInputComponent } from './radio-input/radio-input.component';
 import { CheckInputComponent } from './check-input/check-input.component';
 import { UploadImageComponent } from './upload-image/upload-image.component';
+import { LoadingComponent } from './loading/loading.component';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
     ReactiveFormsModule,
     RouterModule
   ],
-  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent, InputHelpComponent, NavComponent, PaginationComponent, WellComponent, NavLinkComponent, SearchBoxComponent, SearchBoxComponent, SurveyFormComponent, RadioInputComponent, CheckInputComponent, UploadImageComponent],
+  declarations: [NotFoundComponent, ModalComponent, RegisterFormComponent, InputHelpComponent, NavComponent, PaginationComponent, WellComponent, NavLinkComponent, SearchBoxComponent, SearchBoxComponent, SurveyFormComponent, RadioInputComponent, CheckInputComponent, UploadImageComponent, LoadingComponent],
   exports:[
     CommonModule,
     NgbModule,
@@ -42,7 +43,8 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
     SurveyFormComponent,
     RadioInputComponent,
     CheckInputComponent,
-    UploadImageComponent
+    UploadImageComponent,
+    LoadingComponent
   ],
   providers: [
   ],

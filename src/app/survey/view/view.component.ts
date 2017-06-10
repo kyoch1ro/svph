@@ -11,7 +11,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { ActivatedRoute } from '@angular/router';
 import { ISubscription } from "rxjs/Subscription";
-import { IHttpService } from 'app/core/contracts/ihttp-service';
+import { IHttpService, IOptionHttpService } from 'app/core/contracts/ihttp-service';
 import { QuestionService } from './../question/question.service';
 import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 
@@ -28,9 +28,11 @@ export class ViewComponent implements OnInit {
   survey: ISurveyDTO;
   questions :  IQuestionDTO[];
   form_data: any[] = [];
+  private _selected_options: any[] = [];
+
   constructor(
               @Inject(SurveyService) private _surveyService: IHttpService, 
-              @Inject(OptionsService) private _optionsService: IHttpService,
+              @Inject(OptionsService) private _optionsService: IOptionHttpService,
               @Inject(QuestionService) private _questionService: IChild,
               private _route: ActivatedRoute,
               private _fb: FormBuilder) { }
@@ -60,12 +62,10 @@ export class ViewComponent implements OnInit {
         this.questions.forEach(question => {
           this.form_data.push({
             question_id: question.question_id,
+            question_type: question.option_type.toLowerCase(),
             selected_option: (question.option_type.toLowerCase() == 'radio') ? '' : [] 
           })
         })
-
-
-        console.log(this.form_data)
       }
     )
 
@@ -91,28 +91,8 @@ export class ViewComponent implements OnInit {
       () => subscription.unsubscribe()
     );
   }
-
-  setForm(){
-
-  }
-
-
-  buildForm(){
-    const arr = this.questions.map(
-      question => {
-        question.options.map(opt => console.log(opt))
-      });
-  }
-
-
-
-
-  onSubmit(value: any){
-    console.log(value);
-  }
   
   toggleSelected(event,quest_indx,option_id){
-
     if(event.target.checked){
       this.form_data[quest_indx].selected_option.push(option_id);
     }else{
@@ -123,10 +103,42 @@ export class ViewComponent implements OnInit {
         this.form_data[quest_indx].selected_option.splice(index, 1);
       }
     }
-    
   }
 
-  vote(form: any){
-    console.log(form);
+  vote(){
+    let error : number = 0;
+    this._selected_options = [];
+    this.form_data.forEach(data => {
+      if(data.question_type == 'radio' && (!data.selected_option)){
+        error++;
+      }
+
+
+      if(Array.isArray(data.selected_option)){
+        data.selected_option.forEach(option_id => {
+          this._selected_options.push(option_id)
+        })
+      }else{
+        this._selected_options.push(data.selected_option)
+      }
+      
+    })
+
+    if(error == 0){
+      let subs : ISubscription = this._optionsService.saveOptions({
+          selected_options : this._selected_options
+      }).subscribe(
+        data => console.log(data),
+        err => {},
+        () => subs.unsubscribe()
+      )
+    }
+
+    console.log();
+  }
+
+
+  private _getAllVote(){
+
   }
 }

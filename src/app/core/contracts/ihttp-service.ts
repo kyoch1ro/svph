@@ -13,6 +13,14 @@ export interface IHttpService{
 
 
 
+
+
 export interface IUserHttpService extends IHttpService{
   saveOtherDetails(form: any): Observable<any>;
+}
+
+
+
+export interface IOptionHttpService extends IHttpService{
+  saveOptions(form: any): Observable<any>;
 }
