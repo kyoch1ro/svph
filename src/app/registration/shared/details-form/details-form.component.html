@@ -1,0 +1,207 @@
+<form [formGroup]="form"
+      (ngSubmit)="onSubmit(form.value)">
+
+  <div [hidden]="active != 0">
+    <h4>Education</h4>
+    <div id="college_info">
+      <label class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" 
+              [formGroup]="form"
+              formControlName="college" (change)="removeDisable($event,['c_school','c_year_grad'])">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">College</span>
+      </label>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group" >
+            <label for="c_school">College Name</label>
+            <input type="text"  class="form-control" id="c_school" placeholder="School Name" [formGroup]="form"
+                  formControlName="c_school">    
+            <span *ngIf="form.controls['c_school'].touched">
+              <sh-input-help *ngIf="form.controls['c_school'].hasError('required')" 
+                            [type]="'danger'">This is a required field.</sh-input-help>
+            </span>
+          </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+              <label for="c_year_grad">Year</label>
+              <select class="form-control" id="c_year_grad"  
+                  [formGroup]="form"
+                  formControlName="c_year_grad">
+                  <option value="">Please Select</option>
+                  <option *ngFor="let year of year_range" value="{{year}}">{{year}}</option>
+              </select>
+              <span *ngIf="form.controls['c_year_grad'].touched">
+              <sh-input-help *ngIf="form.controls['c_year_grad'].hasError('required')" 
+                            [type]="'danger'">This is a required field.</sh-input-help>
+            </span>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="secondary_info">
+      <label class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" 
+              [formGroup]="form"
+              formControlName="secondary" (change)="removeDisable($event,['s_school','s_year_grad'])">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Secondary</span>
+      </label>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group" >
+            <label for="s_school">School Name</label>
+            <input type="text"  class="form-control" id="s_school" placeholder="School Name" [formGroup]="form"
+                  formControlName="s_school">    
+            <span *ngIf="form.controls['s_school'].touched">
+              <sh-input-help *ngIf="form.controls['s_school'].hasError('required')" 
+                            [type]="'danger'">This is a required field.</sh-input-help>
+            </span>
+          </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+              <label for="s_year_grad">Year</label>
+              <select class="form-control" id="s_year_grad"  
+                  [formGroup]="form"
+                  formControlName="s_year_grad">
+                  <option value="">Please Select</option>
+                  <option *ngFor="let year of year_range" value="{{year}}">{{year}}</option>
+              </select>
+              <span *ngIf="form.controls['s_year_grad'].touched">
+              <sh-input-help *ngIf="form.controls['s_year_grad'].hasError('required')" 
+                            [type]="'danger'">This is a required field.</sh-input-help>
+            </span>
+            </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="primary_info">
+      <label class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" 
+              [formGroup]="form"
+              formControlName="elementary" (change)="removeDisable($event,['e_school','e_year_grad'])">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Elementary</span>
+      </label>
+
+      <div class="row">
+        <div class="col-md-9">
+          <div class="form-group" >
+            <label for="e_school">School Name</label>
+            <input type="text"  class="form-control" id="e_school" placeholder="School Name" [formGroup]="form"
+                  formControlName="e_school">
+            <span *ngIf="form.controls['e_school'].touched">
+              <sh-input-help *ngIf="form.controls['e_school'].hasError('required')" 
+                            [type]="'danger'">This is a required field.</sh-input-help>
+            </span>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+              <label for="e_year_grad">Year</label>
+              <select class="form-control" id="e_year_grad"  
+                  [formGroup]="form"
+                  formControlName="e_year_grad">
+                  <option value="">Please Select</option>
+                  <option *ngFor="let year of year_range" value="{{year}}">{{year}}</option>
+              </select>
+              <span *ngIf="form.controls['e_year_grad'].touched">
+                <sh-input-help *ngIf="form.controls['e_year_grad'].hasError('required')" 
+                              [type]="'danger'">This is a required field.</sh-input-help>
+              </span>
+            </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div [hidden]="active != 1">
+    <h4>Additional Information</h4>
+
+
+    <div class="row">
+      <div class="col-md-8">
+        <div class="form-group">
+          <label for="religion">Religion</label>
+          <input type="text" class="form-control" id="religion" min="0" [formGroup]="form"
+                formControlName="religion">    
+          <span *ngIf="form.controls['religion'].touched">
+            <sh-input-help *ngIf="form.controls['religion'].hasError('required')" 
+                          [type]="'danger'">This field is required.</sh-input-help>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="no_of_children">No. of Children</label>
+          <input type="number" class="form-control" id="no_of_children" min="0" [formGroup]="form"
+                formControlName="no_of_children">    
+          <span *ngIf="form.controls['no_of_children'].touched">
+            <sh-input-help *ngIf="form.controls['no_of_children'].hasError('required')" 
+                          [type]="'danger'">This field is required.</sh-input-help>
+          </span>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="residential_status">Residential Status</label>
+          <input type="string" class="form-control" id="residential_status"  [formGroup]="form"
+                formControlName="residential_status">    
+          <span *ngIf="form.controls['residential_status'].touched">
+            <sh-input-help *ngIf="form.controls['residential_status'].hasError('required')" 
+                          [type]="'danger'">This field is required.</sh-input-help>
+          </span>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="form-inline">
+      <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+        <input type="checkbox" class="custom-control-input" 
+              [formGroup]="form"
+              formControlName="car_owner" (change)="removeDisable($event,['no_of_cars'])">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Car Owner</span>
+      </label>
+      <input type="number" 
+             [formGroup]="form"
+             formControlName="no_of_cars" min="1" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="No. of Cars">
+      <span *ngIf="form.controls['no_of_cars'].touched">
+        <sh-input-help *ngIf="form.controls['no_of_cars'].hasError('required')" 
+                            [type]="'danger'">This is a required field.</sh-input-help>
+      </span>
+    </div>
+  </div>
+
+
+  <br>
+
+
+
+
+
+
+
+  <shrd-well *ngIf="formModel.msg" [type]="formModel.isSuccess ? 'success': 'danger'">{{formModel.msg}}</shrd-well>
+
+  <button type="button" class="btn btn-primary" *ngIf="active == 1" (click)="prev()">Previous</button>
+  <button type="button" class="btn btn-primary" *ngIf="active != 1" (click)="next()">Next</button>
+  <button type="submit" class="btn btn-success" *ngIf="active == 1">Save</button>
+</form>
+
+

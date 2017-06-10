@@ -9,3 +9,10 @@ export interface IHttpService{
   update(id: number): Observable<any>;
   count(): Observable<any>;
 }
+
+
+
+
+export interface IUserHttpService extends IHttpService{
+  saveOtherDetails(form: any): Observable<any>;
+}
