@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { IFeaturable } from 'app/core/contracts/ifeaturable';
+import { IUploadable } from 'app/core/contracts/iuploadable';
 import { DevSurveyService, SurveyService } from 'app/survey/survey.service';
 import { ISurveyDTO } from 'app/survey/isurvey';
 import { IHttpService } from 'app/core/contracts/ihttp-service';
@@ -51,12 +52,12 @@ export class MainComponent implements OnInit, OnDestroy {
   errorMsg: string;
   constructor(@Inject(SurveyService) private _surveySrvc : IFeaturable,
               @Inject(AuthService) private _authService: iAuth, 
-              @Inject(UserService) private _userService: IHttpService, 
+              @Inject(UserService) private _userService: IUploadable, 
               router: Router,
               private modalService: NgbModal) {
 
     this.loginModel = new LoginModel(_authService,router);
-    this.registerModel = new RegisterModel(_userService, this.loginModel);
+    this.registerModel = new RegisterModel(_userService,router);
    }
 
   ngOnInit() {
@@ -99,8 +100,9 @@ export class MainComponent implements OnInit, OnDestroy {
 
   registerUser(form: any){
     // console.log(form);
-    this.registerModel.registerUser(form);
-    console.log(this.registerModel.registrationIsSuccess);
+    this.registerModel.uploadImage(form);
+    // this.registerModel.registerUser(form);
+    // console.log(this.registerModel.registrationIsSuccess);
   }
 
   loginUser(form: any){

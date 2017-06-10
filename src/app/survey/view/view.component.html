@@ -19,7 +19,7 @@
     </div>
     <div *ngSwitchCase="'check'">
       {{form_data[i] | json}}
-      <input *ngFor="let option of question.options" name="" (change)="toggleSelected($event,i,option.option_id)" type="checkbox">    
+      <input *ngFor="let option of question.options" name="" (change)="toggleSelected(i,option.option_id)" type="checkbox">    
     </div>
   </div>
 </div>

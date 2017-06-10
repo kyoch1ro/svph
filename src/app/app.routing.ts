@@ -7,13 +7,14 @@ import { MainComponent as AdminHome } from 'app/admin/main/main.component';
 import { routes as SurveyChild } from 'app/survey/survey.child-routes';
 import { routes as AdminChild } from 'app/admin/admin.child-routes';
 import { LoginComponent as AdminLogin } from 'app/admin/login/login.component';
-
+import { RegistrationComponent } from 'app/user/registration/registration.component';
 
 
 
 
 export const routing = RouterModule.forRoot([
     { path: 'admin/login', component: AdminLogin },
+    { path: 'registration', component: RegistrationComponent },
     { 
         path: 'admin', 
         component: AdminHome,

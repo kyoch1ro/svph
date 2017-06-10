@@ -1,0 +1,9 @@
+<!--<form action="" [formGroup]="form" >-->
+  <div class="form-group">
+    <label for="exampleInputFile">Scanned valid ID</label>
+    <input type="file" (change)="onSubmit($event)" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" accept=".jpg,.jpeg,.png">
+    <small id="fileHelp" class="form-text text-muted">Supported formats are jpg, jpeg and png only.</small>
+  </div>
+  <shrd-well *ngIf="msg" [type]="isSuccess ? 'success': 'danger'">{{msg}}</shrd-well>  
+  <!--<button type="submit" class="btn btn-primary" [disabled]="pending">Submit</button>-->
+<!--</form>-->

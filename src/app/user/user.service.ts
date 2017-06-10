@@ -4,17 +4,28 @@ import { IUserService }  from './iuser.service';
 import { Observable } from 'rxjs/Observable';
 
 
-import { IHttpService } from 'app/core/contracts/ihttp-service';
+import { IUploadable } from 'app/core/contracts/iuploadable';
 import { IUserModel } from './iuser.model';
 import 'rxjs/add/observable/of';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 
 @Injectable()
-export class UserService implements IHttpService {
+export class UserService implements IUploadable {
   private _url: string = apiUrl;
   constructor(private _http: Http) { }
 
+
+  upload(file: any): Observable<any>{
+    let headers = new Headers();
+    // headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+    let formData:FormData = new FormData();
+    formData.append('file', file, file.name);
+    let options = new RequestOptions({ headers: headers });
+    return this._http.post(`${this._url}/user/uploadGovtID`, formData, options)
+            .map(res => res.json())
+  }
   getById(id: number): Observable<any>{
     return;
   };
