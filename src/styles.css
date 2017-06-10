@@ -50,6 +50,10 @@ body{
     flex-basis: 6%;
 }
 
+
+.small{
+    font-size: 15px;
+}
 .note-muted{
     font-size: 15px;
 }
@@ -198,4 +202,9 @@ h3 small{
 
 .vote-container h4 small{
     font-size: .5em;
+}
+
+
+.v-center{
+    margin: auto 0;
 }

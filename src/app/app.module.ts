@@ -11,7 +11,7 @@ import { SurveyModule } from './survey/survey.module';
 import { HomeModule } from './home/home.module';
 import { UserModule } from './user/user.module';
 import { AdminModule } from './admin/admin.module';
-
+import { RegistrationModule } from './registration/registration.module';
 @NgModule({
   declarations: [
     AppComponent
@@ -27,6 +27,7 @@ import { AdminModule } from './admin/admin.module';
     AdminModule,
     SurveyModule,
     UserModule,
+    RegistrationModule,
     routing
     
   ],

@@ -7,14 +7,19 @@ import { MainComponent as AdminHome } from 'app/admin/main/main.component';
 import { routes as SurveyChild } from 'app/survey/survey.child-routes';
 import { routes as AdminChild } from 'app/admin/admin.child-routes';
 import { LoginComponent as AdminLogin } from 'app/admin/login/login.component';
-import { RegistrationComponent } from 'app/user/registration/registration.component';
 
 
+import { routes as RegistrationChild } from 'app/registration/registration.child-routes';
+import { MainComponent as RegistrationMain } from 'app/registration/main/main.component';
 
 
 export const routing = RouterModule.forRoot([
     { path: 'admin/login', component: AdminLogin },
-    { path: 'registration', component: RegistrationComponent },
+    { 
+        path: 'registration', 
+        component: RegistrationMain,
+        children:  RegistrationChild
+    },
     { 
         path: 'admin', 
         component: AdminHome,
