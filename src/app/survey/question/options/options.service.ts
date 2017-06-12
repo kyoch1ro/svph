@@ -36,7 +36,7 @@ export class OptionsService implements IOptionHttpService {
     var options = new RequestOptions({
       headers : headers
     })
-    return this._http.post(`${this._url}/answeroption?token=${token}`,JSON.stringify(form),options);
+    return this._http.post(`${this._url}/submitAnswer?token=${token}`,JSON.stringify(form),options);
   }
 
   add(data: any): Observable<any>{

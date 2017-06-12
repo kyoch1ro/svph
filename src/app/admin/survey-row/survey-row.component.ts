@@ -7,12 +7,12 @@ import { ISurveyDTO } from 'app/survey/isurvey';
   <div class="c-pointer row hover p-2" (click)="yeah()" >
       <div class="col-md-4">
           <div class="img-holder">
-              <img src="{{survey.question_img}}" class="img-fluid img-thumbnail" alt="">
+              <img src="{{survey.survey_img}}" class="img-fluid img-thumbnail" alt="">
           </div>
       </div>
       <div class="col-md-8 p-rel d-flex flex-column">
           <div class="f-10">
-              <h4>{{survey.question_caption}}</h4>
+              <h4>{{survey.survey_title}}</h4>
           </div>
           <div class="survey-info f-80">
             <i class="fa fa-check-square-o" aria-hidden="true"></i>

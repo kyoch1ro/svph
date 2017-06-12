@@ -28,7 +28,7 @@ export class AuthService implements iAuth{
     };
 
     logout(): void{
-        return;
+        localStorage.removeItem('token');
     };
     getUser(): string{
         return 'false';
@@ -38,7 +38,7 @@ export class AuthService implements iAuth{
     };
 
     getToken(): string{
-      return localStorage.getItem('token') || '';
+      return localStorage.getItem('token') || null;
     }
 
 
