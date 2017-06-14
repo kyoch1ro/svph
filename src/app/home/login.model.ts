@@ -29,8 +29,12 @@ export class LoginModel implements ILogin{
                                 this.loginIsSuccess = false;
                                 this.isSigningIn = false;
                                 if(err['status'] == 422){
-                                this.loginMsg = err.json().email[0];
-                                return;
+                                    this.loginMsg = err.json().email[0];
+                                    return;
+                                }
+                                if(err['status'] == 401){
+                                    this.loginMsg = 'Unverified Account';
+                                    return;
                                 }
                                 this.loginMsg = 'Invalid username or password';
                             },

@@ -57,10 +57,16 @@ export class SurveyService implements IFeaturable, IHttpService {
   }
 
   list() : Observable<any>{
-    const user = (this._authService.isAdmin()) ? 'admin/' : '';
+    // const user = (this._authService.isAdmin()) ? 'admin/' : '';
     const token = this._authService.getToken();
-    return this._http.get(`${this._url}/${user}allsurvey?token=${token}`)
+    if(this._authService.isAdmin()){
+      return this._http.get(`${this._url}/admin/allsurvey?token=${token}`)
            .map((res: Response) => res.json());
+    }else{
+      return this._http.get(`${this._url}/userSurvey?token=${token}`)
+           .map((res: Response) => res.json());
+    }
+    
   };
 
   count(): Observable<number>{
