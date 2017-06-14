@@ -6,7 +6,8 @@ import { AuthService } from 'app/core/services/auth.service';
   selector: 'home-nav',
   template:`
         <div class="d-flex flex-item-1 justify-content-start">
-          <a [routerLink]="['/admin','login']" class="btn btn-primary">SURVEY</a>
+          <a  *ngIf="isSignIn()" [routerLink]="['/surveys']" class="btn btn-primary">SURVEY</a>
+          <button *ngIf="!isSignIn()"class="btn btn-primary" (click)="signIn()">SURVEY</button>
         </div>
         <div class="d-flex flex-item-1 justify-content-end">
           <button *ngIf="!isSignIn()"class="btn btn-primary" (click)="signIn()">SIGN IN</button>

@@ -11,7 +11,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { ActivatedRoute } from '@angular/router';
 import { ISubscription } from "rxjs/Subscription";
-import { IHttpService, IOptionHttpService } from 'app/core/contracts/ihttp-service';
+import { IHttpService, IOptionHttpService, ISurveyService } from 'app/core/contracts/ihttp-service';
 import { QuestionService } from './../question/question.service';
 import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 
@@ -24,14 +24,17 @@ import { Validators, FormGroup, FormArray, FormBuilder } from '@angular/forms';
 export class ViewComponent implements OnInit {
   private _survey :  ReplaySubject<ISurveyDTO> = new ReplaySubject<ISurveyDTO>();
   private _questions :  ReplaySubject<IQuestionDTO[]> = new ReplaySubject<IQuestionDTO[]>();
-
+  private _userVote : ReplaySubject<number> = new ReplaySubject<number>();
   survey: ISurveyDTO;
   questions :  IQuestionDTO[];
   form_data: any[] = [];
-  private _selected_options: any[] = [];
+  userHasVote: boolean;
+
+
+
 
   constructor(
-              @Inject(SurveyService) private _surveyService: IHttpService, 
+              @Inject(SurveyService) private _surveyService: ISurveyService, 
               @Inject(OptionsService) private _optionsService: IOptionHttpService,
               @Inject(QuestionService) private _questionService: IChild,
               private _route: ActivatedRoute,
@@ -39,6 +42,11 @@ export class ViewComponent implements OnInit {
   private _surveyIdSubscription: ISubscription;
 
   
+
+
+  isDataFullyLoaded(){
+    return (this.survey && this.questions && this._userVote) ? true : false;
+  }
 
   ngOnInit() {
    let id_param_subscription = 
@@ -53,6 +61,7 @@ export class ViewComponent implements OnInit {
       survey => {
         this.survey = <ISurveyDTO> survey;
         this.setQuestions(survey.id);
+        this._surveyService.userHasVote(survey.id).subscribe(data => this._userVote.next(data['survey_count']));
       }
     )
 
@@ -63,12 +72,19 @@ export class ViewComponent implements OnInit {
           this.form_data.push({
             question_id: question.question_id,
             question_type: question.option_type.toLowerCase(),
-            selected_option: (question.option_type.toLowerCase() == 'radio') ? '' : [] 
+            selected_options: (question.option_type.toLowerCase() == 'radio') ? '' : [] 
           })
         })
       }
     )
 
+    let userVoteSubs = this._userVote.subscribe(count => {
+      if(count > 0){
+        this.userHasVote = true;
+      }else{
+        this.userHasVote = false;
+      }
+    })
   }
 
   setSurvey(id: number){
@@ -94,47 +110,43 @@ export class ViewComponent implements OnInit {
   
   toggleSelected(event,quest_indx,option_id){
     if(event.target.checked){
-      this.form_data[quest_indx].selected_option.push(option_id);
+      this.form_data[quest_indx].selected_options.push(option_id);
     }else{
-      var index = this.form_data[quest_indx].selected_option.indexOf(option_id);
-
+      var index = this.form_data[quest_indx].selected_options.indexOf(option_id);
       if(index!=-1){
-
-        this.form_data[quest_indx].selected_option.splice(index, 1);
+        this.form_data[quest_indx].selected_options.splice(index, 1);
       }
     }
   }
 
   vote(){
     let error : number = 0;
-    this._selected_options = [];
-    this.form_data.forEach(data => {
-      if(data.question_type == 'radio' && (!data.selected_option)){
+
+    this.form_data.forEach(question => {
+      if(!question.selected_options){
         error++;
       }
-
-
-      if(Array.isArray(data.selected_option)){
-        data.selected_option.forEach(option_id => {
-          this._selected_options.push(option_id)
-        })
-      }else{
-        this._selected_options.push(data.selected_option)
-      }
-      
     })
 
-    if(error == 0){
-      let subs : ISubscription = this._optionsService.saveOptions({
-          selected_options : this._selected_options
-      }).subscribe(
-        data => console.log(data),
-        err => {},
-        () => subs.unsubscribe()
-      )
+    for (var i = 0; i < this.form_data.length; i++) {
+      if(this.form_data[i].question_type.toLowerCase() == 'radio'){
+        this.form_data[i].selected_options = [this.form_data[i].selected_options]
+      }
     }
 
-    console.log();
+    if(error == 0){
+      // console.log(this.form_data);
+      let subs : ISubscription = this._optionsService.saveOptions({
+          questions : this.form_data
+      }).subscribe(
+        data => {},
+        err => {},
+        () => {
+          this.userHasVote = true;
+          subs.unsubscribe();
+        }
+      )
+    }
   }
 
 

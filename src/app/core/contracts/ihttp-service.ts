@@ -25,3 +25,8 @@ export interface IUserHttpService extends IHttpService{
 export interface IOptionHttpService extends IHttpService{
   saveOptions(form: any): Observable<any>;
 }
+
+export interface ISurveyService extends IHttpService{
+   userHasVote(survey_id: number): Observable<any>;
+   getFeaturedList(): Observable<any>;
+}

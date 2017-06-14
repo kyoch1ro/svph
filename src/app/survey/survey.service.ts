@@ -7,11 +7,11 @@ import 'rxjs/add/operator/map';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { AuthService } from 'app/core/services/auth.service';
 import { iAuth } from 'app/core/services/i-auth.service';
-import { IHttpService } from 'app/core/contracts/ihttp-service';
+import { IHttpService,ISurveyService } from 'app/core/contracts/ihttp-service';
 // import { Rx } from 'rxjs/Rx';
 
 @Injectable()
-export class SurveyService implements IFeaturable, IHttpService {
+export class SurveyService implements ISurveyService{
   
    private _url: string = apiUrl;
    private _authService: iAuth;
@@ -20,7 +20,12 @@ export class SurveyService implements IFeaturable, IHttpService {
      this._authService = authService;
   }
 
-  
+  userHasVote(survey_id: number): Observable<any>{
+    const token = this._authService.getToken();
+    return this._http.get(`${this._url}/userAnswerSurvey/${survey_id}?token=${token}`)
+    .map((res: Response) => res.json());
+  }
+
   getFeaturedList(): Observable<any>{
     return this._http.get(`${this._url}/survey/featured`)
     .map((res: Response) => res.json())

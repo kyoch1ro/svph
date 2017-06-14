@@ -1,6 +1,6 @@
 <div class="vote-container p-3">
-  <shrd-loading *ngIf="!survey && !questions"></shrd-loading>
-  <div *ngIf="survey && questions">
+  <shrd-loading *ngIf="!isDataFullyLoaded()"></shrd-loading>
+  <div *ngIf="isDataFullyLoaded()">
     <h2>{{survey.survey_title}}
       <small class="text-muted d-block">{{ survey.created_at | date:'fullDate'}}</small>
     </h2>
@@ -9,38 +9,42 @@
       <img src="{{survey.survey_img || 'assets/images/default-img.jpg' }}" alt="" class="d-block m-auto">
     </div>
 
+    <div *ngIf="!userHasVote">
+      <div  *ngFor="let question of questions; let i = index">
+        <p><strong>{{question.question_caption}}</strong></p>
+        <div [ngSwitch]="question.option_type.toLowerCase()">
+          <div class="custom-controls-stacked" *ngSwitchCase="'radio'">
+              <label class="custom-control custom-radio" *ngFor="let option of question.options" >
+                <input name="question-{{i}}" type="radio" class="custom-control-input"
+                      [value]="option.option_id"
+                      [(ngModel)]="form_data[i].selected_options">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">{{option.option_caption}}</span>
+              </label>
+          </div>
 
-
-
-    <div  *ngFor="let question of questions; let i = index">
-      <p><strong>{{question.question_caption}}</strong></p>
-      <div [ngSwitch]="question.option_type.toLowerCase()">
-        <div class="custom-controls-stacked" *ngSwitchCase="'radio'">
-            <label class="custom-control custom-radio" *ngFor="let option of question.options" >
-              <input name="" type="radio" class="custom-control-input"
-                    [value]="option.option_id"
-                    [(ngModel)]="form_data[i].selected_option">
-              <span class="custom-control-indicator"></span>
-              <span class="custom-control-description">{{option.option_caption}}</span>
-            </label>
+          <div class="custom-controls-stacked" *ngSwitchCase="'check'">
+              <label class="custom-control custom-checkbox" *ngFor="let option of question.options" >
+                <input type="checkbox" class="custom-control-input" (change)="toggleSelected($event,i,option.option_id)">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">{{option.option_caption}}</span>
+              </label>
+          </div>
+          <br>
         </div>
-
-        <div class="custom-controls-stacked" *ngSwitchCase="'check'">
-            <label class="custom-control custom-checkbox" *ngFor="let option of question.options" >
-              <input type="checkbox" class="custom-control-input" (change)="toggleSelected($event,i,option.option_id)">
-              <span class="custom-control-indicator"></span>
-              <span class="custom-control-description">{{option.option_caption}}</span>
-            </label>
+      </div>
+      <div class="row">
+        <div class="col-md-2 offset-md-10">
+          <button (click)="vote()" class="btn btn-primary btn-block">Vote</button>
         </div>
-
-        <br>
+      </div> 
+    </div>
+    
+    <div *ngIf="userHasVote" class="">
+      <div class="alert alert-success" role="alert">
+        Your vote has been count, thank you for participating.
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-2 offset-md-10">
-        <button (click)="vote()" class="btn btn-primary btn-block">Vote</button>
-      </div>
-    </div>    
     <br>
   </div>
 </div>
