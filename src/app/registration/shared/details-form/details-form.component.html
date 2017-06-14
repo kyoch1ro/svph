@@ -254,8 +254,14 @@
       <div class="col-md-12">
         <div class="form-group">
           <label for="residential_status">Residential Status</label>
-          <input type="string" class="form-control" id="residential_status"  [formGroup]="form"
-                formControlName="residential_status">    
+          <select name="" class="form-control" id="residential_status"  [formGroup]="form" formControlName="residential_status">
+            <option value="">Please Select</option>
+            <option value="rent">Rent</option>
+            <option value="mortgage">Mortgage</option>
+            <option value="owned">Owned</option>
+          </select>
+          <!--<input type="string" class="form-control" [formGroup]="form"
+                formControlName="residential_status">    -->
           <span *ngIf="form.controls['residential_status'].touched">
             <sh-input-help *ngIf="form.controls['residential_status'].hasError('required')" 
                           [type]="'danger'">This field is required.</sh-input-help>

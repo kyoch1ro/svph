@@ -38,7 +38,9 @@ export class DetailsComponent implements OnInit {
     console.log(data);
     let subs: ISubscription = this._userService.registerUser(data)
     .subscribe(data => {},
-               err => {},
+               err => {
+                 this.detailsModel =  { msg : "Email is already taken.",  isSuccess : false};
+               },
                () => {
                  this.registered = true;
                  subs.unsubscribe();
