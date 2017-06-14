@@ -214,3 +214,7 @@ h3 small{
     height: 300px;
     display: flex;
 }
+
+.alert-holder{
+    min-height: 300px;
+}

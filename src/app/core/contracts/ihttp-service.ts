@@ -17,6 +17,7 @@ export interface IHttpService{
 
 export interface IUserHttpService extends IHttpService{
   saveOtherDetails(form: any): Observable<any>;
+  registerUser(form: any): Observable<any>;
 }
 
 

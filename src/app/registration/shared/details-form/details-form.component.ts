@@ -9,7 +9,7 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { IForm } from 'app/core/contracts/iform';
 import { IAlert } from 'app/core/contracts/ialert';
 import { DetailsFormModel } from './details-form.model';
-
+import { RegistrationValidator } from './../registration-form/registration-validator';
 @Component({
   selector: 'reg-shrd-details-form',
   templateUrl: './details-form.component.html',
@@ -22,17 +22,41 @@ export class DetailsFormComponent implements OnInit, IForm {
   @Input() set pending(val: boolean) { this._pending.next(val); };
   get pending(){ return this._pending.getValue(); }
 
+  @Input()  set categories(val){
+    this._categories.next(val);
+  }
+  get categories(){
+    return this._categories.getValue();
+  }
+  private _categories = new BehaviorSubject<any[]>([]);
   private _model = new ReplaySubject<DetailsFormModel>();
   private _pending = new BehaviorSubject<boolean>(false)
   year_range: number[] = [];
   active = 0;
   formModel : DetailsFormModel;
   form: FormGroup;
+  category_id: any[] = [];
+
   constructor(private _fb: FormBuilder) { }
 
   ngOnInit() {
     this.form = this._fb.group(
       {
+        email: ['', Validators.compose([
+          Validators.email,
+          Validators.required
+        ]) ],
+        firstname: ['', Validators.required],
+        lastname: ['', Validators.required],
+        gender: ['', Validators.required],
+        age: ['', Validators.compose([
+          Validators.required
+        ])],
+        password: ['',Validators.compose([
+          Validators.required,
+          Validators.minLength(6)
+        ])],
+        confirmPassword: ['',Validators.required],
         no_of_children: [0,Validators.required],
         college: [false],
         c_school: [{value: '', disabled: true}],
@@ -47,7 +71,7 @@ export class DetailsFormComponent implements OnInit, IForm {
         residential_status: ['', Validators.required],
         car_owner: [false],
         no_of_cars: [{value: '', disabled: true}]
-      }
+      },{ validator: RegistrationValidator.matchPassword }
     )
 
 
@@ -93,8 +117,27 @@ export class DetailsFormComponent implements OnInit, IForm {
       this.formModel.msg ="Cannot save data, please verify all fields and try again.";
       return;
     }
+
+    if(!form['car_owner']){ form['no_of_cars'] = 0; }
+    form['category_id'] = this.category_id;
     this.formSubmit.emit(form);
   }
+
+
+
+  updateInterest(event,category_id){
+    if(event.target.checked){
+      this.category_id.push(category_id);
+    }else{
+      var index = this.category_id.indexOf(category_id);
+      if (index > -1) {
+          this.category_id.splice(index, 1);
+      }
+    }
+  }
+
+
+
 
   static markAllTouched(control: AbstractControl) {
       if(control.hasOwnProperty('controls')) {

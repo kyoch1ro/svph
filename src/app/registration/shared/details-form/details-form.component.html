@@ -1,7 +1,103 @@
 <form [formGroup]="form"
       (ngSubmit)="onSubmit(form.value)">
 
+
   <div [hidden]="active != 0">
+    <h4>Profile</h4>
+
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email address" [formGroup]="form"
+            formControlName="email">
+      <span *ngIf="form.controls['email'].touched">
+        <sh-input-help *ngIf="form.controls['email'].hasError('required')" 
+                      [type]="'danger'">Email address is required.</sh-input-help>
+        <sh-input-help *ngIf="form.controls['email'].hasError('email') && form.controls['email'].value" 
+                      [type]="'danger'">Invalid email address</sh-input-help>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="name">First Name</label>
+      <input type="text" class="form-control" id="name" placeholder="Enter First name" [formGroup]="form"
+            formControlName="firstname">    
+      <span *ngIf="form.controls['firstname'].touched">
+        <sh-input-help *ngIf="form.controls['firstname'].hasError('required')" 
+                      [type]="'danger'">First Name is required.</sh-input-help>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="lname">Last Name</label>
+      <input type="text" class="form-control" id="lname" placeholder="Enter Last name" [formGroup]="form"
+            formControlName="lastname">    
+      <span *ngIf="form.controls['lastname'].touched">
+        <sh-input-help *ngIf="form.controls['lastname'].hasError('required')" 
+                      [type]="'danger'">Last Name is required.</sh-input-help>
+      </span>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <select class="form-control" id="gender" [formGroup]="form"
+                formControlName="gender">
+                <option value="">Please Select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+          </select>
+          <span *ngIf="form.controls['gender'].touched">
+            <sh-input-help *ngIf="form.controls['gender'].hasError('required')" 
+                          [type]="'danger'">Gender is required.</sh-input-help>
+          </span>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="age">Age</label>
+          <input type="text" class="form-control" id="age" placeholder="Enter Age" [formGroup]="form"
+                formControlName="age">    
+          <span *ngIf="form.controls['age'].touched">
+            <sh-input-help *ngIf="form.controls['age'].hasError('required')" 
+                          [type]="'danger'">Age is required.</sh-input-help>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password"  [formGroup]="form"
+            formControlName="password">    
+      <span *ngIf="form.controls['password'].touched">
+        <sh-input-help *ngIf="form.controls['password'].hasError('required')" 
+                      [type]="'danger'">Password is required.</sh-input-help>
+        <sh-input-help *ngIf="form.controls['password'].hasError('minlength')" 
+                      [type]="'danger'">Password must be atlease 6 characters.</sh-input-help>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" class="form-control" id="confirmPassword"  [formGroup]="form"
+            formControlName="confirmPassword">    
+      <span *ngIf="form.controls['confirmPassword'].touched && 
+                  form.controls['password'].touched && 
+                  form.controls['password'].value">
+
+        <sh-input-help *ngIf="form.controls['confirmPassword'].hasError('required')" 
+                      [type]="'danger'">Please confirm your password.</sh-input-help>
+        <sh-input-help *ngIf="form.controls['confirmPassword'].hasError('matchPassword')" 
+                      [type]="'danger'">Passwords do not match.</sh-input-help>
+
+      </span>
+    </div>
+
+  </div>
+
+  <div [hidden]="active != 1">
     <h4>Education</h4>
     <div id="college_info">
       <label class="custom-control custom-checkbox">
@@ -124,7 +220,7 @@
     </div>
   </div>
 
-  <div [hidden]="active != 1">
+  <div [hidden]="active != 2">
     <h4>Additional Information</h4>
 
 
@@ -189,6 +285,24 @@
   </div>
 
 
+
+  <div [hidden]="active != 3">
+    <h4>Interest</h4>
+    <div class="custom-controls-stacked">
+
+      <label *ngFor="let category of categories" class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+        <input type="checkbox" class="custom-control-input" 
+               name="interest" (change)="updateInterest($event,category.id)">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">{{category.category_name}}</span>
+      </label>
+
+
+
+    </div>
+  
+  </div>
+
   <br>
 
 
@@ -199,9 +313,9 @@
 
   <shrd-well *ngIf="formModel.msg" [type]="formModel.isSuccess ? 'success': 'danger'">{{formModel.msg}}</shrd-well>
 
-  <button type="button" class="btn btn-primary" *ngIf="active == 1" (click)="prev()">Previous</button>
-  <button type="button" class="btn btn-primary" *ngIf="active != 1" (click)="next()">Next</button>
-  <button type="submit" class="btn btn-success" *ngIf="active == 1">Save</button>
+  <button type="button" class="btn btn-primary" *ngIf="active > 0" (click)="prev()">Previous</button>
+  <button type="button" class="btn btn-primary" *ngIf="active < 3" (click)="next()">Next</button>
+  <button type="submit" class="btn btn-success" *ngIf="active == 3">Save</button>
 </form>
 
 

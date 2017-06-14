@@ -1,5 +1,13 @@
-<reg-shrd-details-form 
-[model]="detailsModel"
-(formSubmit)="save($event)">
-    
+<reg-shrd-details-form *ngIf="!registered"
+    [categories] = "categories"
+    [model]="detailsModel"
+    (formSubmit)="save($event)">
 </reg-shrd-details-form>
+<div *ngIf="registered">
+    <div class="d-flex alert-holder">
+        <div class="alert alert-success m-auto" role="alert">
+            Registration successfully submitted.
+            Please give us atleast 24 hrs to review your registration, we will send you a confirmation email after the validation. Thank you.
+        </div>
+    </div>
+</div>

@@ -27,6 +27,15 @@ export class UserService implements IUploadable,IUserHttpService  {
   }
 
 
+  registerUser(form: any): Observable<any>{
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    var options = new RequestOptions({
+      headers : headers
+    });
+    return this._http.post(`${this._url}/user/register`,JSON.stringify(form),options);
+  }
+
 
   upload(file: any): Observable<any>{
     let headers = new Headers();

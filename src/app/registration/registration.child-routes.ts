@@ -5,18 +5,9 @@ import { DetailsComponent } from './details/details.component';
 
 
 export const routes: Routes = [
-  { 
-      path: 'interests', 
-      component: InterestsComponent
-  },
-  { 
-      path: 'details', 
-      component: DetailsComponent
-  },
-
   {
     path: '',
-    component: ProfileComponent
+    component: DetailsComponent
   }
   
   

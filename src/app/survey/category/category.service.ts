@@ -21,7 +21,7 @@ export class CategoryService implements IHttpService {
   list(): any{
     const user = (this._authService.isAdmin()) ? 'admin/' : '';
     const token = this._authService.getToken();
-     return this._http.get(`${this._url}/${user}category?token=${token}`)
+    return this._http.get(`${this._url}/${user}category?token=${token || ''}`)
            .map((res: Response) => res.json());
   };
 
