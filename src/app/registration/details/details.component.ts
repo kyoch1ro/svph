@@ -35,7 +35,7 @@ export class DetailsComponent implements OnInit {
   save(data: any){
     // newUser['govt_id'] = localStorage.getItem('imageName');
     data['govt_id'] = localStorage.getItem('imageName');
-    console.log(data);
+    // console.log(data);
     let subs: ISubscription = this._userService.registerUser(data)
     .subscribe(data => {},
                err => {

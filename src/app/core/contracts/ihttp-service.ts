@@ -23,7 +23,7 @@ export interface IUserHttpService extends IHttpService{
 
 
 export interface IOptionHttpService extends IHttpService{
-  saveOptions(form: any): Observable<any>;
+  saveOptions(form: any): Observable<any>; //mmove to surveyanswer
 }
 
 export interface ISurveyService extends IHttpService{

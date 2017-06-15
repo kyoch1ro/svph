@@ -57,6 +57,19 @@ export class DetailsFormComponent implements OnInit, IForm {
           Validators.minLength(6)
         ])],
         confirmPassword: ['',Validators.required],
+
+        middlename: [''],
+        name_suffix: [''],
+        civilstatus: ['', Validators.required],
+
+        address1: ['', Validators.required],
+        address2: ['', Validators.required],
+        city: ['', Validators.required],
+        province: ['', Validators.required],
+        occupation: [''],
+        yr_in_job: [''],
+        annual_salary: [''],
+
         no_of_children: [0,Validators.required],
         college: [false],
         c_school: [{value: '', disabled: true}],
