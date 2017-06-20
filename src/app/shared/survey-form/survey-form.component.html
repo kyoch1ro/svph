@@ -19,7 +19,7 @@
             class="form-control" 
             [formGroup]="form" 
             formControlName="question_category_id" >
-            <option value="">Please Select</option>
+            <option value="" selected>Please Select</option>
             <option *ngFor="let item of categories" value="{{item.id}}">{{item.category_name}}</option>
     </select>
     <span *ngIf="form.controls['question_category_id'].touched">
@@ -36,7 +36,7 @@
             class="form-control" 
             [formGroup]="form" 
             formControlName="question_type_id" >
-            <option value="">Please Select</option>
+            <option value="" selected>Please Select</option>
             <option *ngFor="let item of types" value="{{item.type_id}}">{{item.type_name}}</option>
     </select>
     <span *ngIf="form.controls['question_type_id'].touched">

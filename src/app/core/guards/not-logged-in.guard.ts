@@ -5,18 +5,17 @@ import { Observable } from 'rxjs/Observable';
 import { AuthService } from './../services/auth.service';
 import { iAuth } from './../services/i-auth.service';
 
-
 @Injectable()
-export class LoginGuard implements CanActivate {
+export class NotLoggedInGuard implements CanActivate {
   constructor(@Inject(AuthService) private _authService :iAuth,
-              private router: Router){
-  }
+              private router: Router){ }
+
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    
-    const isLoggedIn = this._authService.isLoggedIn();
-    if(!isLoggedIn){ this.router.navigate['/']; }
-    return isLoggedIn;
+    const notLoggedIn = !this._authService.isLoggedIn();
+    if(notLoggedIn){ this.router.navigate['/surveys']; }
+    return notLoggedIn;
   }
 }
+

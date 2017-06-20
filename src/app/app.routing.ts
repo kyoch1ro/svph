@@ -1,5 +1,6 @@
 import { Router, RouterModule } from '@angular/router';
 import { LoginGuard } from 'app/core/guards/login.guard';
+import { NotLoggedInGuard } from 'app/core/guards/not-logged-in.guard';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { MainComponent as HomeMain } from 'app/home/main/main.component';
 import { MainComponent as SurveyMain } from 'app/survey/main/main.component';
@@ -29,8 +30,14 @@ export const routing = RouterModule.forRoot([
     { 
         path: 'surveys', 
         component: SurveyMain,
-        children:  SurveyChild
+        canActivate: [ LoginGuard ],
+        children:  SurveyChild,
+        
     },
-    { path: '', component: HomeMain },
+    { 
+        path: '',
+        canActivate: [ NotLoggedInGuard ],
+        component: HomeMain,
+     },
     { path: '**', component: NotFoundComponent }
 ])

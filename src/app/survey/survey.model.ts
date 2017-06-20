@@ -36,7 +36,7 @@ export class Survey implements ISurveyDTO{
         this.updated_at         = obj && obj.updated_at         || null;
         this.respondents        = obj && obj.respondents        || null;
         this.survey_img         = obj && obj.survey_img         || null;
-        this.questions          = obj && obj.questions          || null;
+        this.questions          = obj && obj.questions          || [];
     }
 
     setQuestions(){
